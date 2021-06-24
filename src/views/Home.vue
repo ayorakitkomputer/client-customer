@@ -1,5 +1,5 @@
 <template>
-    <h1>Ini Home</h1>
+    <h1>Ini Home Dev</h1>
 </template>
 
 <script>
