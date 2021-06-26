@@ -1,10 +1,23 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <!-- <router-link to="/">Home</router-link> -->
+    <div id="app" class="max-w-full">
+        <Navbar />
+        <router-view />
     </div>
-    <router-view />
-  </div>
 </template>
 
-<style></style>
+<script>
+import Navbar from "./components/Navbar.vue";
+
+export default {
+    name: "App",
+    components: {
+        Navbar,
+    },
+};
+</script>
+
+<style>
+.h-navbar {
+    height: calc(100vh - 80px);
+}
+</style>
