@@ -1,10 +1,36 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <!-- <router-link to="/">Home</router-link> -->
+    <div id="app" class="max-w-full">
+        <Navbar v-if="isNotLogin" />
+        <router-view />
     </div>
-    <router-view />
-  </div>
 </template>
 
-<style></style>
+<script>
+import Navbar from "./components/Navbar.vue";
+
+export default {
+    name: "App",
+    components: {
+        Navbar,
+    },
+    data() {
+        return { isNotLogin: true };
+    },
+    beforeMount() {
+        // use this if navbar is buggy.
+        if (this.$router.currentRoute.name === "Login") this.isNotLogin = false;
+        else this.isNotLogin = true;
+    },
+    beforeUpdate() {
+        // console.log(this.$router.currentRoute, "ini beforeupdate");
+        if (this.$router.currentRoute.name === "Login") this.isNotLogin = false;
+        else this.isNotLogin = true;
+    },
+};
+</script>
+
+<style>
+.h-navbar {
+    height: calc(100vh - 80px);
+}
+</style>
