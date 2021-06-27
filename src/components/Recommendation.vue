@@ -1,13 +1,15 @@
 <template>
-    <div class="h-screen bg-black">
+    <section class="h-screen bg-black section">
         <div class="relative grid grid-cols-6">
-            <h1
-                class="absolute text-4xl text-white transform -translate-x-1/2  left-1/2 top-10"
-            >
-                Entry Level AMD Gaming Build
-            </h1>
+            <div class="absolute transform -translate-x-1/2 left-1/2 top-10">
+                <h1 data-aos="fade-up" class="text-4xl text-white">
+                    Entry Level AMD Gaming Build
+                </h1>
+            </div>
+
             <div class="flex items-center justify-center col-span-4">
                 <img
+                    data-aos="fade-up-right"
                     src="https://cougargaming.com/_cgrwdr_/wwdpp/wp-content/uploads/2020/01/mx350-RGB-banner-2.png"
                     alt=""
                 />
@@ -16,6 +18,7 @@
                 class="flex items-center justify-center h-screen col-span-2 overflow-auto bg-gray-700 "
             >
                 <div
+                    data-aos="fade-up"
                     class="flex flex-col items-center justify-between w-5/6  h-2/3"
                 >
                     <h5
@@ -79,12 +82,13 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </template>
 
 <script>
 export default {
     name: "Recommendation",
+    props: ["index"],
 };
 </script>
 
@@ -94,5 +98,13 @@ export default {
 }
 .type-data {
     @apply col-span-4 col-start-3 text-lg;
+}
+
+[data-aos="fade-out"] {
+    opacity: 1;
+    transition-property: opacity;
+    &.aos-animate {
+        opacity: 0;
+    }
 }
 </style>

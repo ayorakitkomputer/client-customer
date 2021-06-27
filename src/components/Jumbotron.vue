@@ -1,5 +1,5 @@
 <template>
-    <section class="bg-gray-900 h-navbar max-w-screen">
+    <div class="bg-gray-900 h-navbar max-w-screen">
         <div class="flex items-center justify-center">
             <span
                 id="test-animation"
@@ -14,7 +14,7 @@
                 LET'S START
             </button>
         </div>
-    </section>
+    </div>
 </template>
 
 <script>
