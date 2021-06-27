@@ -3,105 +3,54 @@
         <!-- JUMBOTRON -->
         <Jumbotron />
         <!-- SPECIFICATION -->
-        <div class="h-screen bg-white">
-            <div class="grid grid-cols-6">
-                <div class="col-span-4">
-                    <!-- <h1 class="text-white">GAMBAR</h1> -->
-                    <img
-                        data-aos="fade-up"
-                        data-aos-anchor-placement="center-center"
-                        src="https://cougargaming.com/_cgrwdr_/wwdpp/wp-content/uploads/2020/01/mx350-RGB-banner-2.png"
-                        alt=""
-                    />
-                </div>
-                <div
-                    class="h-screen col-span-2 px-4 py-4 overflow-auto bg-gray-700 "
-                >
-                    <h1
-                        data-aos="fade-up"
-                        data-aos-anchor-placement="center-center"
-                    >
-                        Lorem ipsum dolor sit amet consectetur, adipisicing
-                        elit. Ratione numquam fuga voluptatem unde nesciunt!
-                        Eveniet molestiae, ex velit aliquid numquam consequuntur
-                        harum nulla perspiciatis dolores dolore illum excepturi
-                        minima suscipit? Lorem ipsum dolor sit amet consectetur,
-                        adipisicing elit. Ratione numquam fuga voluptatem unde
-                        nesciunt! Eveniet molestiae, ex velit aliquid numquam
-                        consequuntur harum nulla perspiciatis dolores dolore
-                        illum excepturi minima suscipit? Lorem ipsum dolor sit
-                        amet consectetur, adipisicing elit. Ratione numquam fuga
-                        voluptatem unde nesciunt! Eveniet molestiae, ex velit
-                        aliquid numquam consequuntur harum nulla perspiciatis
-                        dolores dolore illum excepturi minima suscipit? Lorem
-                        ipsum dolor sit amet consectetur, adipisicing elit.
-                        Ratione numquam fuga voluptatem unde nesciunt! Eveniet
-                        molestiae, ex velit aliquid numquam consequuntur harum
-                        nulla perspiciatis dolores dolore illum excepturi minima
-                        suscipit? Lorem ipsum dolor sit amet consectetur,
-                        adipisicing elit. Ratione numquam fuga voluptatem unde
-                        nesciunt! Eveniet molestiae, ex velit aliquid numquam
-                        consequuntur harum nulla perspiciatis dolores dolore
-                        illum excepturi minima suscipit?
-                    </h1>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-6 bg-black">
-                <div class="col-span-4">
-                    <!-- <h1 class="text-white">GAMBAR</h1> -->
-                    <img
-                        data-aos="fade-up"
-                        data-aos-anchor-placement="top-center"
-                        src="https://cougargaming.com/_cgrwdr_/wwdpp/wp-content/uploads/2020/01/mx350-RGB-banner-2.png"
-                        alt=""
-                    />
-                </div>
-                <div
-                    class="h-screen col-span-2 px-4 py-4 overflow-auto bg-gray-700 "
-                >
-                    <h1
-                        data-aos="fade-up"
-                        data-aos-anchor-placement="top-center"
-                    >
-                        Lorem ipsum dolor sit amet consectetur, adipisicing
-                        elit. Ratione numquam fuga voluptatem unde nesciunt!
-                        Eveniet molestiae, ex velit aliquid numquam consequuntur
-                        harum nulla perspiciatis dolores dolore illum excepturi
-                        minima suscipit? Lorem ipsum dolor sit amet consectetur,
-                        adipisicing elit. Ratione numquam fuga voluptatem unde
-                        nesciunt! Eveniet molestiae, ex velit aliquid numquam
-                        consequuntur harum nulla perspiciatis dolores dolore
-                        illum excepturi minima suscipit? Lorem ipsum dolor sit
-                        amet consectetur, adipisicing elit. Ratione numquam fuga
-                        voluptatem unde nesciunt! Eveniet molestiae, ex velit
-                        aliquid numquam consequuntur harum nulla perspiciatis
-                        dolores dolore illum excepturi minima suscipit? Lorem
-                        ipsum dolor sit amet consectetur, adipisicing elit.
-                        Ratione numquam fuga voluptatem unde nesciunt! Eveniet
-                        molestiae, ex velit aliquid numquam consequuntur harum
-                        nulla perspiciatis dolores dolore illum excepturi minima
-                        suscipit? Lorem ipsum dolor sit amet consectetur,
-                        adipisicing elit. Ratione numquam fuga voluptatem unde
-                        nesciunt! Eveniet molestiae, ex velit aliquid numquam
-                        consequuntur harum nulla perspiciatis dolores dolore
-                        illum excepturi minima suscipit?
-                    </h1>
-                </div>
-            </div>
+        <Recommendation />
+        <div>
+            <Recommendation />
+        </div>
+        <div
+            class="fixed bg-white rounded-full shadow-lg cursor-pointer  bottom-5 left-5 object"
+        >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-10 h-10"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+            >
+                <path
+                    fill-rule="evenodd"
+                    d="M3.293 9.707a1 1 0 010-1.414l6-6a1 1 0 011.414 0l6 6a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L4.707 9.707a1 1 0 01-1.414 0z"
+                    clip-rule="evenodd"
+                />
+            </svg>
         </div>
     </div>
 </template>
 
 <script>
 import Jumbotron from "../components/Jumbotron.vue";
+import Recommendation from "../components/Recommendation.vue";
 
 export default {
     name: "Home",
     components: {
         Jumbotron,
+        Recommendation,
     },
 };
 </script>
 
-<style></style>
+<style>
+.object {
+    animation: MoveUpDown 3s linear infinite;
+}
+
+@keyframes MoveUpDown {
+    0%,
+    100% {
+        @apply bottom-5;
+    }
+    50% {
+        bottom: 10px;
+    }
+}
+</style>
