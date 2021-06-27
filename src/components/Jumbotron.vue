@@ -1,7 +1,9 @@
 <template>
     <section class="bg-gray-900 h-navbar max-w-screen">
         <div class="flex items-center justify-center">
-            <span class="font-semibold text-white mt-44 text-7xl"
+            <span
+                id="test-animation"
+                class="font-semibold text-white mt-44 text-7xl"
                 >BUILD YOUR OWN PC</span
             >
         </div>
