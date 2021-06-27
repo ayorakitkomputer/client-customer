@@ -1,6 +1,6 @@
 <template>
     <div id="app" class="max-w-full">
-        <Navbar />
+        <Navbar v-if="isNotLogin" />
         <router-view />
     </div>
 </template>
@@ -12,6 +12,19 @@ export default {
     name: "App",
     components: {
         Navbar,
+    },
+    data() {
+        return { isNotLogin: true };
+    },
+    beforeMount() {
+        // use this if navbar is buggy.
+        if (this.$router.currentRoute.name === "Login") this.isNotLogin = false;
+        else this.isNotLogin = true;
+    },
+    beforeUpdate() {
+        // console.log(this.$router.currentRoute, "ini beforeupdate");
+        if (this.$router.currentRoute.name === "Login") this.isNotLogin = false;
+        else this.isNotLogin = true;
     },
 };
 </script>

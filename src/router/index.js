@@ -15,6 +15,11 @@ const routes = [
         name: "PickParts",
         component: () => import("../views/PickParts.vue"),
     },
+    {
+        path: "/login",
+        name: "Login",
+        component: () => import("../views/Login.vue"),
+    },
 ];
 
 const router = new VueRouter({

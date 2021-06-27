@@ -13,7 +13,7 @@
                     class="flex items-center justify-center gap-4 mx-auto text-white "
                 >
                     <li class="p-2 bg-gray-900 cursor-pointer rounded-xl">
-                        REGISTER
+                        <router-link to="/login"> REGISTER </router-link>
                     </li>
                     <!-- <li class="p-2 m-4 bg-gray-900 cursor-pointer rounded-xl">
                         LOGIN
