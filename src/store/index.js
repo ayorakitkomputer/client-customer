@@ -50,6 +50,9 @@ export default new Vuex.Store({
         getCpu(context, page = 1) {
             axios({
                 url: `/cpu?page=${page}`,
+                headers: {
+                    access_token: localStorage.access_token,
+                },
             })
                 .then(({ data }) => {
                     let cpuData = {
@@ -66,10 +69,15 @@ export default new Vuex.Store({
                 });
         },
         getMotherboard(context, page = 1) {
+            // console.log(context.state.currentBuild, "ini di mobo");
             axios({
-                url: `/motherboard?page=${page}`,
+                url: `/builds/${context.state.currentBuild._id}/motherboard?page=${page}`,
+                headers: {
+                    access_token: localStorage.access_token,
+                },
             })
                 .then(({ data }) => {
+                    console.log(data, "INI MOBO");
                     let motherboardData = {
                         category: context.state.componentsCategory.motherboard,
                         data: data,
@@ -85,6 +93,9 @@ export default new Vuex.Store({
         getStorage(context, page = 1) {
             axios({
                 url: `/storages?page=${page}`,
+                headers: {
+                    access_token: localStorage.access_token,
+                },
             })
                 .then(({ data }) => {
                     let storageData = {
@@ -102,6 +113,9 @@ export default new Vuex.Store({
         getPowerSupply(context, page = 1) {
             axios({
                 url: `/power-supplies?page=${page}`,
+                headers: {
+                    access_token: localStorage.access_token,
+                },
             })
                 .then(({ data }) => {
                     let powerSupplyData = {
@@ -119,6 +133,9 @@ export default new Vuex.Store({
         getMonitor(context, page = 1) {
             axios({
                 url: `/monitors?page=${page}`,
+                headers: {
+                    access_token: localStorage.access_token,
+                },
             })
                 .then(({ data }) => {
                     let monitorData = {
@@ -136,6 +153,9 @@ export default new Vuex.Store({
         getGpu(context, page = 1) {
             axios({
                 url: `/gpu?page=${page}`,
+                headers: {
+                    access_token: localStorage.access_token,
+                },
             })
                 .then(({ data }) => {
                     let gpuData = {
@@ -153,6 +173,9 @@ export default new Vuex.Store({
         getCase(context, page = 1) {
             axios({
                 url: `/case?page=${page}`,
+                headers: {
+                    access_token: localStorage.access_token,
+                },
             })
                 .then(({ data }) => {
                     let caseData = {
@@ -170,6 +193,9 @@ export default new Vuex.Store({
         getMemory(context, page = 1) {
             axios({
                 url: `/memory?page=${page}`,
+                headers: {
+                    access_token: localStorage.access_token,
+                },
             })
                 .then(({ data }) => {
                     let memoryData = {
@@ -187,6 +213,9 @@ export default new Vuex.Store({
         getCaseFan(context, page = 1) {
             axios({
                 url: `/caseFan?page=${page}`,
+                headers: {
+                    access_token: localStorage.access_token,
+                },
             })
                 .then(({ data }) => {
                     let caseFanData = {
@@ -269,7 +298,7 @@ export default new Vuex.Store({
                 },
             })
                 .then(({ data }) => {
-                    router.push(`/build/${data.buildId}/cpu`);
+                    router.push(`/build/${data.id}/cpu`);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -286,10 +315,11 @@ export default new Vuex.Store({
             }
             if (payload.type === "powerSupply")
                 dataKey.url = `/builds/${payload.buildId}/power_supply`;
-
+            if (payload.type === "caseFan")
+                dataKey.url = `/builds/${payload.buildId}/case_fan`;
             axios({
                 url: dataKey.url,
-                method: "POST",
+                method: "PATCH",
                 headers: {
                     access_token: localStorage.access_token,
                 },
