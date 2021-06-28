@@ -2,27 +2,32 @@
     <section class="h-screen bg-black section">
         <div class="relative grid grid-cols-6">
             <div class="absolute transform -translate-x-1/2 left-1/2 top-10">
-                <h1 data-aos="fade-up" class="text-4xl text-white">
+                <h1
+                    data-aos="fade-up"
+                    class="text-base text-white md:text-2xl xl:text-4xl"
+                >
                     Entry Level AMD Gaming Build
                 </h1>
             </div>
 
-            <div class="flex items-center justify-center col-span-4">
+            <div class="flex items-center justify-center h-screen col-span-4">
                 <img
+                    class="object-scale-down h-1/2"
                     data-aos="fade-up-right"
                     src="https://cougargaming.com/_cgrwdr_/wwdpp/wp-content/uploads/2020/01/mx350-RGB-banner-2.png"
                     alt=""
                 />
             </div>
+
             <div
-                class="flex items-center justify-center h-screen col-span-2 overflow-auto bg-gray-700 "
+                class="flex items-center justify-center col-span-2 overflow-auto bg-gray-700 "
             >
                 <div
                     data-aos="fade-up"
-                    class="flex flex-col items-center justify-between w-5/6  h-2/3"
+                    class="flex flex-col items-center justify-between w-5/6 bg-white rounded-md  h-2/3"
                 >
                     <h5
-                        class="text-lg tracking-wide text-center text-white uppercase "
+                        class="text-lg tracking-wide text-center text-black uppercase "
                     >
                         Specifications
                     </h5>

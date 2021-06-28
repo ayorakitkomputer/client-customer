@@ -8,11 +8,13 @@
             >
         </div>
         <div class="flex items-center justify-center">
-            <button
-                class="px-3 py-2 mt-10 text-xl font-bold bg-white  mb-52 rounded-xl"
-            >
-                LET'S START
-            </button>
+            <router-link to="/build">
+                <button
+                    class="px-3 py-2 mt-10 text-xl font-bold bg-white  mb-52 rounded-xl"
+                >
+                    LET'S START
+                </button>
+            </router-link>
         </div>
     </div>
 </template>

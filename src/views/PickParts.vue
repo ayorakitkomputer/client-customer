@@ -41,80 +41,29 @@
                 </ul>
             </div>
 
-            <div class="col-span-10 bg-red-400">
-                <div class="grid grid-cols-7 p-3 bg-black">
-                    <div class="col-span-2">
-                        <center>
-                            <h1 class="font-semibold text-pink-500">Name</h1>
-                        </center>
-                    </div>
-                    <div class="col-span-1">
-                        <center>
-                            <h1 class="font-semibold text-pink-500">Socket</h1>
-                        </center>
-                    </div>
-                    <div class="col-span-1">
-                        <center>
-                            <h1 class="font-semibold text-pink-500">iGPU</h1>
-                        </center>
-                    </div>
-                    <div class="col-span-1">
-                        <center>
-                            <h1 class="font-semibold text-pink-500">TDP</h1>
-                        </center>
-                    </div>
-                    <div class="col-span-1">
-                        <center>
-                            <h1 class="font-semibold text-pink-500">Price</h1>
-                        </center>
-                    </div>
-                    <div class="col-span-1">
-                        <center>
-                            <h1 class="font-semibold text-pink-500">Stock</h1>
-                        </center>
-                    </div>
-                </div>
-                <!-- CONTENT -->
-                <div class="grid grid-cols-7 p-3 m-2 mt-5 bg-black rounded-3xl">
-                    <div class="col-span-2">
-                        <center>
-                            <h1 class="text-white">Gambar + AMD Ryzen 9</h1>
-                        </center>
-                    </div>
-                    <div class="col-span-1">
-                        <center>
-                            <h1 class="text-white">AM 4</h1>
-                        </center>
-                    </div>
-                    <div class="col-span-1">
-                        <center>
-                            <h1 class="text-white">Included</h1>
-                        </center>
-                    </div>
-                    <div class="col-span-1">
-                        <center>
-                            <h1 class="text-white">80 W</h1>
-                        </center>
-                    </div>
-                    <div class="col-span-1">
-                        <center>
-                            <h1 class="text-white">10.000.000</h1>
-                        </center>
-                    </div>
-                    <div class="col-span-1">
-                        <center>
-                            <h1 class="text-white">200</h1>
-                        </center>
-                    </div>
-                </div>
-            </div>
+            <PickPartsMain :component="getCPU" />
         </div>
     </section>
 </template>
 
 <script>
+import PickPartsMain from "../components/PickPartsMain.vue";
+
 export default {
     name: "PickParts",
+    components: {
+        PickPartsMain,
+    },
+    computed: {
+        getCPU() {
+            // console.log(this.$store.state.componentsCategory);
+            let cpuData = {
+                category: this.$store.state.componentsCategory.cpu,
+                data: this.$store.state.cpu,
+            };
+            return cpuData;
+        },
+    },
 };
 </script>
 

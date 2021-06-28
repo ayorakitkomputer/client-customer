@@ -1,5 +1,5 @@
 <template>
-    <div id="app" class="max-w-full">
+    <div id="app" class="">
         <Navbar v-if="isNotLogin" />
         <router-view />
     </div>
