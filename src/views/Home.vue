@@ -3,105 +3,110 @@
         <!-- JUMBOTRON -->
         <Jumbotron />
         <!-- SPECIFICATION -->
-        <div class="h-screen bg-white">
-            <div class="grid grid-cols-6">
-                <div class="col-span-4">
-                    <!-- <h1 class="text-white">GAMBAR</h1> -->
-                    <img
-                        data-aos="fade-up"
-                        data-aos-anchor-placement="center-center"
-                        src="https://cougargaming.com/_cgrwdr_/wwdpp/wp-content/uploads/2020/01/mx350-RGB-banner-2.png"
-                        alt=""
-                    />
-                </div>
-                <div
-                    class="h-screen col-span-2 px-4 py-4 overflow-auto bg-gray-700 "
-                >
-                    <h1
-                        data-aos="fade-up"
-                        data-aos-anchor-placement="center-center"
-                    >
-                        Lorem ipsum dolor sit amet consectetur, adipisicing
-                        elit. Ratione numquam fuga voluptatem unde nesciunt!
-                        Eveniet molestiae, ex velit aliquid numquam consequuntur
-                        harum nulla perspiciatis dolores dolore illum excepturi
-                        minima suscipit? Lorem ipsum dolor sit amet consectetur,
-                        adipisicing elit. Ratione numquam fuga voluptatem unde
-                        nesciunt! Eveniet molestiae, ex velit aliquid numquam
-                        consequuntur harum nulla perspiciatis dolores dolore
-                        illum excepturi minima suscipit? Lorem ipsum dolor sit
-                        amet consectetur, adipisicing elit. Ratione numquam fuga
-                        voluptatem unde nesciunt! Eveniet molestiae, ex velit
-                        aliquid numquam consequuntur harum nulla perspiciatis
-                        dolores dolore illum excepturi minima suscipit? Lorem
-                        ipsum dolor sit amet consectetur, adipisicing elit.
-                        Ratione numquam fuga voluptatem unde nesciunt! Eveniet
-                        molestiae, ex velit aliquid numquam consequuntur harum
-                        nulla perspiciatis dolores dolore illum excepturi minima
-                        suscipit? Lorem ipsum dolor sit amet consectetur,
-                        adipisicing elit. Ratione numquam fuga voluptatem unde
-                        nesciunt! Eveniet molestiae, ex velit aliquid numquam
-                        consequuntur harum nulla perspiciatis dolores dolore
-                        illum excepturi minima suscipit?
-                    </h1>
-                </div>
-            </div>
+        <Recommendation v-for="index in 3" :key="index" :index="index" />
 
-            <div class="grid grid-cols-6 bg-black">
-                <div class="col-span-4">
-                    <!-- <h1 class="text-white">GAMBAR</h1> -->
-                    <img
-                        data-aos="fade-up"
-                        data-aos-anchor-placement="top-center"
-                        src="https://cougargaming.com/_cgrwdr_/wwdpp/wp-content/uploads/2020/01/mx350-RGB-banner-2.png"
-                        alt=""
-                    />
-                </div>
-                <div
-                    class="h-screen col-span-2 px-4 py-4 overflow-auto bg-gray-700 "
-                >
-                    <h1
-                        data-aos="fade-up"
-                        data-aos-anchor-placement="top-center"
-                    >
-                        Lorem ipsum dolor sit amet consectetur, adipisicing
-                        elit. Ratione numquam fuga voluptatem unde nesciunt!
-                        Eveniet molestiae, ex velit aliquid numquam consequuntur
-                        harum nulla perspiciatis dolores dolore illum excepturi
-                        minima suscipit? Lorem ipsum dolor sit amet consectetur,
-                        adipisicing elit. Ratione numquam fuga voluptatem unde
-                        nesciunt! Eveniet molestiae, ex velit aliquid numquam
-                        consequuntur harum nulla perspiciatis dolores dolore
-                        illum excepturi minima suscipit? Lorem ipsum dolor sit
-                        amet consectetur, adipisicing elit. Ratione numquam fuga
-                        voluptatem unde nesciunt! Eveniet molestiae, ex velit
-                        aliquid numquam consequuntur harum nulla perspiciatis
-                        dolores dolore illum excepturi minima suscipit? Lorem
-                        ipsum dolor sit amet consectetur, adipisicing elit.
-                        Ratione numquam fuga voluptatem unde nesciunt! Eveniet
-                        molestiae, ex velit aliquid numquam consequuntur harum
-                        nulla perspiciatis dolores dolore illum excepturi minima
-                        suscipit? Lorem ipsum dolor sit amet consectetur,
-                        adipisicing elit. Ratione numquam fuga voluptatem unde
-                        nesciunt! Eveniet molestiae, ex velit aliquid numquam
-                        consequuntur harum nulla perspiciatis dolores dolore
-                        illum excepturi minima suscipit?
-                    </h1>
-                </div>
-            </div>
-        </div>
+        <TopActionButton :scrollTop="scrollTop" />
     </div>
 </template>
 
 <script>
 import Jumbotron from "../components/Jumbotron.vue";
+import Recommendation from "../components/Recommendation.vue";
+import TopActionButton from "../components/TopActionButton.vue";
 
 export default {
     name: "Home",
     components: {
         Jumbotron,
+        Recommendation,
+        TopActionButton,
+    },
+    data() {
+        return {
+            inMove: false,
+            activeSection: 0,
+            offsets: [],
+        };
+    },
+    methods: {
+        scrollTop() {
+            this.scrollToSection(0);
+        },
+        calculateSectionOffsets() {
+            const sections = document.getElementsByClassName("section");
+            sections.forEach((el) => {
+                let sectionOffset = el.offsetTop;
+                this.offsets.push(sectionOffset);
+            });
+        },
+        scrollToSection(id, force = false) {
+            if (this.inMove && !force) return false;
+            this.activeSection = id;
+            this.inMove = true;
+            document.getElementsByClassName("section")[id].scrollIntoView({
+                behavior: "smooth",
+            });
+            setTimeout(() => {
+                this.inMove = false;
+            }, 400);
+        },
+        handleMouseWheel(e) {
+            if (e.wheelDelta < 30 && !this.inMove) {
+                this.moveUp();
+            } else if (e.wheelDelta > 30 && !this.inMove) {
+                this.moveDown();
+            }
+            e.preventDefault();
+            return false;
+        },
+        moveDown() {
+            this.inMove = true;
+            this.activeSection--;
+
+            if (this.activeSection < 0)
+                this.activeSection = this.offsets.length - 1;
+
+            this.scrollToSection(this.activeSection, true);
+        },
+        moveUp() {
+            this.inMove = true;
+            this.activeSection++;
+
+            if (this.activeSection > this.offsets.length - 1)
+                this.activeSection = 0;
+
+            this.scrollToSection(this.activeSection, true);
+        },
+    },
+    mounted() {
+        this.calculateSectionOffsets();
+
+        window.addEventListener("DOMMouseScroll", this.handleMouseWheelDOM); // Mozilla Firefox
+        window.addEventListener("mousewheel", this.handleMouseWheel, {
+            passive: false,
+        }); // Other browsers
+    },
+    destroyed() {
+        window.removeEventListener("mousewheel", this.handleMouseWheel, {
+            passive: false,
+        }); // Other browsers
+        window.removeEventListener("DOMMouseScroll", this.handleMouseWheelDOM); // Mozilla Firefox
     },
 };
 </script>
 
-<style></style>
+<style>
+.object {
+    animation: MoveUpDown 3s linear infinite;
+}
+
+@keyframes MoveUpDown {
+    0%,
+    100% {
+        @apply bottom-5;
+    }
+    50% {
+        bottom: 10px;
+    }
+}
+</style>

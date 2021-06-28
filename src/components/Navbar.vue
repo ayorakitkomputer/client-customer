@@ -1,5 +1,5 @@
 <template>
-    <nav class="h-20 bg-red-200">
+    <section id="navbar" class="h-20 bg-red-200 section">
         <div class="grid h-full grid-cols-12 mx-auto max-w-screen">
             <div
                 class="self-center col-span-2 p-4 text-white  justify-self-center"
@@ -24,7 +24,7 @@
                 </ul>
             </div>
         </div>
-    </nav>
+    </section>
 </template>
 
 <script>
