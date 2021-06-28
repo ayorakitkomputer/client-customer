@@ -1,49 +1,54 @@
 <template>
-    <div class="grid p-3 m-2 mt-5 bg-black rounded-3xl" :class="getGridAmount">
-        <div class="col-span-2">
-            <center>
-                <h1 class="text-white">test</h1>
-            </center>
-        </div>
-        <div class="col-span-1">
-            <center>
-                <h1 class="text-white">AM 4</h1>
-            </center>
-        </div>
-        <div class="col-span-1">
-            <center>
-                <h1 class="text-white">Included</h1>
-            </center>
-        </div>
-        <div class="col-span-1">
-            <center>
-                <h1 class="text-white">80 W</h1>
-            </center>
-        </div>
-        <div class="col-span-1">
-            <center>
-                <h1 class="text-white">10.000.000</h1>
-            </center>
-        </div>
-        <div class="col-span-1">
-            <center>
-                <h1 class="text-white">200</h1>
-            </center>
-        </div>
-    </div>
+    <PartsCPU v-if="type === 'cpu'" :componentData="componentData" />
+    <PartsMotherboard
+        v-else-if="type === 'motherboard'"
+        :componentData="componentData"
+    />
+    <PartsMemory v-else-if="type === 'memory'" :componentData="componentData" />
+    <PartsGPU v-else-if="type === 'gpu'" :componentData="componentData" />
+    <PartsCase v-else-if="type === 'case'" :componentData="componentData" />
+    <PartsCaseFan
+        v-else-if="type === 'caseFans'"
+        :componentData="componentData"
+    />
+    <PartsMonitor
+        v-else-if="type === 'monitor'"
+        :componentData="componentData"
+    />
+    <PartsPowerSupply
+        v-else-if="type === 'powerSupply'"
+        :componentData="componentData"
+    />
+    <PartsStorage
+        v-else-if="type === 'storage'"
+        :componentData="componentData"
+    />
 </template>
 
 <script>
+import PartsCPU from "./parts/PartsCPU.vue";
+import PartsMotherboard from "./parts/PartsMotherboard.vue";
+import PartsMemory from "./parts/PartsMemory.vue";
+import PartsGPU from "./parts/PartsGPU.vue";
+import PartsCase from "./parts/PartsCase.vue";
+import PartsStorage from "./parts/PartsStorage.vue";
+import PartsPowerSupply from "./parts/PartsPowerSupply.vue";
+import PartsMonitor from "./parts/PartsMonitor.vue";
+import PartsCaseFan from "./parts/PartsCaseFan.vue";
+
 export default {
     name: "PickPartsComponent",
-    props: ["component"],
-    computed: {
-        getGridAmount() {
-            return `grid-cols-${this.component.category.length + 1}`;
-        },
-        // getName() {
-        //     return `${this.component.data.manufacturer} ${this.component.data.name}`;
-        // },
+    props: ["componentData", "type"],
+    components: {
+        PartsCPU,
+        PartsMotherboard,
+        PartsMemory,
+        PartsGPU,
+        PartsCase,
+        PartsStorage,
+        PartsPowerSupply,
+        PartsMonitor,
+        PartsCaseFan,
     },
 };
 </script>

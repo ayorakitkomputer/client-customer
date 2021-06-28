@@ -6,64 +6,72 @@
                     Components
                 </h5>
                 <ul class="flex flex-col gap-2 mx-4 mt-5 uppercase">
-                    <li class="flex justify-between">
-                        <div>CPU</div>
-                        <div>+</div>
-                    </li>
-                    <li class="flex justify-between">
-                        <div>Motherboard</div>
-                        <div>+</div>
-                    </li>
-                    <li class="flex justify-between">
-                        <div>Memory</div>
-                        <div>+</div>
-                    </li>
-                    <li class="flex justify-between">
-                        <div>Storage</div>
-                        <div>+</div>
-                    </li>
-                    <li class="flex justify-between">
-                        <div>GPU</div>
-                        <div>+</div>
-                    </li>
-                    <li class="flex justify-between">
-                        <div>Case</div>
-                        <div>+</div>
-                    </li>
-                    <li class="flex justify-between">
-                        <div>Powersupply</div>
-                        <div>+</div>
-                    </li>
-                    <li class="flex justify-between">
-                        <div>Monitor</div>
-                        <div>+</div>
-                    </li>
+                    <router-link to="/build/cpu">
+                        <li class="flex justify-between">
+                            <div>CPU</div>
+                            <div>+</div>
+                        </li>
+                    </router-link>
+
+                    <router-link to="/build/motherboard">
+                        <li class="flex justify-between">
+                            <div>Motherboard</div>
+                            <div>+</div>
+                        </li>
+                    </router-link>
+                    <router-link to="/build/memory">
+                        <li class="flex justify-between">
+                            <div>Memory</div>
+                            <div>+</div>
+                        </li>
+                    </router-link>
+                    <router-link to="/build/storage">
+                        <li class="flex justify-between">
+                            <div>Storage</div>
+                            <div>+</div>
+                        </li>
+                    </router-link>
+                    <router-link to="/build/gpu">
+                        <li class="flex justify-between">
+                            <div>GPU</div>
+                            <div>+</div>
+                        </li>
+                    </router-link>
+                    <router-link to="/build/case">
+                        <li class="flex justify-between">
+                            <div>Case</div>
+                            <div>+</div>
+                        </li>
+                    </router-link>
+                    <router-link to="/build/power_supply">
+                        <li class="flex justify-between">
+                            <div>Powersupply</div>
+                            <div>+</div>
+                        </li>
+                    </router-link>
+                    <router-link to="/build/monitor">
+                        <li class="flex justify-between">
+                            <div>Monitor</div>
+                            <div>+</div>
+                        </li>
+                    </router-link>
+                    <router-link to="/build/fans">
+                        <li class="flex justify-between">
+                            <div>Case Fans</div>
+                            <div>+</div>
+                        </li>
+                    </router-link>
                 </ul>
             </div>
 
-            <PickPartsMain :component="getCPU" />
+            <router-view />
         </div>
     </section>
 </template>
 
 <script>
-import PickPartsMain from "../components/PickPartsMain.vue";
-
 export default {
     name: "PickParts",
-    components: {
-        PickPartsMain,
-    },
-    computed: {
-        getCPU() {
-            // console.log(this.$store.state.componentsCategory);
-            let cpuData = {
-                category: this.$store.state.componentsCategory.cpu,
-                data: this.$store.state.cpu,
-            };
-            return cpuData;
-        },
-    },
 };
 </script>
 
