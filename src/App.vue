@@ -33,4 +33,7 @@ export default {
 .h-navbar {
     height: calc(100vh - 80px);
 }
+.basic-center {
+    @apply flex justify-center items-center;
+}
 </style>
