@@ -21,7 +21,9 @@
                 <h1 class="text-white">{{ part.stock }}</h1>
             </div>
             <div class="col-span-1 basic-center">
-                <h1 class="text-white">Add</h1>
+                <button @click="addMonitor(part)" class="text-white">
+                    Add
+                </button>
             </div>
         </div>
 
@@ -40,6 +42,20 @@ export default {
                 style: "currency",
                 currency: "IDR",
             }).format(Math.round(price));
+        },
+        addMonitor(part) {
+            const currentBuild = this.$store.state.currentBuild;
+            const payload = {
+                buildId: this.$route.params.id,
+                partId: [part._id],
+                type: "monitor",
+            };
+            if (currentBuild.monitor) {
+                currentBuild.monitor.forEach((oneMonitor) => {
+                    payload.partId.push(oneMonitor._id);
+                });
+            }
+            this.$store.dispatch("addBuild", payload);
         },
     },
     components: {

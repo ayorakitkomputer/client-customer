@@ -33,6 +33,7 @@ export default new Vuex.Store({
             case: ["Name", "Form Factor", "Price", "Stock"],
             caseFan: ["Name", "Size", "Price", "Stock"],
         },
+        currentBuild: {},
     },
     mutations: {
         SET_COMPONENT_DATA(state, payload) {
@@ -40,6 +41,9 @@ export default new Vuex.Store({
         },
         SET_COMPONENT_LOADING(state, payload) {
             state.componentDataLoading = payload;
+        },
+        SET_CURRENT_BUILD(state, payload) {
+            state.currentBuild = payload;
         },
     },
     actions: {
@@ -256,19 +260,59 @@ export default new Vuex.Store({
                     console.log(err.message);
                 });
         },
-        addToBuild(context, payload) {
+        createNewBuild() {
             axios({
                 url: "/builds",
                 method: "POST",
                 headers: {
                     access_token: localStorage.access_token,
                 },
+            })
+                .then(({ data }) => {
+                    router.push(`/build/${data.buildId}/cpu`);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        },
+        addBuild(context, payload) {
+            // console.log(payload.partId);
+            let dataKey = {
+                key: `${payload.type}Id`,
+                url: `/builds/${payload.buildId}/${payload.type}`,
+            };
+            if (Array.isArray(payload.partId)) {
+                dataKey.key = `${payload.type}Ids`;
+            }
+            if (payload.type === "powerSupply")
+                dataKey.url = `/builds/${payload.buildId}/power_supply`;
+
+            axios({
+                url: dataKey.url,
+                method: "POST",
+                headers: {
+                    access_token: localStorage.access_token,
+                },
                 data: {
-                    cpuId: payload.id,
+                    [dataKey.key]: payload.partId,
+                },
+            })
+                .then(() => {
+                    router.push(`/build/${payload.buildId}`);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        },
+        getBuildById(context, payload) {
+            axios({
+                url: `/builds/${payload.buildId}`,
+                headers: {
+                    access_token: localStorage.access_token,
                 },
             })
                 .then(({ data }) => {
-                    console.log(data);
+                    context.commit("SET_CURRENT_BUILD", data);
                 })
                 .catch((err) => {
                     console.log(err);

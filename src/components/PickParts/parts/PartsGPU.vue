@@ -19,7 +19,7 @@
                 <h1 class="text-white">{{ part.stock }}</h1>
             </div>
             <div class="col-span-1 basic-center">
-                <h1 class="text-white">Add</h1>
+                <button @click="addGpu(part)" class="text-white">Add</button>
             </div>
         </div>
 
@@ -38,6 +38,20 @@ export default {
                 style: "currency",
                 currency: "IDR",
             }).format(Math.round(price));
+        },
+        addGpu(part) {
+            const currentBuild = this.$store.state.currentBuild;
+            let payload = {
+                buildId: this.$route.params.id,
+                partId: [part._id],
+                type: "gpu",
+            };
+            if (currentBuild.gpu) {
+                currentBuild.gpu.forEach((oneGpu) => {
+                    payload.partId.push(oneGpu._id);
+                });
+            }
+            this.$store.dispatch("addBuild", payload);
         },
     },
     components: {

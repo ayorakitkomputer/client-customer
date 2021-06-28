@@ -51,8 +51,12 @@ export default {
             }).format(Math.round(price));
         },
         addCPU(part) {
-            console.log(part);
-            this.$store.dispatch("addToBuild", { id: part._id });
+            const payload = {
+                buildId: this.$route.params.id,
+                partId: part._id,
+                type: "cpu",
+            };
+            this.$store.dispatch("addBuild", payload);
         },
     },
     components: {

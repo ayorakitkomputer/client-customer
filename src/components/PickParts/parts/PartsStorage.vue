@@ -22,7 +22,9 @@
                 <h1 class="text-white">{{ part.stock }}</h1>
             </div>
             <div class="col-span-1 basic-center">
-                <h1 class="text-white">Add</h1>
+                <button @click="addStorage(part)" class="text-white">
+                    Add
+                </button>
             </div>
         </div>
 
@@ -41,6 +43,20 @@ export default {
                 style: "currency",
                 currency: "IDR",
             }).format(Math.round(price));
+        },
+        addStorage(part) {
+            const currentBuild = this.$store.state.currentBuild;
+            let payload = {
+                buildId: this.$route.params.id,
+                partId: [part._id],
+                type: "storage",
+            };
+            if (currentBuild.storage) {
+                currentBuild.storage.forEach((oneStorage) => {
+                    payload.partId.push(oneStorage._id);
+                });
+            }
+            this.$store.dispatch("addBuild", payload);
         },
     },
     components: {

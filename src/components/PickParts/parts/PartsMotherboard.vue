@@ -29,7 +29,9 @@
                 <h1 class="text-white">{{ part.stock }}</h1>
             </div>
             <div class="col-span-1 basic-center">
-                <h1 class="text-white">Add</h1>
+                <button @click="addMotherboard(part)" class="text-white">
+                    Add
+                </button>
             </div>
         </div>
 
@@ -48,6 +50,14 @@ export default {
                 style: "currency",
                 currency: "IDR",
             }).format(Math.round(price));
+        },
+        addMotherboard(part) {
+            const payload = {
+                buildId: this.$route.params.id,
+                partId: part._id,
+                type: "motherboard",
+            };
+            this.$store.dispatch("addBuild", payload);
         },
     },
     components: {

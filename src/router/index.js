@@ -11,63 +11,69 @@ const routes = [
         component: Home,
     },
     {
-        path: "/build/:id",
+        path: "/build/",
         name: "PickParts",
         component: () => import("../views/PickParts.vue"),
         children: [
             {
                 name: "buildCPU",
-                path: "cpu",
+                path: ":id/cpu",
                 component: () =>
                     import("../components/PickParts/PickPartsMain.vue"),
             },
             {
                 name: "buildMotherboard",
-                path: "motherboard",
+                path: ":id/motherboard",
                 component: () =>
                     import("../components/PickParts/PickPartsMain.vue"),
             },
             {
                 name: "buildMemory",
-                path: "memory",
+                path: ":id/memory",
                 component: () =>
                     import("../components/PickParts/PickPartsMain.vue"),
             },
             {
                 name: "buildGpu",
-                path: "gpu",
+                path: ":id/gpu",
                 component: () =>
                     import("../components/PickParts/PickPartsMain.vue"),
             },
             {
                 name: "buildStorage",
-                path: "storage",
+                path: ":id/storage",
                 component: () =>
                     import("../components/PickParts/PickPartsMain.vue"),
             },
             {
                 name: "buildPowerSupply",
-                path: "power_supply",
+                path: ":id/power_supply",
                 component: () =>
                     import("../components/PickParts/PickPartsMain.vue"),
             },
             {
                 name: "buildCase",
-                path: "case",
+                path: ":id/case",
                 component: () =>
                     import("../components/PickParts/PickPartsMain.vue"),
             },
             {
                 name: "buildMonitor",
-                path: "monitor",
+                path: ":id/monitor",
                 component: () =>
                     import("../components/PickParts/PickPartsMain.vue"),
             },
             {
                 name: "buildCaseFan",
-                path: "fans",
+                path: ":id/fans",
                 component: () =>
                     import("../components/PickParts/PickPartsMain.vue"),
+            },
+            {
+                path: ":id",
+                component: () =>
+                    import("../components/PickParts/PickPartsBuild.vue"),
+                name: "buildAllParts",
             },
             {
                 path: "",
@@ -99,7 +105,7 @@ router.beforeEach((to, from, next) => {
     if (to.fullPath.includes("/build") && !isAuthenticated()) {
         next({ name: "Login" });
     } else {
-        console.log("ga masuk");
+        // console.log("ga masuk");
         next();
     }
 });

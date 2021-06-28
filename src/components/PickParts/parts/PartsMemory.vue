@@ -22,7 +22,7 @@
                 <h1 class="text-white">{{ part.stock }}</h1>
             </div>
             <div class="col-span-1 basic-center">
-                <h1 class="text-white">Add</h1>
+                <button @click="addMemory(part)" class="text-white">Add</button>
             </div>
         </div>
 
@@ -41,6 +41,14 @@ export default {
                 style: "currency",
                 currency: "IDR",
             }).format(Math.round(price));
+        },
+        addMemory(part) {
+            const payload = {
+                buildId: this.$route.params.id,
+                partId: part._id,
+                type: "memory",
+            };
+            this.$store.dispatch("addBuild", payload);
         },
     },
     components: {

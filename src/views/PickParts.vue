@@ -6,56 +6,56 @@
                     Components
                 </h5>
                 <ul class="flex flex-col gap-2 mx-4 mt-5 uppercase">
-                    <router-link to="/build/cpu">
+                    <router-link :to="`/build/${getBuild._id}/cpu`">
                         <li class="flex justify-between">
                             <div>CPU</div>
                             <div>+</div>
                         </li>
                     </router-link>
 
-                    <router-link to="/build/motherboard">
+                    <router-link :to="`/build/${getBuild._id}/motherboard`">
                         <li class="flex justify-between">
                             <div>Motherboard</div>
                             <div>+</div>
                         </li>
                     </router-link>
-                    <router-link to="/build/memory">
+                    <router-link :to="`/build/${getBuild._id}/memory`">
                         <li class="flex justify-between">
                             <div>Memory</div>
                             <div>+</div>
                         </li>
                     </router-link>
-                    <router-link to="/build/storage">
+                    <router-link :to="`/build/${getBuild._id}/storage`">
                         <li class="flex justify-between">
                             <div>Storage</div>
                             <div>+</div>
                         </li>
                     </router-link>
-                    <router-link to="/build/gpu">
+                    <router-link :to="`/build/${getBuild._id}/gpu`">
                         <li class="flex justify-between">
                             <div>GPU</div>
                             <div>+</div>
                         </li>
                     </router-link>
-                    <router-link to="/build/case">
+                    <router-link :to="`/build/${getBuild._id}/case`">
                         <li class="flex justify-between">
                             <div>Case</div>
                             <div>+</div>
                         </li>
                     </router-link>
-                    <router-link to="/build/power_supply">
+                    <router-link :to="`/build/${getBuild._id}/power_supply`">
                         <li class="flex justify-between">
                             <div>Powersupply</div>
                             <div>+</div>
                         </li>
                     </router-link>
-                    <router-link to="/build/monitor">
+                    <router-link :to="`/build/${getBuild._id}/monitor`">
                         <li class="flex justify-between">
                             <div>Monitor</div>
                             <div>+</div>
                         </li>
                     </router-link>
-                    <router-link to="/build/fans">
+                    <router-link :to="`/build/${getBuild._id}/fans`">
                         <li class="flex justify-between">
                             <div>Case Fans</div>
                             <div>+</div>
@@ -83,6 +83,11 @@ export default {
         $route(to, from) {
             console.log(to, from);
             this.getData();
+        },
+    },
+    computed: {
+        getBuild() {
+            return this.$store.state.currentBuild;
         },
     },
     // created() {
