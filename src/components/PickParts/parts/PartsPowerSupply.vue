@@ -25,10 +25,13 @@
                 <h1 class="text-white">Add</h1>
             </div>
         </div>
+
+        <PaginationFooter />
     </div>
 </template>
 
 <script>
+import PaginationFooter from "../PaginationFooter.vue";
 export default {
     name: "PartsPowerSupply",
     props: ["componentData"],
@@ -39,6 +42,9 @@ export default {
                 currency: "IDR",
             }).format(Math.round(price));
         },
+    },
+    components: {
+        PaginationFooter,
     },
 };
 </script>

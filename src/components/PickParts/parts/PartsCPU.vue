@@ -16,11 +16,11 @@
             </div>
             <div class="col-span-1 basic-center">
                 <h1 class="text-white">
-                    {{ part.form_factor }}
+                    {{ part.igpu ? "Included" : "Not Available" }}
                 </h1>
             </div>
             <div class="col-span-1 basic-center">
-                <h1 class="text-white">{{ part.memory_type }}</h1>
+                <h1 class="text-white">{{ part.tdp }}</h1>
             </div>
             <div class="col-span-1 basic-center">
                 <h1 class="text-white">{{ getPrice(part.price) }}</h1>
@@ -29,15 +29,19 @@
                 <h1 class="text-white">{{ part.stock }}</h1>
             </div>
             <div class="col-span-1 basic-center">
-                <h1 class="text-white">Add</h1>
+                <button @click="addCPU(part)" class="text-white">Add</button>
             </div>
         </div>
+
+        <PaginationFooter />
     </div>
 </template>
 
 <script>
+import PaginationFooter from "../PaginationFooter.vue";
+
 export default {
-    name: "PartsMotherboard",
+    name: "PartsCPU",
     props: ["componentData"],
     methods: {
         getPrice(price) {
@@ -46,6 +50,13 @@ export default {
                 currency: "IDR",
             }).format(Math.round(price));
         },
+        addCPU(part) {
+            console.log(part);
+            this.$store.dispatch("addToBuild", { id: part._id });
+        },
+    },
+    components: {
+        PaginationFooter,
     },
 };
 </script>

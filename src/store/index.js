@@ -1,224 +1,14 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import axios from "../config/axios";
+import router from "../router";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        cpu: [
-            {
-                _id: "60d5ca9fc6e53a61d8e36f50",
-                manufacturer: "AMD",
-                name: "Ryzen 7 3700X",
-                socket: "AM4",
-                igpu: false,
-                tdp: 65,
-                price: 5103840.5,
-                stock: 32,
-                image: "https://www.amd.com/system/files/2019-06/238593-ryzen-7-pib-left-facing-1260x709.png",
-            },
-            {
-                _id: "60d5ca9fc6e53a61d8e36f51",
-                manufacturer: "Intel",
-                name: "Core i7-9700K",
-                socket: "LGA1151",
-                igpu: true,
-                tdp: 95,
-                price: 5102405,
-                stock: 66,
-                image: "https://tonixcomputer.co.id/wp-content/uploads/2020/05/Intel-Core-i7-8700K.png",
-            },
-        ],
-        motherboard: [
-            {
-                _id: "60d5cc1ec6e53a61d8e37018",
-                name: "TUF GAMING X570-PLUS",
-                manufacturer: "Asus",
-                socket: "AM4",
-                memory_type: "DDR4",
-                form_factor: "ATX",
-                price: 3030341,
-                stock: 84,
-                image: "https://dlcdnimgs.asus.com/websites/global/products/sqlhk1j3w9jgpcci/img/z490/kv/hero.png",
-            },
-            {
-                _id: "60d5cc1ec6e53a61d8e3701a",
-                name: "B450M",
-                manufacturer: "ASRock",
-                socket: "AM4",
-                memory_type: "DDR4",
-                form_factor: "Micro ATX",
-                price: 1323691,
-                stock: 83,
-                image: "https://www.asrock.com/mb/photo/Z590%20Pro4(M3).png",
-            },
-            {
-                _id: "60d5cc1ec6e53a61d8e3701d",
-                name: "B550-A",
-                manufacturer: "MSI",
-                socket: "AM4",
-                memory_type: "DDR4",
-                form_factor: "ATX",
-                price: 2232841,
-                stock: 77,
-                image: "https://storage-asset.msi.com/global/picture/image/feature/PC-Components/MPG-GUNGNIR-110R/MPG-Z490-ACE.png",
-            },
-        ],
-        gpu: [
-            {
-                _id: "60d5c9e1c6e53a61d8e36ee8",
-                manufacturer: "MSI",
-                name: "GeForce GTX 1650",
-                price: 5582341,
-                tdp: 100,
-                stock: 62,
-                image: "https://img.productz.com/1643424/gainward-geforce-gtx-1650-ghost-oc-7-preview.png",
-            },
-            {
-                _id: "60d5c9e1c6e53a61d8e36eea",
-                manufacturer: "EVGA",
-                name: "GeForce RTX 3080",
-                price: 24562841,
-                tdp: 320,
-                stock: 30,
-                image: "https://www.notebookcheck.net/fileadmin/Notebooks/NVIDIA/geforce_rtx_3080_fe.png",
-            },
-            {
-                _id: "60d5c9e1c6e53a61d8e36eec",
-                manufacturer: "MSI",
-                name: "GeForce RTX 3070",
-                price: 17385341,
-                tdp: 290,
-                stock: 100,
-                image: "https://www.nvidia.com/content/dam/en-zz/Solutions/geforce/ampere/rtx-3070/geforce-rtx-3070-shop-600-p@2x.png",
-            },
-        ],
-        memory: [
-            {
-                _id: "60d85ff795818839880a320c",
-                name: "Corsair Vengeance RGB Pro 16 GB",
-                memory_type: "DDR4",
-                speed: 3200,
-                price: 1515091,
-                stock: 80,
-                image: "https://images.tokopedia.net/img/cache/500-square/product-1/2020/7/2/1298494/1298494_9d6992c2-da03-4eba-bec6-4a8e376e0867_1200_1200.jpg.webp",
-            },
-            {
-                _id: "60d85ff795818839880a320d",
-                name: "Corsair Vengeance RGB Pro 32 GB",
-                memory_type: "DDR4",
-                speed: 3200,
-                price: 3778236,
-                stock: 59,
-                image: "https://images.tokopedia.net/img/cache/500-square/product-1/2020/7/2/1298494/1298494_9d6992c2-da03-4eba-bec6-4a8e376e0867_1200_1200.jpg.webp",
-            },
-            {
-                _id: "60d85ff795818839880a320f",
-                name: "G.Skill Trident Z RGB 16 GB",
-                memory_type: "DDR4",
-                speed: 3600,
-                price: 1706491,
-                stock: 55,
-                image: "https://www.gskill.com/_upload/images/156496965310.png",
-            },
-        ],
-        powerSupply: [
-            {
-                _id: "60d5d1cec6e53a61d8e37073",
-                name: "Gigabyte P GM",
-                efficiency_rating: "80+ Gold",
-                wattage: 750,
-                price: 1754341,
-                stock: 65,
-                image: "https://myclub.co.id/cni-content/uploads/modules/product/20200806101003.png",
-            },
-            {
-                _id: "60d5d1cec6e53a61d8e37075",
-                name: "EVGA BR",
-                efficiency_rating: "80+ Bronze",
-                wattage: 400,
-                price: 510241,
-                stock: 39,
-                image: "https://images.tokopedia.net/img/cache/500-square/product-1/2019/1/18/4269503/4269503_6726a9b9-5f5b-4cbd-921a-e2a8441668b7_700_700.png.webp",
-            },
-        ],
-        storage: [
-            {
-                _id: "60d5e67fc6e53a61d8e370e0",
-                name: "Samsung 970 Evo Plus",
-                price: 1355590.5,
-                stock: 105,
-                capacity: "500 GB",
-                type: "SSD",
-                image: "https://images.samsung.com/is/image/samsung/sg-870-qvo-sata-3-2-5-ssd-mz-77q8t0bw-frontblack-285805892?$720_576_PNG$",
-            },
-            {
-                _id: "60d5e67fc6e53a61d8e370d1",
-                name: "Seagate BarraCuda",
-                price: 717590.5,
-                stock: 44,
-                capacity: "1 TB",
-                type: "HDD",
-                image: "https://images.tokopedia.net/img/cache/500-square/product-1/2018/7/27/9311998/9311998_11c3ccd1-6e40-4574-9bf9-b245977e1cfd_1000_1000.png.webp",
-            },
-        ],
-        monitor: [
-            {
-                _id: "60d5f023c6e53a61d8e3711c",
-                name: "VX2758-2KP-MHD",
-                manufacturer: "ViewSonic",
-                size: 27,
-                price: 4784840.5,
-                stock: 119,
-                image: "https://www.viewsonic.com/vsAssetFile/ap/img/resize/product-rc/_lcd_display_(new)/XG2405/xg2405_w640.webp",
-            },
-            {
-                _id: "60d5f023c6e53a61d8e3710f",
-                name: "SB220Q bi",
-                manufacturer: "Acer",
-                size: 21,
-                price: 1499140.5,
-                stock: 111,
-                image: "https://static-ecapac.acer.com/media/catalog/product/cache/a17a77e026ef2eddd3ecae104c32cc71/a/c/acer-kg241q_gallery_2.png",
-            },
-        ],
-        case: [
-            {
-                _id: "60d849ff95818839880a31c3",
-                name: "NZXT H510",
-                form_factor: "ATX",
-                stock: 10,
-                price: 1116181,
-                image: "https://cdn.letsbld.com/Exv0Zm.png",
-            },
-            {
-                _id: "60d849ff95818839880a31c6",
-                name: "Lian Li PC-O11 Dynamic",
-                form_factor: "ATX",
-                stock: 79,
-                price: 2551681,
-                image: "https://lian-li.com/wp-content/uploads/2020/11/O11D-xl-s01-00.png",
-            },
-        ],
-        caseFans: [
-            {
-                _id: "60d5f75bc6e53a61d8e37196",
-                name: "Thermaltake Riing Trio 14 RGB TT Premium Edition 3-Pack",
-                size: "140 mm",
-                stock: 107,
-                price: 2392341,
-                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png",
-            },
-            {
-                _id: "60d5f75bc6e53a61d8e37172",
-                name: "Cooler Master MasterFan MF Halo 3-Pack",
-                size: "120 mm",
-                stock: 29,
-                price: 1036590,
-                image: "https://cdn.coolermaster.com/media/assets/1014/mf120-halo-gallery-2-image.png",
-            },
-        ],
-
+        componentData: {},
+        componentDataLoading: false,
         componentsCategory: {
             cpu: ["Name", "Socket", "iGPU", "TDP", "Price", "Stock"],
             motherboard: [
@@ -241,10 +31,249 @@ export default new Vuex.Store({
             storage: ["Name", "Type", "Capacity", "Price", "Stock"],
             monitor: ["Name", "Size", "Price", "Stock"],
             case: ["Name", "Form Factor", "Price", "Stock"],
-            caseFans: ["Name", "Size", "Price", "Stock"],
+            caseFan: ["Name", "Size", "Price", "Stock"],
         },
     },
-    mutations: {},
-    actions: {},
+    mutations: {
+        SET_COMPONENT_DATA(state, payload) {
+            state.componentData = payload;
+        },
+        SET_COMPONENT_LOADING(state, payload) {
+            state.componentDataLoading = payload;
+        },
+    },
+    actions: {
+        getCpu(context, page = 1) {
+            axios({
+                url: `/cpu?page=${page}`,
+            })
+                .then(({ data }) => {
+                    let cpuData = {
+                        category: context.state.componentsCategory.cpu,
+                        data: data,
+                        page,
+                        type: "cpu",
+                    };
+                    context.commit("SET_COMPONENT_DATA", cpuData);
+                    context.commit("SET_COMPONENT_LOADING", false);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        },
+        getMotherboard(context, page = 1) {
+            axios({
+                url: `/motherboard?page=${page}`,
+            })
+                .then(({ data }) => {
+                    let motherboardData = {
+                        category: context.state.componentsCategory.motherboard,
+                        data: data,
+                        type: "motherboard",
+                    };
+                    context.commit("SET_COMPONENT_DATA", motherboardData);
+                    context.commit("SET_COMPONENT_LOADING", false);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        },
+        getStorage(context, page = 1) {
+            axios({
+                url: `/storages?page=${page}`,
+            })
+                .then(({ data }) => {
+                    let storageData = {
+                        category: context.state.componentsCategory.storage,
+                        data: data,
+                        type: "storage",
+                    };
+                    context.commit("SET_COMPONENT_DATA", storageData);
+                    context.commit("SET_COMPONENT_LOADING", false);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        },
+        getPowerSupply(context, page = 1) {
+            axios({
+                url: `/power-supplies?page=${page}`,
+            })
+                .then(({ data }) => {
+                    let powerSupplyData = {
+                        category: context.state.componentsCategory.powerSupply,
+                        data: data,
+                        type: "powerSupply",
+                    };
+                    context.commit("SET_COMPONENT_DATA", powerSupplyData);
+                    context.commit("SET_COMPONENT_LOADING", false);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        },
+        getMonitor(context, page = 1) {
+            axios({
+                url: `/monitors?page=${page}`,
+            })
+                .then(({ data }) => {
+                    let monitorData = {
+                        category: context.state.componentsCategory.monitor,
+                        data: data,
+                        type: "monitor",
+                    };
+                    context.commit("SET_COMPONENT_DATA", monitorData);
+                    context.commit("SET_COMPONENT_LOADING", false);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        },
+        getGpu(context, page = 1) {
+            axios({
+                url: `/gpu?page=${page}`,
+            })
+                .then(({ data }) => {
+                    let gpuData = {
+                        category: context.state.componentsCategory.gpu,
+                        data: data,
+                        type: "gpu",
+                    };
+                    context.commit("SET_COMPONENT_DATA", gpuData);
+                    context.commit("SET_COMPONENT_LOADING", false);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        },
+        getCase(context, page = 1) {
+            axios({
+                url: `/case?page=${page}`,
+            })
+                .then(({ data }) => {
+                    let caseData = {
+                        category: context.state.componentsCategory.case,
+                        data: data,
+                        type: "case",
+                    };
+                    context.commit("SET_COMPONENT_DATA", caseData);
+                    context.commit("SET_COMPONENT_LOADING", false);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        },
+        getMemory(context, page = 1) {
+            axios({
+                url: `/memory?page=${page}`,
+            })
+                .then(({ data }) => {
+                    let memoryData = {
+                        category: context.state.componentsCategory.memory,
+                        data: data,
+                        type: "memory",
+                    };
+                    context.commit("SET_COMPONENT_DATA", memoryData);
+                    context.commit("SET_COMPONENT_LOADING", false);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        },
+        getCaseFan(context, page = 1) {
+            axios({
+                url: `/caseFan?page=${page}`,
+            })
+                .then(({ data }) => {
+                    let caseFanData = {
+                        category: context.state.componentsCategory.caseFan,
+                        data: data,
+                        type: "caseFan",
+                    };
+                    context.commit("SET_COMPONENT_DATA", caseFanData);
+                    context.commit("SET_COMPONENT_LOADING", false);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        },
+        getData(context, payload) {
+            switch (payload.route) {
+                case "buildCPU":
+                    context.commit("SET_COMPONENT_LOADING", true);
+                    context.dispatch("getCpu", payload.page);
+                    break;
+                case "buildMotherboard":
+                    context.commit("SET_COMPONENT_LOADING", true);
+                    context.dispatch("getMotherboard", payload.page);
+                    break;
+                case "buildMemory":
+                    context.commit("SET_COMPONENT_LOADING", true);
+                    context.dispatch("getMemory", payload.page);
+                    break;
+                case "buildGpu":
+                    context.commit("SET_COMPONENT_LOADING", true);
+                    context.dispatch("getGpu", payload.page);
+                    break;
+                case "buildStorage":
+                    context.commit("SET_COMPONENT_LOADING", true);
+                    context.dispatch("getStorage", payload.page);
+                    break;
+                case "buildPowerSupply":
+                    context.commit("SET_COMPONENT_LOADING", true);
+                    context.dispatch("getPowerSupply", payload.page);
+                    break;
+                case "buildCase":
+                    context.commit("SET_COMPONENT_LOADING", true);
+                    context.dispatch("getCase", payload.page);
+                    break;
+                case "buildMonitor":
+                    context.commit("SET_COMPONENT_LOADING", true);
+                    context.dispatch("getMonitor", payload.page);
+                    break;
+                case "buildCaseFan":
+                    context.commit("SET_COMPONENT_LOADING", true);
+                    context.dispatch("getCaseFan", payload.page);
+                    break;
+                default:
+                    break;
+            }
+        },
+        userLogin(context, payload) {
+            axios({
+                url: "/login",
+                method: "POST",
+                data: {
+                    email: payload.email,
+                    password: payload.password,
+                },
+            })
+                .then(({ data }) => {
+                    localStorage.setItem("access_token", data.access_token);
+                    router.push("/build");
+                })
+                .catch((err) => {
+                    console.log(err.message);
+                });
+        },
+        addToBuild(context, payload) {
+            axios({
+                url: "/builds",
+                method: "POST",
+                headers: {
+                    access_token: localStorage.access_token,
+                },
+                data: {
+                    cpuId: payload.id,
+                },
+            })
+                .then(({ data }) => {
+                    console.log(data);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        },
+    },
     modules: {},
 });

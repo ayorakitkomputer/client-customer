@@ -3,17 +3,16 @@
         <div
             v-for="part in componentData"
             :key="`${part._id}`"
-            class="grid grid-cols-7 p-3 m-2 mt-5 bg-black rounded-3xl"
+            class="grid grid-cols-6 p-3 m-2 mt-5 bg-black rounded-3xl"
         >
-            <div class="flex items-center justify-between col-span-2 mx-4">
-                <img class="object-cover w-12 h-12" :src="part.image" alt="" />
-                <h1 class="text-white">{{ part.name }}</h1>
+            <div class="flex items-center justify-between col-span-2">
+                <img class="object-cover w-20 h-12" :src="part.image" alt="" />
+                <h1 class="text-white">
+                    {{ part.name }}
+                </h1>
             </div>
             <div class="col-span-1 basic-center">
-                <h1 class="text-white">{{ part.memory_type }}</h1>
-            </div>
-            <div class="col-span-1 basic-center">
-                <h1 class="text-white">{{ part.speed }}</h1>
+                <h1 class="text-white">{{ part.size }}</h1>
             </div>
             <div class="col-span-1 basic-center">
                 <h1 class="text-white">{{ getPrice(part.price) }}</h1>
@@ -25,12 +24,15 @@
                 <h1 class="text-white">Add</h1>
             </div>
         </div>
+
+        <PaginationFooter />
     </div>
 </template>
 
 <script>
+import PaginationFooter from "../PaginationFooter.vue";
 export default {
-    name: "PartsMemory",
+    name: "PartsCaseFan",
     props: ["componentData"],
     methods: {
         getPrice(price) {
@@ -39,6 +41,9 @@ export default {
                 currency: "IDR",
             }).format(Math.round(price));
         },
+    },
+    components: {
+        PaginationFooter,
     },
 };
 </script>

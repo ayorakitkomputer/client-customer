@@ -63,7 +63,6 @@
                     </router-link>
                 </ul>
             </div>
-
             <router-view />
         </div>
     </section>
@@ -72,6 +71,25 @@
 <script>
 export default {
     name: "PickParts",
+    methods: {
+        getData() {
+            let payload = {
+                route: this.$route.name,
+            };
+            this.$store.dispatch("getData", payload);
+        },
+    },
+    watch: {
+        $route(to, from) {
+            console.log(to, from);
+            this.getData();
+        },
+    },
+    // created() {
+    //     console.log(this.$route);
+    //     console.log("created di pick parts main");
+    //     this.getData();
+    // },
 };
 </script>
 

@@ -25,21 +25,25 @@
                     <div
                         class="w-12 h-12 mt-2 mb-2 bg-black rounded-full shadow-xl "
                     ></div>
-                    <input
-                        type="text"
-                        placeholder="Email"
-                        class="p-2 m-5 bg-transparent border-b-2 border-pink-500  focus:outline-none focus:border-grey-600 w-52"
-                    />
-                    <input
-                        type="text"
-                        placeholder="Password"
-                        class="p-2 mb-5 bg-transparent border-b-2 border-pink-500  w-52 focus:outline-none focus:border-grey-600"
-                    />
-                    <button
-                        class="w-40 p-2 mt-4 font-semibold text-white bg-black  rounded-xl hover:bg-pink-500 mb-7 focus:outline-none"
-                    >
-                        LOGIN
-                    </button>
+                    <form @submit.prevent="submitLogin">
+                        <input
+                            type="text"
+                            v-model="userData.email"
+                            placeholder="Email"
+                            class="p-2 m-5 bg-transparent border-b-2 border-pink-500  focus:outline-none focus:border-grey-600 w-52"
+                        />
+                        <input
+                            type="text"
+                            v-model="userData.password"
+                            placeholder="Password"
+                            class="p-2 m-5 bg-transparent border-b-2 border-pink-500  w-52 focus:outline-none focus:border-grey-600"
+                        />
+                        <button
+                            class="w-40 p-2 mx-auto font-semibold text-white bg-black  rounded-xl hover:bg-pink-500 mb-7 focus:outline-none"
+                        >
+                            LOGIN
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -49,6 +53,23 @@
 <script>
 export default {
     name: "Login",
+    data() {
+        return {
+            userData: {
+                email: "",
+                password: "",
+            },
+        };
+    },
+    methods: {
+        submitLogin() {
+            this.$store.dispatch("userLogin", this.userData);
+            this.userData = {
+                email: "",
+                password: "",
+            };
+        },
+    },
 };
 </script>
 

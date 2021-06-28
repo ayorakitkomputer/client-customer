@@ -8,7 +8,7 @@
     <PartsGPU v-else-if="type === 'gpu'" :componentData="componentData" />
     <PartsCase v-else-if="type === 'case'" :componentData="componentData" />
     <PartsCaseFan
-        v-else-if="type === 'caseFans'"
+        v-else-if="type === 'caseFan'"
         :componentData="componentData"
     />
     <PartsMonitor

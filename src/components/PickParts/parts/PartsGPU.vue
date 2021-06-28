@@ -10,7 +10,7 @@
                 <h1 class="text-white">{{ part.name }}</h1>
             </div>
             <div class="col-span-1 basic-center">
-                <h1 class="text-white">{{ part.form_factor }}</h1>
+                <h1 class="text-white">{{ `${part.tdp} Watt` }}</h1>
             </div>
             <div class="col-span-1 basic-center">
                 <h1 class="text-white">{{ getPrice(part.price) }}</h1>
@@ -22,12 +22,15 @@
                 <h1 class="text-white">Add</h1>
             </div>
         </div>
+
+        <PaginationFooter />
     </div>
 </template>
 
 <script>
+import PaginationFooter from "../PaginationFooter.vue";
 export default {
-    name: "PartsCase",
+    name: "PartsGPU",
     props: ["componentData"],
     methods: {
         getPrice(price) {
@@ -36,6 +39,9 @@ export default {
                 currency: "IDR",
             }).format(Math.round(price));
         },
+    },
+    components: {
+        PaginationFooter,
     },
 };
 </script>
