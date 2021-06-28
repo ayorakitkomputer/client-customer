@@ -1,6 +1,7 @@
 <template>
     <div class="h-full col-span-10">
         <h1 class="p-3 text-center">Your Build</h1>
+
         <div class="flex flex-wrap">
             <div
                 class="flex flex-col items-center justify-center w-1/4 h-64 border-2 "
