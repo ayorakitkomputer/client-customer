@@ -1,29 +1,167 @@
 <template>
-    <div class="bg-gray-900 h-navbar max-w-screen">
-        <div class="flex items-center justify-center">
-            <span
-                id="test-animation"
-                class="font-semibold text-white mt-44 text-7xl"
-                >BUILD YOUR OWN PC</span
-            >
-        </div>
-        <div class="flex items-center justify-center">
-            <router-link to="/build">
-                <button
-                    class="px-3 py-2 mt-10 text-xl font-bold bg-white  mb-52 rounded-xl"
-                >
-                    LET'S START
-                </button>
-            </router-link>
-        </div>
-    </div>
+	<div class="bg-gray-900 h-navbar max-w-screen">
+		<div class="flex items-center justify-center z-0 absolute">
+			<canvas id="threejs"></canvas>
+		</div>
+		<div class="flex items-center justify-center z-40">
+			<span id="test-animation" class="font-semibold text-white mt-44 text-7xl absolute"
+				>BUILD YOUR OWN PC</span
+			>
+		</div>
+		<div class="flex items-center justify-center">
+			<router-link to="/build">
+				<button class="px-3 py-2 mt-10 text-xl font-bold bg-white mb-52 rounded-xl absolute">
+					LET'S START
+				</button>
+			</router-link>
+		</div>
+	</div>
 </template>
 
 <script>
+import * as THREE from "three/build/three.module.js";
+import { RectAreaLightUniformsLib } from "three/examples/jsm/lights/RectAreaLightUniformsLib.js";
+import { RectAreaLightHelper } from "three/examples/jsm/helpers/RectAreaLightHelper.js";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+
 export default {
-    name: "Jumbotron",
+	name: "Jumbotron",
+	data: function () {
+		return {
+			camera: null,
+			renderer: null,
+			scene: null,
+			mouseX: 0,
+			mouseY: 0,
+			windowHalfX: window.innerWidth / 2,
+			windowHalfY: window.innerHeight / 2,
+		};
+	},
+	mounted() {
+		this.init();
+		this.animate();
+		document.addEventListener("mousemove", this.onDocumentMouseMove);
+	},
+	methods: {
+		init() {
+			/* ---------- START CAMERA ---------- */
+			this.camera = new THREE.PerspectiveCamera(
+				40,
+				window.innerWidth / window.innerHeight,
+				1,
+				15000
+			);
+			this.camera.position.x = 0;
+			this.camera.position.y = 5;
+			this.camera.position.z = -15;
+			this.camera.rotation.y = 2 * Math.PI * (180 / 360);
+			/* ---------- END CAMERA ---------- */
+
+			/* ---------- START SCENE ---------- */
+			this.scene = new THREE.Scene();
+			this.scene.background = new THREE.Color(0x000000);
+
+			/* ---------- START LIGHT ---------- */
+			RectAreaLightUniformsLib.init();
+
+			const rectLight1 = new THREE.RectAreaLight(0x76b900, 5, 4, 10);
+			rectLight1.position.set(-10, 5, 5);
+			this.scene.add(rectLight1);
+
+			const rectLight2 = new THREE.RectAreaLight(0x7ab547, 5, 4, 10);
+			rectLight2.position.set(-5, 5, 5);
+			this.scene.add(rectLight2);
+
+			const rectLight3 = new THREE.RectAreaLight(0x006400, 5, 4, 10);
+			rectLight3.position.set(0, 5, 5);
+			this.scene.add(rectLight3);
+
+			const rectLight4 = new THREE.RectAreaLight(0x7ab547, 5, 4, 10);
+			rectLight4.position.set(5, 5, 5);
+			this.scene.add(rectLight4);
+
+			const rectLight5 = new THREE.RectAreaLight(0x76b900, 5, 4, 10);
+			rectLight5.position.set(10, 5, 5);
+			this.scene.add(rectLight5);
+
+			const rectLightBack = new THREE.RectAreaLight(0x006400, 5, -4, 10);
+			rectLightBack.position.set(0, 5, -15);
+			this.scene.add(rectLightBack);
+
+			this.scene.add(new RectAreaLightHelper(rectLight1));
+			this.scene.add(new RectAreaLightHelper(rectLight2));
+			this.scene.add(new RectAreaLightHelper(rectLight3));
+			this.scene.add(new RectAreaLightHelper(rectLight4));
+			this.scene.add(new RectAreaLightHelper(rectLight5));
+			this.scene.add(new RectAreaLightHelper(rectLightBack));
+			/* ---------- END LIGHT ---------- */
+
+			/* ---------- START FLOOR ---------- */
+			const geoFloor = new THREE.BoxGeometry(100, 0.1, 100);
+			const matStdFloor = new THREE.MeshStandardMaterial({
+				color: 0x808080,
+				roughness: 0.1,
+				metalness: 0,
+			});
+			const mshStdFloor = new THREE.Mesh(geoFloor, matStdFloor);
+			this.scene.add(mshStdFloor);
+			/* ---------- END FLOOR ---------- */
+
+			/* ---------- START PC MODEL ---------- */
+			const sceneTemp = this.scene;
+			const loader = new GLTFLoader();
+			loader.load(
+				`/pc_build/scene.gltf`,
+				function (gltf) {
+					gltf.scene.position.set(0, 5, 0);
+					gltf.scene.rotation.y = 2 * Math.PI * (180 / 360);
+					gltf.scene.name = "pcModel";
+					sceneTemp.add(gltf.scene);
+				},
+				function (xhr) {
+					console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
+				},
+				function (e) {
+					console.log(e);
+				}
+			);
+			/* ---------- END PC ---------- */
+
+			/* ---------- START RENDER ---------- */
+			const canvasOnHtml = document.getElementById("threejs");
+			this.renderer = new THREE.WebGLRenderer({ antialias: true, canvas: canvasOnHtml });
+			this.renderer.setPixelRatio(window.devicePixelRatio);
+			this.renderer.setSize(window.innerWidth, window.innerHeight);
+			/* ---------- END RENDER ---------- */
+
+			window.addEventListener("resize", this.onWindowResize);
+		},
+		onWindowResize() {
+			this.windowHalfX = window.innerWidth / 2;
+			this.windowHalfY = window.innerHeight / 2;
+
+			this.camera.aspect = window.innerWidth / window.innerHeight;
+			this.camera.updateProjectionMatrix();
+
+			this.renderer.setSize(window.innerWidth, window.innerHeight);
+		},
+		animate() {
+			requestAnimationFrame(this.animate);
+
+			this.render();
+		},
+		onDocumentMouseMove(event) {
+			this.scene.rotation.y = ((event.clientX - this.windowHalfX) / this.windowHalfY) * 0.2;
+			this.scene.rotation.x = ((event.clientY - this.windowHalfY) / this.windowHalfY) * 0.2;
+		},
+		render() {
+			const mesh = this.scene.getObjectByName("pcModel");
+			if (mesh) {
+				this.renderer.render(this.scene, this.camera);
+			}
+		},
+	},
 };
 </script>
 
-<style>
-</style>
+<style></style>
