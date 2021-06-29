@@ -21,14 +21,6 @@
                     >
                         <router-link to="/login"> LOGIN </router-link>
                     </li>
-                    <!-- <li class="p-2 m-4 bg-gray-900 cursor-pointer rounded-xl">
-                        LOGIN
-                    </li> -->
-                    <!-- <li
-                        class="px-5 py-3 mr-10 bg-white cursor-pointer checkout hover:bg-black rounded-xl"
-                    >
-                        CHECKOUT
-                    </li> -->
                 </ul>
                 <div v-else>
                     <div
@@ -65,7 +57,7 @@
                         </div>
                         <div
                             v-if="showProfileOptions"
-                            class="absolute right-0 w-48 bg-white rounded-md shadow-xl "
+                            class="absolute right-0 z-50 w-48 bg-white rounded-md shadow-xl "
                         >
                             <div>
                                 <ul>
@@ -83,6 +75,12 @@
                                     </li>
                                     <li class="profile-options">
                                         Transaction history
+                                    </li>
+                                    <li
+                                        @click="logOutUser"
+                                        class="border-t-2 profile-options"
+                                    >
+                                        Sign out
                                     </li>
                                 </ul>
                             </div>
@@ -109,6 +107,10 @@ export default {
         goToMyBuilds() {
             let userId = localStorage.user_id;
             this.$router.push(`/profiles/${userId}`);
+        },
+        logOutUser() {
+            localStorage.clear();
+            this.$router.push(`/`);
         },
     },
     computed: {

@@ -135,7 +135,7 @@ export default {
         },
     },
     created() {
-        console.log(this.$route, "INI DI MOUNTED PICK PARTS BUILD");
+        // console.log(this.$route, "INI DI MOUNTED PICK PARTS BUILD");
         // Why here? So that you can just add build id to URL and it will be the currentBuild by default.
         let payload = {
             buildId: this.$route.params.id,
