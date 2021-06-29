@@ -55,7 +55,6 @@ export default new Vuex.Store({
                 },
             })
                 .then(({ data }) => {
-                    console.log(data);
                     let cpuData = {
                         category: context.state.componentsCategory.cpu,
                         data: data.data,
@@ -81,13 +80,13 @@ export default new Vuex.Store({
                 },
             })
                 .then(({ data }) => {
-                    console.log(data, "INI MOBO");
+                    // console.log(data[0].pages, "INI MOBO");
                     let motherboardData = {
                         category: context.state.componentsCategory.motherboard,
-                        data: data.data,
+                        data: data[0].data,
                         pagination: {
                             page,
-                            totalPage: data.howManyPages,
+                            totalPage: data[0].pages[0].total,
                         },
                         type: "motherboard",
                     };
@@ -100,7 +99,7 @@ export default new Vuex.Store({
         },
         getStorage(context, page = 1) {
             axios({
-                url: `/builds/storages?page=${page}`,
+                url: `/storages?page=${page}`,
                 headers: {
                     access_token: localStorage.access_token,
                 },
@@ -124,7 +123,7 @@ export default new Vuex.Store({
         },
         getPowerSupply(context, page = 1) {
             axios({
-                url: `/builds/power-supplies?page=${page}`,
+                url: `/builds/${context.state.currentBuild._id}/power_supply?page=${page}`,
                 headers: {
                     access_token: localStorage.access_token,
                 },
@@ -132,10 +131,10 @@ export default new Vuex.Store({
                 .then(({ data }) => {
                     let powerSupplyData = {
                         category: context.state.componentsCategory.powerSupply,
-                        data: data.data,
+                        data: data[0].data,
                         pagination: {
                             page,
-                            totalPage: data.howManyPages,
+                            totalPage: data[0].pages[0].total,
                         },
                         type: "powerSupply",
                     };
@@ -148,7 +147,7 @@ export default new Vuex.Store({
         },
         getMonitor(context, page = 1) {
             axios({
-                url: `/builds/monitors?page=${page}`,
+                url: `/monitors?page=${page}`,
                 headers: {
                     access_token: localStorage.access_token,
                 },
@@ -172,7 +171,7 @@ export default new Vuex.Store({
         },
         getGpu(context, page = 1) {
             axios({
-                url: `/builds/gpu?page=${page}`,
+                url: `/gpu?page=${page}`,
                 headers: {
                     access_token: localStorage.access_token,
                 },
@@ -196,18 +195,19 @@ export default new Vuex.Store({
         },
         getCase(context, page = 1) {
             axios({
-                url: `/builds/case?page=${page}`,
+                url: `/builds/${context.state.currentBuild._id}/case?page=${page}`,
                 headers: {
                     access_token: localStorage.access_token,
                 },
             })
                 .then(({ data }) => {
+                    console.log(data, "INI CASE");
                     let caseData = {
                         category: context.state.componentsCategory.case,
-                        data: data.data,
+                        data: data[0].data,
                         pagination: {
                             page,
-                            totalPage: data.howManyPages,
+                            totalPage: data[0].pages[0].total,
                         },
                         type: "case",
                     };
@@ -220,7 +220,7 @@ export default new Vuex.Store({
         },
         getMemory(context, page = 1) {
             axios({
-                url: `/builds/memory?page=${page}`,
+                url: `/builds/${context.state.currentBuild._id}/memory?page=${page}`,
                 headers: {
                     access_token: localStorage.access_token,
                 },
@@ -228,10 +228,10 @@ export default new Vuex.Store({
                 .then(({ data }) => {
                     let memoryData = {
                         category: context.state.componentsCategory.memory,
-                        data: data.data,
+                        data: data[0].data,
                         pagination: {
                             page,
-                            totalPage: data.howManyPages,
+                            totalPage: data[0].pages[0].total,
                         },
                         type: "memory",
                     };
@@ -244,7 +244,7 @@ export default new Vuex.Store({
         },
         getCaseFan(context, page = 1) {
             axios({
-                url: `/builds/caseFan?page=${page}`,
+                url: `/caseFan?page=${page}`,
                 headers: {
                     access_token: localStorage.access_token,
                 },
@@ -342,7 +342,7 @@ export default new Vuex.Store({
                 });
         },
         addBuild(context, payload) {
-            // console.log(payload.partId);
+            // console.log(payload, "INI ADDBUILD");
             let dataKey = {
                 key: `${payload.type}Id`,
                 url: `/builds/${payload.buildId}/${payload.type}`,
@@ -365,7 +365,7 @@ export default new Vuex.Store({
                 },
             })
                 .then(() => {
-                    router.push(`/build/${payload.buildId}`);
+                    router.push(`/builds/${payload.buildId}`);
                 })
                 .catch((err) => {
                     console.log(err);

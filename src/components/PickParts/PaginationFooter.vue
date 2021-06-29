@@ -23,10 +23,10 @@ export default {
             };
             this.$store.dispatch("getData", payload);
         },
-        computed: {
-            getCurrentPage() {
-                return this.$store.state.componentData.pagination;
-            },
+    },
+    computed: {
+        getCurrentPage() {
+            return this.$store.state.componentData.pagination;
         },
     },
 };

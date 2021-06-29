@@ -58,6 +58,9 @@ export default {
         componentData() {
             return this.$store.state.componentData;
         },
+        componentLoading() {
+            return this.$store.state.componentDataLoading;
+        },
     },
     created() {
         // console.log(this.$route);
