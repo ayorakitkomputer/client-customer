@@ -13,6 +13,7 @@
                 />
                 <h5>{{ getBuild.cpu.name }}</h5>
             </div>
+
             <div
                 class="flex flex-col items-center justify-center w-1/4 h-64 border-2 "
             >
