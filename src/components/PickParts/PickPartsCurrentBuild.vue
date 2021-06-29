@@ -110,7 +110,7 @@
 
 <script>
 export default {
-    name: "PickPartsBuild",
+    name: "PickPartsCurrentBuild",
     computed: {
         getBuild() {
             return this.$store.state.currentBuild;

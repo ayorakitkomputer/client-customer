@@ -72,13 +72,13 @@ const routes = [
             {
                 path: ":id",
                 component: () =>
-                    import("../components/PickParts/PickPartsBuild.vue"),
+                    import("../components/PickParts/PickPartsCurrentBuild.vue"),
                 name: "buildAllParts",
             },
             {
                 path: "",
                 component: () =>
-                    import("../components/PickParts/PickPartsHome.vue"),
+                    import("../components/PickParts/PickPartsLanding.vue"),
                 name: "buildHome",
             },
         ],

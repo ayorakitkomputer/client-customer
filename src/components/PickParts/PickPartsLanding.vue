@@ -8,7 +8,7 @@
 
 <script>
 export default {
-    name: "PickPartsHome",
+    name: "PickPartsLanding",
     methods: {
         createBuild() {
             this.$store.dispatch("createNewBuild");

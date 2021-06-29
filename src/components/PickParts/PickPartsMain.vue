@@ -18,8 +18,9 @@
                 <h1 class="font-semibold text-pink-500">{{ category }}</h1>
             </div>
         </div>
-        <!-- CONTENT -->
 
+        <!-- We loop the component here, but need to find out the type of data we are looping first. -->
+        <!-- This happens inside this component -->
         <PickPartsComponent
             v-if="componentData"
             :componentData="componentData.data"
