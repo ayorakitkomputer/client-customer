@@ -14,7 +14,7 @@
                     BUILD YOUR OWN PC
                 </p>
                 <div class="absolute mb-10 left-60">
-                    <router-link to="/build">
+                    <router-link to="/builds">
                         <button
                             id="jumbotronButton"
                             class="px-5 py-4 text-xl font-bold text-black shadow-2xl  text-md rounded-2xl"

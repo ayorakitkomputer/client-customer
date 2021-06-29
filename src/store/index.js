@@ -319,7 +319,8 @@ export default new Vuex.Store({
             })
                 .then(({ data }) => {
                     localStorage.setItem("access_token", data.access_token);
-                    router.push("/build");
+                    localStorage.setItem("user_id", data.id);
+                    router.push("/builds");
                 })
                 .catch((err) => {
                     console.log(err.message);
@@ -334,7 +335,7 @@ export default new Vuex.Store({
                 },
             })
                 .then(({ data }) => {
-                    router.push(`/build/${data.id}/cpu`);
+                    router.push(`/builds/${data.id}/cpu`);
                 })
                 .catch((err) => {
                     console.log(err);

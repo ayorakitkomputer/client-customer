@@ -11,7 +11,7 @@ const routes = [
         component: Home,
     },
     {
-        path: "/build/",
+        path: "/builds/",
         name: "PickParts",
         component: () => import("../views/PickParts.vue"),
         children: [
@@ -87,6 +87,11 @@ const routes = [
         path: "/login",
         name: "Login",
         component: () => import("../views/Login.vue"),
+    },
+    {
+        path: "/profiles/:profileid",
+        name: "Profile",
+        component: () => import("../views/MyProfile.vue"),
     },
 ];
 
