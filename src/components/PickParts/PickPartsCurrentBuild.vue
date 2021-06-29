@@ -4,6 +4,7 @@
 
         <div class="flex flex-wrap">
             <div
+                v-if="getBuild.cpu"
                 class="flex flex-col items-center justify-center w-1/4 h-64 border-2 "
             >
                 <img
@@ -15,6 +16,7 @@
             </div>
 
             <div
+                v-if="getBuild.motherboard"
                 class="flex flex-col items-center justify-center w-1/4 h-64 border-2 "
             >
                 <img
@@ -24,7 +26,9 @@
                 />
                 <h5>{{ getBuild.motherboard.name }}</h5>
             </div>
+
             <div
+                v-if="getBuild.memory"
                 class="flex flex-col items-center justify-center w-1/4 h-64 border-2 "
             >
                 <img
@@ -35,29 +39,38 @@
                 <h5>{{ getBuild.memory.name }}</h5>
             </div>
 
-            <div
-                v-for="storage in getBuild.storage"
-                :key="storage._id"
-                class="flex flex-col items-center justify-center w-1/4 h-64 border-2 "
-            >
-                <img
-                    class="object-cover w-full h-32"
-                    :src="storage.image"
-                    alt=""
-                />
-                <h5>{{ storage.name }}</h5>
+            <div v-if="getBuild.storage">
+                <div
+                    v-for="storage in getBuild.storage"
+                    :key="storage._id"
+                    class="flex flex-col items-center justify-center w-1/4 h-64 border-2 "
+                >
+                    <img
+                        class="object-cover w-full h-32"
+                        :src="storage.image"
+                        alt=""
+                    />
+                    <h5>{{ storage.name }}</h5>
+                </div>
+            </div>
+
+            <div v-if="getBuild.gpu" class="flex">
+                <div
+                    v-for="gpu in getBuild.gpu"
+                    :key="gpu._id"
+                    class="flex flex-col items-center justify-center w-1/4 h-64 border-2 "
+                >
+                    <img
+                        class="object-cover w-full h-32"
+                        :src="gpu.image"
+                        alt=""
+                    />
+                    <h5>{{ gpu.name }}</h5>
+                </div>
             </div>
 
             <div
-                v-for="gpu in getBuild.gpu"
-                :key="gpu._id"
-                class="flex flex-col items-center justify-center w-1/4 h-64 border-2 "
-            >
-                <img class="object-cover w-full h-32" :src="gpu.image" alt="" />
-                <h5>{{ gpu.name }}</h5>
-            </div>
-
-            <div
+                v-if="getBuild.case"
                 class="flex flex-col items-center justify-center w-1/4 h-64 border-2 "
             >
                 <img
@@ -69,6 +82,7 @@
             </div>
 
             <div
+                v-if="getBuild.powerSupply"
                 class="flex flex-col items-center justify-center w-1/4 h-64 border-2 "
             >
                 <img
@@ -79,30 +93,34 @@
                 <h5>{{ getBuild.powerSupply.name }}</h5>
             </div>
 
-            <div
-                v-for="monitor in getBuild.monitor"
-                :key="monitor._id"
-                class="flex flex-col items-center justify-center w-1/4 h-64 border-2 "
-            >
-                <img
-                    class="object-cover w-full h-32"
-                    :src="monitor.image"
-                    alt=""
-                />
-                <h5>{{ monitor.name }}</h5>
+            <div v-if="getBuild.monitor" class="flex">
+                <div
+                    v-for="monitor in getBuild.monitor"
+                    :key="monitor._id"
+                    class="flex flex-col items-center justify-center w-1/4 h-64 border-2 "
+                >
+                    <img
+                        class="object-cover w-full h-32"
+                        :src="monitor.image"
+                        alt=""
+                    />
+                    <h5>{{ monitor.name }}</h5>
+                </div>
             </div>
 
-            <div
-                v-for="case_fan in getBuild.case_fan"
-                :key="case_fan._id"
-                class="flex flex-col items-center justify-center w-1/4 h-64 border-2 "
-            >
-                <img
-                    class="object-cover w-full h-32"
-                    :src="case_fan.image"
-                    alt=""
-                />
-                <h5>{{ case_fan.name }}</h5>
+            <div v-if="getBuild.case_fan" class="flex">
+                <div
+                    v-for="case_fan in getBuild.case_fan"
+                    :key="case_fan._id"
+                    class="flex flex-col items-center justify-center w-1/4 h-64 border-2 "
+                >
+                    <img
+                        class="object-cover w-full h-32"
+                        :src="case_fan.image"
+                        alt=""
+                    />
+                    <h5>{{ case_fan.name }}</h5>
+                </div>
             </div>
         </div>
     </div>
