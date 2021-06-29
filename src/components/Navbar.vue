@@ -86,6 +86,12 @@
                                         Transaction history
                                     </li>
                                     <li
+                                        @click="testXendit"
+                                        class="profile-options"
+                                    >
+                                        DELETE THIS
+                                    </li>
+                                    <li
                                         @click="logOutUser"
                                         class="border-t-2 profile-options"
                                     >
@@ -127,6 +133,9 @@ export default {
         goToTransactionHistory() {
             let userId = localStorage.user_id;
             this.$router.push(`/profiles/${userId}/transactions`);
+        },
+        testXendit() {
+            this.$store.dispatch("checkoutPaymentGateway");
         },
     },
     computed: {

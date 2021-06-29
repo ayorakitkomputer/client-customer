@@ -398,7 +398,32 @@ export default new Vuex.Store({
             })
                 .then(({ data }) => {
                     context.commit("SET_USER_BUILDS", data);
-                    console.log(data);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        },
+        checkoutPaymentGateway() {
+            axios({
+                url: "/payment/invoice",
+                method: "POST",
+                headers: {
+                    access_token: localStorage.access_token,
+                },
+                data: {
+                    amount: 10000000,
+                },
+            })
+                .then(({ data }) => {
+                    // console.log(data);
+                    let intViewportWidth = window.innerWidth * 0.8;
+                    let intViewportHeight = window.innerHeight * 0.75;
+
+                    window.open(
+                        data.invoice_url,
+                        "hello",
+                        `width=${intViewportWidth},height=${intViewportHeight}`
+                    );
                 })
                 .catch((err) => {
                     console.log(err);
