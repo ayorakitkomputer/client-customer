@@ -1,5 +1,5 @@
 <template>
-  <section id="navbar" class="bg-black shadow-2xl h-28 section h-navbar">
+  <section id="navbar" class="shadow-2xl h-28 section h-navbar">
     <div class="grid h-full grid-cols-12 mx-auto max-w-screen">
       <div class="self-center col-span-2 p-4 text-white justify-self-center">
         <img src="../assets/LOGO TES.png" alt="logo" class="w-3/4 mx-10 my-3" />
@@ -40,5 +40,9 @@ export default {
 }
 .checkout:hover {
   color: #cfff0a;
+}
+#navbar {
+  background-color: black;
+  /* background-image: url(""); */
 }
 </style>

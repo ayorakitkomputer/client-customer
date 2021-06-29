@@ -1,8 +1,8 @@
 <template>
   <div class="h-screen bg-black h-navbar">
-    <div class="absolute flex items-center justify-center">
+    <!-- <div class="absolute flex items-center justify-center">
       <canvas id="threejs"></canvas>
-    </div>
+    </div> -->
     <div class="absolute grid grid-cols-8">
       <div
         class="flex items-center justify-center h-screen col-start-2 col-end-4"
