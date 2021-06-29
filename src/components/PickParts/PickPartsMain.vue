@@ -1,7 +1,7 @@
 <template>
     <div
         v-if="!componentLoading"
-        class="h-full col-span-10 overflow-y-scroll bg-red-400"
+        class="h-full col-span-10 overflow-hidden bg-red-400"
     >
         <div class="sticky top-0 grid p-3 bg-black" :class="getGridAmount">
             <div class="col-span-2 justify-self-center">
@@ -59,8 +59,6 @@ export default {
         },
     },
     created() {
-        // console.log(this.$route);
-        // console.log("created di pick parts main");
         this.getData();
     },
 };

@@ -45,7 +45,6 @@ export default {
         },
         addCaseFan(part) {
             const currentBuild = this.$store.state.currentBuild;
-            console.log(currentBuild, "INI CURRENT BUILDSDDDDDDDDDDDDD");
             const payload = {
                 buildId: this.$route.params.id,
                 partId: [part._id],
@@ -56,7 +55,6 @@ export default {
                     payload.partId.push(oneCaseFan._id);
                 });
             }
-            console.log(payload, "INI CASE FAN");
             this.$store.dispatch("addBuild", payload);
         },
     },

@@ -1,7 +1,11 @@
 <template>
     <div>
         <ul class="flex items-center justify-center gap-2 m-2">
-            <li @click="goToPage(i)" v-for="i in 10" :key="i">
+            <li
+                @click="goToPage(i)"
+                v-for="i in getCurrentPage.totalPage"
+                :key="i"
+            >
                 {{ i }}
             </li>
         </ul>
@@ -22,7 +26,7 @@ export default {
     },
     computed: {
         getCurrentPage() {
-            return this.$store.state.componentData.page;
+            return this.$store.state.componentData.pagination;
         },
     },
 };

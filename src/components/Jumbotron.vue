@@ -1,7 +1,7 @@
 <template>
     <div class="h-screen bg-black">
         <div class="absolute flex items-center justify-center bg-red-600">
-            <canvas id="threejs"></canvas>
+            <!-- <canvas id="threejs"></canvas> -->
         </div>
         <div class="absolute grid grid-cols-8">
             <div
