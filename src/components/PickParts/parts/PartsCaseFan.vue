@@ -21,8 +21,11 @@
                 <h1 class="text-white">{{ part.stock }}</h1>
             </div>
             <div class="col-span-1 basic-center">
-                <button @click="addCaseFan(part)" class="text-white">
-                    Add
+                <button @click="addCaseFan(part)" class="w-1/6 text-white">
+                    <img
+                        src="https://icons.iconarchive.com/icons/alecive/flatwoken/512/Apps-Dialog-Add-icon.png"
+                        alt=""
+                    />
                 </button>
             </div>
         </div>
@@ -45,7 +48,6 @@ export default {
         },
         addCaseFan(part) {
             const currentBuild = this.$store.state.currentBuild;
-            console.log(currentBuild, "INI CURRENT BUILDSDDDDDDDDDDDDD");
             const payload = {
                 buildId: this.$route.params.id,
                 partId: [part._id],
@@ -56,15 +58,30 @@ export default {
                     payload.partId.push(oneCaseFan._id);
                 });
             }
-            console.log(payload, "INI CASE FAN");
             this.$store.dispatch("addBuild", payload);
         },
     },
+    addCaseFan(part) {
+        const currentBuild = this.$store.state.currentBuild;
+        console.log(currentBuild, "INI CURRENT BUILDSDDDDDDDDDDDDD");
+        const payload = {
+            buildId: this.$route.params.id,
+            partId: [part._id],
+            type: "caseFan",
+        };
+        if (currentBuild.case_fan) {
+            currentBuild.case_fan.forEach((oneCaseFan) => {
+                payload.partId.push(oneCaseFan._id);
+            });
+        }
+        console.log(payload, "INI CASE FAN");
+        this.$store.dispatch("addBuild", payload);
+    },
+
     components: {
         PaginationFooter,
     },
 };
 </script>
 
-<style>
-</style>
+<style></style>

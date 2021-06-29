@@ -55,10 +55,14 @@ export default new Vuex.Store({
                 },
             })
                 .then(({ data }) => {
+                    console.log(data);
                     let cpuData = {
                         category: context.state.componentsCategory.cpu,
-                        data: data,
-                        page,
+                        data: data.data,
+                        pagination: {
+                            page,
+                            totalPage: data.howManyPages,
+                        },
                         type: "cpu",
                     };
                     context.commit("SET_COMPONENT_DATA", cpuData);
@@ -80,7 +84,11 @@ export default new Vuex.Store({
                     console.log(data, "INI MOBO");
                     let motherboardData = {
                         category: context.state.componentsCategory.motherboard,
-                        data: data,
+                        data: data.data,
+                        pagination: {
+                            page,
+                            totalPage: data.howManyPages,
+                        },
                         type: "motherboard",
                     };
                     context.commit("SET_COMPONENT_DATA", motherboardData);
@@ -92,7 +100,7 @@ export default new Vuex.Store({
         },
         getStorage(context, page = 1) {
             axios({
-                url: `/storages?page=${page}`,
+                url: `/builds/storages?page=${page}`,
                 headers: {
                     access_token: localStorage.access_token,
                 },
@@ -100,7 +108,11 @@ export default new Vuex.Store({
                 .then(({ data }) => {
                     let storageData = {
                         category: context.state.componentsCategory.storage,
-                        data: data,
+                        data: data.data,
+                        pagination: {
+                            page,
+                            totalPage: data.howManyPages,
+                        },
                         type: "storage",
                     };
                     context.commit("SET_COMPONENT_DATA", storageData);
@@ -112,7 +124,7 @@ export default new Vuex.Store({
         },
         getPowerSupply(context, page = 1) {
             axios({
-                url: `/power-supplies?page=${page}`,
+                url: `/builds/power-supplies?page=${page}`,
                 headers: {
                     access_token: localStorage.access_token,
                 },
@@ -120,7 +132,11 @@ export default new Vuex.Store({
                 .then(({ data }) => {
                     let powerSupplyData = {
                         category: context.state.componentsCategory.powerSupply,
-                        data: data,
+                        data: data.data,
+                        pagination: {
+                            page,
+                            totalPage: data.howManyPages,
+                        },
                         type: "powerSupply",
                     };
                     context.commit("SET_COMPONENT_DATA", powerSupplyData);
@@ -132,7 +148,7 @@ export default new Vuex.Store({
         },
         getMonitor(context, page = 1) {
             axios({
-                url: `/monitors?page=${page}`,
+                url: `/builds/monitors?page=${page}`,
                 headers: {
                     access_token: localStorage.access_token,
                 },
@@ -140,7 +156,11 @@ export default new Vuex.Store({
                 .then(({ data }) => {
                     let monitorData = {
                         category: context.state.componentsCategory.monitor,
-                        data: data,
+                        data: data.data,
+                        pagination: {
+                            page,
+                            totalPage: data.howManyPages,
+                        },
                         type: "monitor",
                     };
                     context.commit("SET_COMPONENT_DATA", monitorData);
@@ -152,7 +172,7 @@ export default new Vuex.Store({
         },
         getGpu(context, page = 1) {
             axios({
-                url: `/gpu?page=${page}`,
+                url: `/builds/gpu?page=${page}`,
                 headers: {
                     access_token: localStorage.access_token,
                 },
@@ -160,7 +180,11 @@ export default new Vuex.Store({
                 .then(({ data }) => {
                     let gpuData = {
                         category: context.state.componentsCategory.gpu,
-                        data: data,
+                        data: data.data,
+                        pagination: {
+                            page,
+                            totalPage: data.howManyPages,
+                        },
                         type: "gpu",
                     };
                     context.commit("SET_COMPONENT_DATA", gpuData);
@@ -172,7 +196,7 @@ export default new Vuex.Store({
         },
         getCase(context, page = 1) {
             axios({
-                url: `/case?page=${page}`,
+                url: `/builds/case?page=${page}`,
                 headers: {
                     access_token: localStorage.access_token,
                 },
@@ -180,7 +204,11 @@ export default new Vuex.Store({
                 .then(({ data }) => {
                     let caseData = {
                         category: context.state.componentsCategory.case,
-                        data: data,
+                        data: data.data,
+                        pagination: {
+                            page,
+                            totalPage: data.howManyPages,
+                        },
                         type: "case",
                     };
                     context.commit("SET_COMPONENT_DATA", caseData);
@@ -192,7 +220,7 @@ export default new Vuex.Store({
         },
         getMemory(context, page = 1) {
             axios({
-                url: `/memory?page=${page}`,
+                url: `/builds/memory?page=${page}`,
                 headers: {
                     access_token: localStorage.access_token,
                 },
@@ -200,7 +228,11 @@ export default new Vuex.Store({
                 .then(({ data }) => {
                     let memoryData = {
                         category: context.state.componentsCategory.memory,
-                        data: data,
+                        data: data.data,
+                        pagination: {
+                            page,
+                            totalPage: data.howManyPages,
+                        },
                         type: "memory",
                     };
                     context.commit("SET_COMPONENT_DATA", memoryData);
@@ -212,7 +244,7 @@ export default new Vuex.Store({
         },
         getCaseFan(context, page = 1) {
             axios({
-                url: `/caseFan?page=${page}`,
+                url: `/builds/caseFan?page=${page}`,
                 headers: {
                     access_token: localStorage.access_token,
                 },
@@ -220,7 +252,11 @@ export default new Vuex.Store({
                 .then(({ data }) => {
                     let caseFanData = {
                         category: context.state.componentsCategory.caseFan,
-                        data: data,
+                        data: data.data,
+                        pagination: {
+                            page,
+                            totalPage: data.howManyPages,
+                        },
                         type: "caseFan",
                     };
                     context.commit("SET_COMPONENT_DATA", caseFanData);
@@ -283,7 +319,8 @@ export default new Vuex.Store({
             })
                 .then(({ data }) => {
                     localStorage.setItem("access_token", data.access_token);
-                    router.push("/build");
+                    localStorage.setItem("user_id", data.id);
+                    router.push("/builds");
                 })
                 .catch((err) => {
                     console.log(err.message);
@@ -298,7 +335,7 @@ export default new Vuex.Store({
                 },
             })
                 .then(({ data }) => {
-                    router.push(`/build/${data.id}/cpu`);
+                    router.push(`/builds/${data.id}/cpu`);
                 })
                 .catch((err) => {
                     console.log(err);

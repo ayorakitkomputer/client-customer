@@ -1,7 +1,7 @@
 <template>
     <div class="h-screen bg-black">
-        <div class="absolute flex items-center justify-center bg-red-600">
-            <canvas id="threejs"></canvas>
+        <div class="absolute flex items-center justify-center">
+            <!-- <canvas id="threejs"></canvas> -->
         </div>
         <div class="absolute grid grid-cols-8">
             <div
@@ -14,7 +14,7 @@
                     BUILD YOUR OWN PC
                 </p>
                 <div class="absolute mb-10 left-60">
-                    <router-link to="/build">
+                    <router-link to="/builds">
                         <button
                             id="jumbotronButton"
                             class="px-5 py-4 text-xl font-bold text-black shadow-2xl  text-md rounded-2xl"

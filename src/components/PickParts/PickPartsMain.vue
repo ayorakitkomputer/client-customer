@@ -1,11 +1,15 @@
 <template>
     <div
         v-if="!componentLoading"
-        class="h-full col-span-10 overflow-y-scroll bg-red-400"
+        class="h-full col-span-10 overflow-y-scroll bg-main"
     >
-        <div class="sticky top-0 grid p-3 bg-black" :class="getGridAmount">
+        <div
+            id="title-category"
+            class="sticky top-0 grid py-5 text-xl"
+            :class="getGridAmount"
+        >
             <div class="col-span-2 justify-self-center">
-                <h1 class="font-semibold text-pink-500">
+                <h1 class="font-semibold">
                     {{ componentData.category[0] }}
                 </h1>
             </div>
@@ -15,16 +19,16 @@
                 :key="`${category}-${i}`"
                 class="col-span-1 justify-self-center"
             >
-                <h1 class="font-semibold text-pink-500">{{ category }}</h1>
+                <h1 class="font-semibold">{{ category }}</h1>
             </div>
         </div>
+        <!-- CONTENT -->
 
-        <!-- We loop the component here, but need to find out the type of data we are looping first. -->
-        <!-- This happens inside this component -->
         <PickPartsComponent
             v-if="componentData"
             :componentData="componentData.data"
             :type="componentData.type"
+            class="font-semibold text-md"
         />
     </div>
 </template>
@@ -54,9 +58,6 @@ export default {
         componentData() {
             return this.$store.state.componentData;
         },
-        componentLoading() {
-            return this.$store.state.componentDataLoading;
-        },
     },
     created() {
         // console.log(this.$route);
@@ -67,4 +68,20 @@ export default {
 </script>
 
 <style>
+#title-category {
+    color: #cfff0a;
+    background-color: black;
+}
+.bg-main {
+    background-color: rgba(34, 34, 34, 0.739);
+}
+.bg-main::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.bg-main {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
 </style>
