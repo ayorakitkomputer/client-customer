@@ -130,4 +130,8 @@ export default {
 .profile-options {
     @apply px-2 py-1 hover:bg-ark-green;
 }
+#navbar {
+    background-color: black;
+    /* background-image: url(""); */
+}
 </style>

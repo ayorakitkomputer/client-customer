@@ -23,10 +23,10 @@ export default {
             };
             this.$store.dispatch("getData", payload);
         },
-    },
-    computed: {
-        getCurrentPage() {
-            return this.$store.state.componentData.pagination;
+        computed: {
+            getCurrentPage() {
+                return this.$store.state.componentData.pagination;
+            },
         },
     },
 };
@@ -34,6 +34,11 @@ export default {
 
 <style scoped>
 li {
-    @apply h-10 w-10 flex items-center justify-center bg-white cursor-pointer;
+    @apply mx-1 h-10 w-10 flex items-center justify-center bg-white cursor-pointer rounded-xl font-semibold;
+}
+
+li:hover {
+    color: #cfff0a;
+    background-color: black;
 }
 </style>
