@@ -9,7 +9,7 @@
           COMPONENTS
         </h5>
         <ul
-          class="flex flex-col gap-2 px-4 mt-5 text-lg font-medium text-white uppercase "
+          class="flex flex-col gap-2 px-5 mt-5 text-lg font-medium text-white uppercase "
         >
           <router-link :to="`/build/${getBuild._id}/cpu`">
             <li class="flex justify-between my-3 bg-comp">
