@@ -68,12 +68,21 @@
                                         </h6>
                                     </li>
                                     <li
+                                        class="border-b-2 profile-options"
+                                        @click="goToCreateBuild"
+                                    >
+                                        Create a new build
+                                    </li>
+                                    <li
                                         class="profile-options"
                                         @click="goToMyBuilds"
                                     >
                                         Your builds
                                     </li>
-                                    <li class="profile-options">
+                                    <li
+                                        @click="goToTransactionHistory"
+                                        class="profile-options"
+                                    >
                                         Transaction history
                                     </li>
                                     <li
@@ -106,11 +115,18 @@ export default {
         },
         goToMyBuilds() {
             let userId = localStorage.user_id;
-            this.$router.push(`/profiles/${userId}`);
+            this.$router.push(`/profiles/${userId}/builds`);
         },
         logOutUser() {
             localStorage.clear();
             this.$router.push(`/`);
+        },
+        goToCreateBuild() {
+            this.$router.push("/builds");
+        },
+        goToTransactionHistory() {
+            let userId = localStorage.user_id;
+            this.$router.push(`/profiles/${userId}/transactions`);
         },
     },
     computed: {

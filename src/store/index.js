@@ -34,6 +34,7 @@ export default new Vuex.Store({
             caseFan: ["Name", "Size", "Price", "Stock"],
         },
         currentBuild: {},
+        userBuilds: [],
     },
     mutations: {
         SET_COMPONENT_DATA(state, payload) {
@@ -44,6 +45,9 @@ export default new Vuex.Store({
         },
         SET_CURRENT_BUILD(state, payload) {
             state.currentBuild = payload;
+        },
+        SET_USER_BUILDS(state, payload) {
+            state.userBuilds = payload;
         },
     },
     actions: {
@@ -380,6 +384,21 @@ export default new Vuex.Store({
             })
                 .then(({ data }) => {
                     context.commit("SET_CURRENT_BUILD", data);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        },
+        getUserBuilds(context) {
+            axios({
+                url: "/builds",
+                headers: {
+                    access_token: localStorage.access_token,
+                },
+            })
+                .then(({ data }) => {
+                    context.commit("SET_USER_BUILDS", data);
+                    console.log(data);
                 })
                 .catch((err) => {
                     console.log(err);
