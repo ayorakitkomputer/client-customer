@@ -26,7 +26,12 @@
                     <zg-column index="_id"></zg-column>
                     <zg-column index="build.name"></zg-column>
                     <zg-column index="user.address"></zg-column>
-                    <zg-column index="shipmentStatus"></zg-column>
+                    <zg-column
+                        header="Shipment"
+                        type="toggle"
+                        type-toggle-options='["Not Shipped", "Shipped"]'
+                        index="shipmentStatus"
+                    ></zg-column>
                 </zg-data>
             </zing-grid>
         </div>
