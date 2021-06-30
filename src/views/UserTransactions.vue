@@ -1,7 +1,34 @@
 <template>
-    <div class="container mx-auto bg-red-400 h-navbar">
+    <div class="container mx-auto h-navbar">
         <div>
-            <h1 class="text-3xl text-center">Transaction History</h1>
+            <zing-grid
+                pager
+                filter
+                search
+                sort
+                zebra
+                gridlines="both"
+                page-size="10"
+                page-size-card="10"
+                page-size-options="2,4,10,20"
+                layout="row"
+                role="grid"
+                viewport="tablet-portrait"
+                theme="ios"
+            >
+                <zg-caption
+                    class="text-3xl font-semibold leading-tight bg-black  text-ark-green"
+                    >Transaction History</zg-caption
+                >
+                <zg-data :src="transactionData">
+                    <!-- <zg-param name="idKey" value="id"></zg-param> -->
+                    <zg-param name="headers" :value="access_token"></zg-param>
+                    <zg-column index="_id"></zg-column>
+                    <zg-column index="build.name"></zg-column>
+                    <zg-column index="user.address"></zg-column>
+                    <zg-column index="shipmentStatus"></zg-column>
+                </zg-data>
+            </zing-grid>
         </div>
     </div>
 </template>
@@ -9,34 +36,18 @@
 <script>
 export default {
     name: "UserTransactions",
-    computed: {
-        getTransactions() {
-            let dataObj = { data: this.$store.state.userTransactions };
-            // return this.$store.state.userTransactions;
-            // console.log(dataObj);
-            return dataObj;
-        },
-        // getFields() {
-        //     let fields = [
-        //         {
-        //             name: "createdAt",
-        //             title: "Created At",
-        //             sortField: "createdAt",
-        //         },
-        //         {
-        //             name: "build._id",
-        //             title: "Build ID",
-        //         },
-        //         {
-        //             name: "shipmentStatus",
-        //             title: "Shipped",
-        //             formatter(value) {
-        //                 return value === true ? "Shipped!" : "Packing";
-        //             },
-        //         },
-        //     ];
-        //     return fields;
-        // },
+    data() {
+        return {
+            transactionData: [],
+            access_token: "",
+        };
+    },
+    created() {
+        let token = localStorage.access_token;
+        this.access_token = `{"access_token": "${token}"}`;
+        if (this.$route.path) {
+            this.transactionData = `http://localhost:3000/history`;
+        }
     },
     beforeMount() {
         // console.log("masuk beforemount");
@@ -45,5 +56,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

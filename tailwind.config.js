@@ -5,6 +5,7 @@ module.exports = {
         extend: {
             colors: {
                 "ark-green": "#cfff0a",
+                "ark-gray": "#131314",
             },
         },
     },

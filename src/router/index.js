@@ -75,12 +75,12 @@ const routes = [
                     import("../components/PickParts/PickPartsCurrentBuild.vue"),
                 name: "buildCurrentBuild",
             },
-            {
-                path: "",
-                component: () =>
-                    import("../components/PickParts/PickPartsLanding.vue"),
-                name: "buildLanding",
-            },
+            // {
+            //     path: "",
+            //     // component: () =>
+            //     //     import("../components/PickParts/PickPartsLanding.vue"),
+            //     name: "buildLanding",
+            // },
         ],
     },
     {
@@ -112,20 +112,15 @@ function isAuthenticated() {
 }
 
 router.beforeEach((to, from, next) => {
-    // console.log(to, from, "INI NAV GUARD");
     if (
         (to.fullPath.includes("/builds") ||
             to.fullPath.includes("/profiles")) &&
         !isAuthenticated()
     ) {
         next({ name: "Login" });
-        // } else if (to.fullPath.params.id && to.fullPath.name) {
-
-        //     next();
-        //     // next({ name: "buildCurrentBuild", params: { id: "5" } });
-        // }
+    } else if (to.name === "PickParts") {
+        next({ name: "Home" });
     } else {
-        // console.log("ga masuk");
         next();
     }
 });

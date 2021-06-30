@@ -3,13 +3,7 @@
         <div class="grid h-full grid-cols-12 mx-auto max-w-screen">
             <div
                 @click="goToHome"
-                class="
-                    self-center
-                    col-span-2
-                    text-white
-                    justify-self-center
-                    cursor-pointer
-                "
+                class="self-center col-span-2 text-white cursor-pointer  justify-self-center"
             >
                 <img
                     src="../assets/LOGO TES.png"
@@ -23,26 +17,10 @@
                 <ul
                     v-if="!getAccessToken"
                     id="navbarButton"
-                    class="
-                        flex
-                        items-center
-                        justify-center
-                        gap-4
-                        mx-auto
-                        font-semibold
-                        text-black text-md
-                    "
+                    class="flex items-center justify-center gap-4 mx-auto font-semibold text-black  text-md"
                 >
                     <li
-                        class="
-                            px-5
-                            py-3
-                            bg-white
-                            cursor-pointer
-                            register
-                            hover:bg-black
-                            rounded-xl
-                        "
+                        class="px-5 py-3 bg-white cursor-pointer  register hover:bg-black rounded-xl"
                     >
                         <router-link to="/login"> SIGN IN </router-link>
                     </li>
@@ -83,26 +61,12 @@
                         </div>
                         <div
                             v-if="showProfileOptions"
-                            class="
-                                absolute
-                                right-0
-                                z-50
-                                w-48
-                                mt-3
-                                bg-white
-                                rounded-md
-                                shadow-xl
-                            "
+                            class="absolute right-0 z-50 w-48 mt-3 bg-white rounded-md shadow-xl "
                         >
                             <div>
                                 <ul>
                                     <li
-                                        class="
-                                            flex flex-col
-                                            p-3
-                                            px-4
-                                            border-b-2
-                                        "
+                                        class="flex flex-col p-3 px-4 border-b-2 "
                                     >
                                         <h5>Signed in as</h5>
                                         <h6 class="font-semibold text-gray-800">
@@ -110,12 +74,7 @@
                                         </h6>
                                     </li>
                                     <li
-                                        class="
-                                            px-4
-                                            py-2
-                                            profile-options
-                                            border-b-2
-                                        "
+                                        class="px-4 py-2 border-b-2  profile-options"
                                         @click="goToCreateBuild"
                                     >
                                         Create new build
@@ -134,13 +93,7 @@
                                     </li>
                                     <li
                                         @click="logOutUser"
-                                        class="
-                                            px-4
-                                            py-3
-                                            font-medium
-                                            border-t-2
-                                            profile-options
-                                        "
+                                        class="px-4 py-3 font-medium border-t-2  profile-options"
                                     >
                                         Sign Out
                                     </li>
@@ -176,7 +129,7 @@ export default {
             this.$router.push(`/`);
         },
         goToCreateBuild() {
-            this.$router.push("/builds");
+            this.$store.dispatch("createNewBuild");
         },
         goToTransactionHistory() {
             let userId = localStorage.user_id;
@@ -189,7 +142,6 @@ export default {
     computed: {
         getAccessToken() {
             const userLoggedIn = this.$store.state.userLoggedIn;
-            // console.log(userLoggedIn, "INI DI NAVBARR");
             if (userLoggedIn.access_token) return true;
             return false;
         },

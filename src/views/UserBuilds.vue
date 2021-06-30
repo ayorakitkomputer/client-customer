@@ -1,6 +1,6 @@
 <template>
     <div
-        class="container mx-auto overflow-y-auto  h-navbar bg-my-build custom-scroll"
+        class="container mx-auto overflow-y-auto  h-navbar bg-my-build custom-scroll w-"
     >
         <div>
             <h1 class="pt-6 text-4xl font-bold text-center text-ark-green">
