@@ -37,6 +37,7 @@ export default new Vuex.Store({
         userBuilds: [],
         userTransactions: [],
         userLoggedIn: {},
+        updateUserData: false,
     },
     mutations: {
         SET_COMPONENT_DATA(state, payload) {
@@ -56,6 +57,9 @@ export default new Vuex.Store({
         },
         SET_USER_LOGGED_IN(state, payload) {
             state.userLoggedIn = payload;
+        },
+        SET_UPDATE_USER_DETAILS(state, payload) {
+            state.updateUserData = payload;
         },
     },
     actions: {
@@ -521,12 +525,39 @@ export default new Vuex.Store({
                 },
             })
                 .then(({ data }) => {
-                    // console.log(data, "INI GET USER TRANSACTIONS");
                     context.commit("SET_USER_TRANSACTIONS", data);
                 })
                 .catch((err) => {
                     console.log(err);
                 });
+        },
+        patchBuildDetails(context, payload) {
+            // console.log(context, payload);
+            return new Promise((resolve, reject) => {
+                axios({
+                    url: `/builds/${payload.buildId}/detail`,
+                    data: {
+                        name: payload.buildName,
+                        budget: payload.buildBudget,
+                    },
+                    method: "POST",
+                    headers: {
+                        access_token: localStorage.access_token,
+                    },
+                })
+                    .then(() => {
+                        // console.log(data, "INI DI PATCH BUILD DETAILS");
+                        context.commit("SET_UPDATE_USER_DETAILS", false);
+                        context.dispatch("getBuildById", {
+                            buildId: payload.buildId,
+                        });
+                        resolve();
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                        reject(err);
+                    });
+            });
         },
     },
     modules: {},

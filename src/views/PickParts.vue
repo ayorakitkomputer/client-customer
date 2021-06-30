@@ -82,7 +82,9 @@
                             <h5 class="mt-2 text-white">
                                 {{ getCurrentBuildPrice }}
                             </h5>
-                            <h6 class="ml-auto text-sm">/ Rp. 10.000.000,-</h6>
+                            <h6 class="ml-auto text-sm">
+                                / {{ getUserBudget }}
+                            </h6>
                         </div>
                         <div
                             class="flex flex-col items-center mt-8 text-lg text-center "
@@ -124,14 +126,25 @@
                     </center>
                 </div>
             </div>
+            <CreateBuildModal :openModal="openModal" />
             <router-view />
         </div>
     </section>
 </template>
 
 <script>
+import CreateBuildModal from "../components/CreateBuildModal.vue";
+
 export default {
     name: "PickParts",
+    data() {
+        return {
+            openModal: false,
+        };
+    },
+    components: {
+        CreateBuildModal,
+    },
     methods: {
         getData() {
             let payload = {
@@ -200,7 +213,7 @@ export default {
     },
     watch: {
         $route() {
-            // console.log(to, from);
+            // Get data from current route.
             this.getData();
         },
     },
@@ -218,13 +231,26 @@ export default {
                 currency: "IDR",
             }).format(totalPrice);
         },
+        getUserBudget() {
+            let userBudget = this.getBuild.budget;
+            return new Intl.NumberFormat("id-ID", {
+                style: "currency",
+                currency: "IDR",
+            }).format(userBudget);
+        },
     },
-    beforeMount() {
+    created() {
         // If user refreshes, make sure vuex has latest currentBuild
         const buildId = this.$route.params.id;
         const currentBuild = this.$store.state.currentBuild;
         if (buildId && !currentBuild._id) {
             this.$store.dispatch("getBuildById", { buildId });
+        }
+    },
+    beforeUpdate() {
+        const currentBuild = this.$store.state.currentBuild;
+        if (!currentBuild.name && !currentBuild.budget) {
+            this.$store.commit("SET_UPDATE_USER_DETAILS", true);
         }
     },
 };

@@ -5,13 +5,7 @@
         </div>
         <div class="absolute grid grid-cols-8">
             <div
-                class="
-                    flex
-                    items-center
-                    justify-center
-                    h-screen
-                    col-start-2 col-end-4
-                "
+                class="flex items-center justify-center h-screen col-start-2 col-end-4 "
             >
                 <p
                     id="test-animation"
@@ -20,23 +14,21 @@
                     BUILD YOUR OWN PC
                 </p>
                 <div class="absolute mb-10 left-60">
-                    <router-link to="/builds">
+                    <button
+                        @click="createNewBuild"
+                        id="jumbotronButton"
+                        class="px-5 py-4 text-xl font-bold text-black shadow-2xl  text-md rounded-2xl"
+                    >
+                        LET'S START BUILD
+                    </button>
+                    <!-- <router-link to="/builds">
                         <button
                             id="jumbotronButton"
-                            class="
-                                px-5
-                                py-4
-                                text-xl
-                                font-bold
-                                text-black
-                                shadow-2xl
-                                text-md
-                                rounded-2xl
-                            "
+                            class="px-5 py-4 text-xl font-bold text-black shadow-2xl text-md rounded-2xl"
                         >
                             LET'S START BUILD
                         </button>
-                    </router-link>
+                    </router-link> -->
                 </div>
             </div>
         </div>
@@ -197,6 +189,9 @@ export default {
             if (mesh) {
                 this.renderer.render(this.scene, this.camera);
             }
+        },
+        createNewBuild() {
+            this.$store.dispatch("createNewBuild");
         },
     },
     beforeDestroy() {
