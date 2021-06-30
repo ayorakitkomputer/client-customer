@@ -36,6 +36,7 @@ export default new Vuex.Store({
         currentBuild: {},
         userBuilds: [],
         userTransactions: [],
+        userLoggedIn: {},
     },
     mutations: {
         SET_COMPONENT_DATA(state, payload) {
@@ -52,6 +53,9 @@ export default new Vuex.Store({
         },
         SET_USER_TRANSACTIONS(state, payload) {
             state.userTransactions = payload;
+        },
+        SET_USER_LOGGED_IN(state, payload) {
+            state.userLoggedIn = payload;
         },
     },
     actions: {
@@ -328,6 +332,13 @@ export default new Vuex.Store({
                 .then(({ data }) => {
                     localStorage.setItem("access_token", data.access_token);
                     localStorage.setItem("user_id", data.id);
+                    localStorage.setItem("email", data.email);
+                    const payload = {
+                        user_id: data.id,
+                        access_token: data.access_token,
+                        email: data.email,
+                    };
+                    context.commit("SET_USER_LOGGED_IN", payload);
                     router.push("/builds");
                 })
                 .catch((err) => {

@@ -106,7 +106,7 @@
                                     >
                                         <h5>Signed in as</h5>
                                         <h6 class="font-semibold text-gray-800">
-                                            customer@mail.com
+                                            {{ getUserEmail }}
                                         </h6>
                                     </li>
                                     <li
@@ -172,6 +172,7 @@ export default {
         },
         logOutUser() {
             localStorage.clear();
+            this.$store.commit("SET_USER_LOGGED_IN", {});
             this.$router.push(`/`);
         },
         goToCreateBuild() {
@@ -184,17 +185,16 @@ export default {
         goToHome() {
             this.$router.push("/");
         },
-        testXendit() {
-            const payload = {
-                buildId: "60db4bbb1d036c1524f2e469",
-            };
-            this.$store.dispatch("checkoutPaymentGateway", payload);
-        },
     },
     computed: {
         getAccessToken() {
-            if (localStorage.access_token) return true;
+            const userLoggedIn = this.$store.state.userLoggedIn;
+            console.log(userLoggedIn, "INI DI NAVBARR");
+            if (userLoggedIn.access_token) return true;
             return false;
+        },
+        getUserEmail() {
+            return this.$store.state.userLoggedIn.email;
         },
     },
 };
