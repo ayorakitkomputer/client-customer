@@ -3,7 +3,7 @@
     <div
       v-for="part in componentData"
       :key="`${part._id}`"
-      class="grid grid-cols-7 p-3 m-2 mt-5 bg-black rounded-3xl"
+      class="grid grid-cols-7 p-3 mx-5 mt-5 bg-black rounded-xl"
     >
       <div class="flex items-center justify-between col-span-2 mx-4">
         <img class="object-cover w-12 h-12" :src="part.image" alt="" />
