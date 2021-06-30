@@ -1,7 +1,16 @@
 <template>
     <section id="navbar" class="bg-black shadow-2xl h-28 section h-navbar">
         <div class="grid h-full grid-cols-12 mx-auto max-w-screen">
-            <div class="self-center col-span-2 text-white justify-self-center">
+            <div
+                @click="goToHome"
+                class="
+                    self-center
+                    col-span-2
+                    text-white
+                    justify-self-center
+                    cursor-pointer
+                "
+            >
                 <img
                     src="../assets/LOGO TES.png"
                     alt="logo"
@@ -153,7 +162,6 @@ export default {
             showProfileOptions: false,
         };
     },
-
     methods: {
         openProfileOptions() {
             this.showProfileOptions = !this.showProfileOptions;
@@ -173,6 +181,9 @@ export default {
             let userId = localStorage.user_id;
             this.$router.push(`/profiles/${userId}/transactions`);
         },
+        goToHome() {
+            this.$router.push("/");
+        },
         testXendit() {
             const payload = {
                 buildId: "60db4bbb1d036c1524f2e469",
@@ -180,7 +191,6 @@ export default {
             this.$store.dispatch("checkoutPaymentGateway", payload);
         },
     },
-
     computed: {
         getAccessToken() {
             if (localStorage.access_token) return true;

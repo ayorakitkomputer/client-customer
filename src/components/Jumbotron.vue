@@ -1,11 +1,17 @@
 <template>
     <div class="h-screen bg-black">
         <div class="absolute flex items-center justify-center">
-            <canvas id="threejs"></canvas>
+            <canvas v-if="loadThreeJs" id="threejs"></canvas>
         </div>
         <div class="absolute grid grid-cols-8">
             <div
-                class="flex items-center justify-center h-screen col-start-2 col-end-4 "
+                class="
+                    flex
+                    items-center
+                    justify-center
+                    h-screen
+                    col-start-2 col-end-4
+                "
             >
                 <p
                     id="test-animation"
@@ -17,7 +23,16 @@
                     <router-link to="/builds">
                         <button
                             id="jumbotronButton"
-                            class="px-5 py-4 text-xl font-bold text-black shadow-2xl  text-md rounded-2xl"
+                            class="
+                                px-5
+                                py-4
+                                text-xl
+                                font-bold
+                                text-black
+                                shadow-2xl
+                                text-md
+                                rounded-2xl
+                            "
                         >
                             LET'S START BUILD
                         </button>
@@ -45,18 +60,18 @@ export default {
             mouseY: 0,
             windowHalfX: window.innerWidth / 2,
             windowHalfY: window.innerHeight / 2,
+            loadThreeJs: true,
         };
     },
     mounted() {
+        this.loadThreeJs = true;
         this.init();
         this.animate();
         document.addEventListener("mousemove", this.onDocumentMouseMove);
     },
-    beforeDestroy() {
-        console.log("masuk before destroy jumbotron");
-    },
     methods: {
         init() {
+            // if (!this.loadThreeJs) return;
             /* ---------- START CAMERA ---------- */
             this.camera = new THREE.PerspectiveCamera(
                 40,
@@ -154,6 +169,7 @@ export default {
             window.addEventListener("resize", this.onWindowResize);
         },
         onWindowResize() {
+            // if (!this.loadThreeJs) return;
             this.windowHalfX = window.innerWidth / 2;
             this.windowHalfY = window.innerHeight / 2;
 
@@ -163,22 +179,29 @@ export default {
             this.renderer.setSize(window.innerWidth, window.innerHeight);
         },
         animate() {
+            // if (!this.loadThreeJs) return;
             requestAnimationFrame(this.animate);
 
             this.render();
         },
         onDocumentMouseMove(event) {
+            // if (!this.loadThreeJs) return;
             this.scene.rotation.y =
                 ((event.clientX - this.windowHalfX) / this.windowHalfY) * 0.2;
             this.scene.rotation.x =
                 ((event.clientY - this.windowHalfY) / this.windowHalfY) * 0.2;
         },
         render() {
+            if (!this.loadThreeJs) return;
             const mesh = this.scene.getObjectByName("pcModel");
             if (mesh) {
                 this.renderer.render(this.scene, this.camera);
             }
         },
+    },
+    beforeDestroy() {
+        // stop jumbotron load.
+        this.loadThreeJs = false;
     },
 };
 </script>

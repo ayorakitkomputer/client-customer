@@ -252,7 +252,7 @@ export default new Vuex.Store({
         },
         getCaseFan(context, page = 1) {
             axios({
-                url: `/caseFan?page=${page}`,
+                url: `/case_fan?page=${page}`,
                 headers: {
                     access_token: localStorage.access_token,
                 },
