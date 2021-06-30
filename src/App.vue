@@ -20,6 +20,18 @@ export default {
         // use this if navbar is buggy.
         if (this.$router.currentRoute.name === "Login") this.isNotLogin = false;
         else this.isNotLogin = true;
+
+        const localUser = {
+            user_id: localStorage.user_id,
+            access_token: localStorage.access_token,
+            email: localStorage.email,
+        };
+
+        console.log(localUser, "ini app vue");
+
+        if (localUser.user_id && localUser.access_token && localUser.email) {
+            this.$store.commit("SET_USER_LOGGED_IN", localUser);
+        }
     },
     beforeUpdate() {
         // console.log(this.$router.currentRoute, "ini beforeupdate");
