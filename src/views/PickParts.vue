@@ -1,43 +1,18 @@
 <template>
     <section class="h-navbar">
         <div
-            class="
-                container
-                grid
-                h-full
-                grid-cols-12
-                mx-auto
-                bg-build
-                rounded-xl
-            "
+            class="container grid h-full grid-cols-12 mx-auto  bg-build rounded-xl"
         >
             <div class="h-full col-span-2 bg-build rounded-xl">
                 <h5
                     id="title-comp"
-                    class="
-                        px-4
-                        py-5
-                        text-xl
-                        font-semibold
-                        text-center
-                        bg-black
-                        rounded-tl-xl
-                    "
+                    class="px-4 py-5 text-xl font-semibold text-center bg-black  rounded-tl-xl"
                 >
                     COMPONENTS
                 </h5>
                 <div class="flex flex-col justify-between">
                     <ul
-                        class="
-                            flex flex-col
-                            gap-2
-                            px-5
-                            mt-5
-                            text-lg
-                            font-medium
-                            text-white
-                            uppercase
-                        "
+                        class="flex flex-col gap-2 px-5 mt-5 text-lg font-medium text-white uppercase "
                     >
                         <router-link :to="`/builds/${getBuild._id}/cpu`">
                             <li class="flex justify-between my-3 bg-comp">
@@ -101,13 +76,7 @@
                     </ul>
                     <div v-if="checkBuildsRoute" class="mx-5 mt-10">
                         <div
-                            class="
-                                flex flex-col
-                                items-start
-                                text-lg
-                                font-medium
-                                text-ark-green
-                            "
+                            class="flex flex-col items-start text-lg font-medium  text-ark-green"
                         >
                             <h1 class="">Estimated Budget :</h1>
                             <h5 class="mt-2 text-white">
@@ -116,40 +85,16 @@
                             <h6 class="ml-auto text-sm">/ Rp. 10.000.000,-</h6>
                         </div>
                         <div
-                            class="
-                                flex flex-col
-                                items-center
-                                mt-8
-                                text-lg text-center
-                            "
+                            class="flex flex-col items-center mt-8 text-lg text-center "
                         >
                             <button
                                 @click="checkOutBuild"
-                                class="
-                                    w-full
-                                    py-2
-                                    mb-5
-                                    font-semibold
-                                    text-black
-                                    bg-ark-green
-                                    rounded-xl
-                                    hover:text-ark-green
-                                    hover:bg-black
-                                "
+                                class="w-full py-2 mb-5 font-semibold text-black  bg-ark-green rounded-xl hover:text-ark-green hover:bg-black"
                             >
                                 Checkout
                             </button>
                             <button
-                                class="
-                                    w-full
-                                    py-2
-                                    font-semibold
-                                    text-black
-                                    bg-ark-green
-                                    rounded-xl
-                                    hover:text-ark-green
-                                    hover:bg-black
-                                "
+                                class="w-full py-2 font-semibold text-black  bg-ark-green rounded-xl hover:text-ark-green hover:bg-black"
                             >
                                 Print PDF
                             </button>
@@ -161,14 +106,7 @@
                         <button
                             v-if="!checkBuildsRoute"
                             @click="goBackToBuilds"
-                            class="
-                                w-10/12
-                                py-2
-                                font-semibold
-                                hover:text-white
-                                rounded-xl
-                                text-ark-green
-                            "
+                            class="w-10/12 py-2 font-semibold  hover:text-white rounded-xl text-ark-green"
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -271,7 +209,7 @@ export default {
             return this.$store.state.currentBuild;
         },
         checkBuildsRoute() {
-            return this.$route.name === "buildAllParts" ? true : false;
+            return this.$route.name === "buildCurrentBuild" ? true : false;
         },
         getCurrentBuildPrice() {
             let totalPrice = this.calculatePrice(this.getBuild);
