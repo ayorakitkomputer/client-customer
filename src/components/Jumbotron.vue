@@ -191,7 +191,11 @@ export default {
             }
         },
         createNewBuild() {
-            this.$store.dispatch("createNewBuild");
+            if (!localStorage.access_token) {
+                this.$router.push("/login");
+            } else {
+                this.$store.dispatch("createNewBuild");
+            }
         },
     },
     beforeDestroy() {
