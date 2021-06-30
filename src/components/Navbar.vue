@@ -135,7 +135,10 @@ export default {
             this.$router.push(`/profiles/${userId}/transactions`);
         },
         testXendit() {
-            this.$store.dispatch("checkoutPaymentGateway");
+            const payload = {
+                buildId: "60db4bbb1d036c1524f2e469",
+            };
+            this.$store.dispatch("checkoutPaymentGateway", payload);
         },
     },
     computed: {

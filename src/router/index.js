@@ -90,12 +90,12 @@ const routes = [
     },
     {
         path: "/profiles/:profileid/builds",
-        name: "Profile",
+        name: "UserBuilds",
         component: () => import("../views/UserBuilds.vue"),
     },
     {
         path: "/profiles/:profileid/transactions",
-        name: "Profile",
+        name: "UserTransactions",
         component: () => import("../views/UserTransactions.vue"),
     },
 ];
