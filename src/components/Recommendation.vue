@@ -5,7 +5,7 @@
         <h1
           data-aos="fade-up"
           id="spec-title"
-          class="font-semibold md:text-2xl xl:text-5xl"
+          class="font-bold md:text-2xl xl:text-5xl"
         >
           Entry Level AMD Gaming Build
         </h1>
@@ -137,6 +137,6 @@ export default {
 }
 #spec-title {
   color: #fcfff0;
-  text-shadow: 2px 2px 1px #cfff0a;
+  /* text-shadow: 2px 2px 1px #cfff0a; */
 }
 </style>

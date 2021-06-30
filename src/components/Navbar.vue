@@ -189,7 +189,7 @@ export default {
     computed: {
         getAccessToken() {
             const userLoggedIn = this.$store.state.userLoggedIn;
-            console.log(userLoggedIn, "INI DI NAVBARR");
+            // console.log(userLoggedIn, "INI DI NAVBARR");
             if (userLoggedIn.access_token) return true;
             return false;
         },

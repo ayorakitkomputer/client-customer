@@ -1,5 +1,5 @@
 <template>
-    <div id="app" class="">
+    <div id="app" class="h-screen">
         <Navbar v-if="isNotLogin" />
         <router-view />
     </div>
@@ -17,7 +17,7 @@ export default {
         return { isNotLogin: true };
     },
     beforeMount() {
-        // use this if navbar is buggy.
+        // this removes navbar in Login Page
         if (this.$router.currentRoute.name === "Login") this.isNotLogin = false;
         else this.isNotLogin = true;
 
@@ -27,14 +27,12 @@ export default {
             email: localStorage.email,
         };
 
-        console.log(localUser, "ini app vue");
-
         if (localUser.user_id && localUser.access_token && localUser.email) {
             this.$store.commit("SET_USER_LOGGED_IN", localUser);
         }
     },
     beforeUpdate() {
-        // console.log(this.$router.currentRoute, "ini beforeupdate");
+        // this removes navbar in Login Page
         if (this.$router.currentRoute.name === "Login") this.isNotLogin = false;
         else this.isNotLogin = true;
     },
@@ -47,5 +45,10 @@ export default {
 }
 .basic-center {
     @apply flex justify-center items-center;
+}
+#app {
+    /* background-image: url("https://1.bp.blogspot.com/-2erkUexgLB4/XqlST3AM5tI/AAAAAAAAAA8/2uQSnai6jp0n7jOoa6NFpw68wpjvHAckQCLcBGAsYHQ/s1600/hydra-17.jpg"); */
+    background-image: url("https://i.redd.it/7aadu9ocfvx51.jpg");
+    background-size: cover;
 }
 </style>
