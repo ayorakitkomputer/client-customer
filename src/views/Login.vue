@@ -1,5 +1,5 @@
 <template>
-  <section class="bg-gray-200">
+  <section class="bg-register">
     <div class="container flex items-center justify-center h-screen mx-auto">
       <div class="relative flex flex-col w-10/12">
         <div class="p-5 bg-black shadow-xl h-80 rounded-3xl">
@@ -14,7 +14,12 @@
           <div class="pl-3 mt-14">
             <p class="text-white text-md">
               Don't Have Any Account ?
-              <a href="#" class="text-md text-ark-green">Register Here</a>
+              <a
+                href=""
+                @click.prevent="$router.push({ path: '/register' })"
+                class="text-md text-ark-green"
+                >Register Here</a
+              >
             </p>
           </div>
         </div>
@@ -40,7 +45,7 @@
             />
             <center>
               <button
-                class="w-40 px-2 py-3 mx-auto font-semibold text-white bg-black  rounded-xl hover:bg-ark-green m-7 focus:outline-none hover:text-black"
+                class="w-40 px-2 py-3 mx-auto text-lg font-semibold text-white bg-black  rounded-xl hover:bg-ark-green m-7 focus:outline-none hover:text-black"
               >
                 SIGN IN
               </button>
