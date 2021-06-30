@@ -51,4 +51,8 @@ export default {
     background-image: url("https://i.redd.it/7aadu9ocfvx51.jpg");
     background-size: cover;
 }
+.Vue-Toastification__toast--default.my-custom-toast-class {
+    background-color: #cfff0a;
+    color: black;
+}
 </style>

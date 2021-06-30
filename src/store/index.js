@@ -384,9 +384,47 @@ export default new Vuex.Store({
                 },
             })
                 .then(() => {
+                    if (payload.type === "cpu") {
+                        this._vm.$toast("Cpu added!", {
+                            toastClassName: "my-custom-toast-class",
+                        });
+                    } else if (payload.type === "motherboard") {
+                        this._vm.$toast("Motherboard added!", {
+                            toastClassName: "my-custom-toast-class",
+                        });
+                    } else if (payload.type === "memory") {
+                        this._vm.$toast("Memory added!", {
+                            toastClassName: "my-custom-toast-class",
+                        });
+                    } else if (payload.type === "storage") {
+                        this._vm.$toast("Storage added!", {
+                            toastClassName: "my-custom-toast-class",
+                        });
+                    } else if (payload.type === "gpu") {
+                        this._vm.$toast("Gpu added!", {
+                            toastClassName: "my-custom-toast-class",
+                        });
+                    } else if (payload.type === "case") {
+                        this._vm.$toast("case added!", {
+                            toastClassName: "my-custom-toast-class",
+                        });
+                    } else if (payload.type === "powerSupply") {
+                        this._vm.$toast("Power Supply added!", {
+                            toastClassName: "my-custom-toast-class",
+                        });
+                    } else if (payload.type === "monitor") {
+                        this._vm.$toast("Monitor added!", {
+                            toastClassName: "my-custom-toast-class",
+                        });
+                    } else if (payload.type === "caseFan") {
+                        this._vm.$toast("Case Fan added!", {
+                            toastClassName: "my-custom-toast-class",
+                        });
+                    }
                     router.push(`/builds/${payload.buildId}`);
                 })
                 .catch((err) => {
+                    this._vm.$toast.error("Cannot add anymore");
                     console.log(err);
                 });
         },
