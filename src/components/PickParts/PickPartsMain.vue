@@ -4,7 +4,7 @@
     class="h-full col-span-10 overflow-y-scroll bg-main"
   >
     <div
-      class="sticky top-0 grid py-5 text-xl bg-gray-800 text-ark-green"
+      class="sticky top-0 grid py-5 text-xl bg-gray-800  text-ark-green rounded-tr-xl"
       :class="getGridAmount"
     >
       <div class="col-span-2 justify-self-center">
