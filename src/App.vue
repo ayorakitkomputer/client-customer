@@ -16,11 +16,16 @@ export default {
     data() {
         return { isNotLogin: true };
     },
+    watch: {
+        $route(to) {
+            console.log(to, "ini di route");
+            if (to.name === "Register" || to.name === "Login") {
+                this.isNotLogin = false;
+            } else this.isNotLogin = true;
+        },
+    },
     beforeMount() {
-        // this removes navbar in Login Page
-        if (this.$router.currentRoute.name === "Login") this.isNotLogin = false;
-        else this.isNotLogin = true;
-
+        // Remove Navbar in Login and Register
         const localUser = {
             user_id: localStorage.user_id,
             access_token: localStorage.access_token,
@@ -30,11 +35,6 @@ export default {
         if (localUser.user_id && localUser.access_token && localUser.email) {
             this.$store.commit("SET_USER_LOGGED_IN", localUser);
         }
-    },
-    beforeUpdate() {
-        // this removes navbar in Login Page
-        if (this.$router.currentRoute.name === "Login") this.isNotLogin = false;
-        else this.isNotLogin = true;
     },
 };
 </script>

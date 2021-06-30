@@ -78,8 +78,8 @@
                         <div
                             class="flex flex-col items-start text-lg font-medium  text-ark-green"
                         >
-                            <h1 class="">Estimated Budget :</h1>
-                            <h5 class="mt-2 text-white">
+                            <h1>Estimated Budget :</h1>
+                            <h5 class="mt-2" :class="getBudgetColour">
                                 {{ getCurrentBuildPrice }}
                             </h5>
                             <h6 class="ml-auto text-sm">
@@ -237,6 +237,13 @@ export default {
                 style: "currency",
                 currency: "IDR",
             }).format(userBudget);
+        },
+        getBudgetColour() {
+            let userBudget = this.getBuild.budget;
+            let totalPrice = this.calculatePrice(this.getBuild);
+            if (+totalPrice > +userBudget) {
+                return "text-red-400";
+            } else return "text-white";
         },
     },
     created() {
