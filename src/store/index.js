@@ -520,9 +520,11 @@ export default new Vuex.Store({
                     });
             });
 
-            const test = Promise.all([xenditAxios, createHistoryTransaction]);
-
-            console.log(test);
+            const paymentDone = Promise.all([
+                xenditAxios,
+                createHistoryTransaction,
+            ]);
+            console.log(paymentDone);
         },
         getUserTransactions(context) {
             axios({
@@ -565,6 +567,26 @@ export default new Vuex.Store({
                         reject(err);
                     });
             });
+        },
+        deletePart(context, payload) {
+            axios({
+                method: "POST",
+                url: `/builds/${payload.buildId}/remove`,
+                data: {
+                    partName: payload.partName,
+                },
+                headers: {
+                    access_token: localStorage.access_token,
+                },
+            })
+                .then(() => {
+                    context.dispatch("getBuildById", {
+                        buildId: payload.buildId,
+                    });
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
         },
     },
 });

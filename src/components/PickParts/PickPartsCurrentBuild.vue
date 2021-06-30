@@ -16,7 +16,7 @@
             class="grid grid-cols-1 gap-5 px-10 pt-10 pb-6  sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5"
         >
             <!--Card 1-->
-            <div v-if="getBuild.cpu">
+            <div class="relative" v-if="getBuild.cpu">
                 <h1 class="text-xl font-semibold text-center text-ark-green">
                     CPU
                 </h1>
@@ -37,10 +37,31 @@
                         </div>
                     </div>
                 </div>
+                <div
+                    class="delete-button"
+                    @click="
+                        {
+                            deletePart('cpu', getBuild._id);
+                        }
+                    "
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-5 h-5"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                    >
+                        <path
+                            fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                            clip-rule="evenodd"
+                        />
+                    </svg>
+                </div>
             </div>
 
             <!--Card 2-->
-            <div v-if="getBuild.motherboard">
+            <div class="relative" v-if="getBuild.motherboard">
                 <h1 class="text-xl font-semibold text-center text-ark-green">
                     Motherboard
                 </h1>
@@ -61,10 +82,31 @@
                         </div>
                     </div>
                 </div>
+                <div
+                    class="delete-button"
+                    @click="
+                        {
+                            deletePart('motherboard', getBuild._id);
+                        }
+                    "
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-5 h-5"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                    >
+                        <path
+                            fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                            clip-rule="evenodd"
+                        />
+                    </svg>
+                </div>
             </div>
 
             <!--Card 3-->
-            <div v-if="getBuild.memory">
+            <div class="relative" v-if="getBuild.memory">
                 <h1 class="text-xl font-semibold text-center text-ark-green">
                     Memory
                 </h1>
@@ -83,11 +125,32 @@
                             {{ getBuild.memory.name }}
                         </div>
                     </div>
+                    <div
+                        class="delete-button"
+                        @click="
+                            {
+                                deletePart('memory', getBuild._id);
+                            }
+                        "
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="w-5 h-5"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                                clip-rule="evenodd"
+                            />
+                        </svg>
+                    </div>
                 </div>
             </div>
 
             <!--Card 4-->
-            <div v-if="getBuild.storage">
+            <div class="relative" v-if="getBuild.storage">
                 <h1 class="text-xl font-semibold text-center text-ark-green">
                     Storage
                 </h1>
@@ -112,11 +175,32 @@
                             </div>
                         </div>
                     </div>
+                    <div
+                        class="delete-button"
+                        @click="
+                            {
+                                deletePart('storage', getBuild._id);
+                            }
+                        "
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="w-5 h-5"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                                clip-rule="evenodd"
+                            />
+                        </svg>
+                    </div>
                 </div>
             </div>
 
             <!--Card 5-->
-            <div v-if="getBuild.gpu">
+            <div class="relative" v-if="getBuild.gpu">
                 <h1 class="text-xl font-semibold text-center text-ark-green">
                     GPU
                 </h1>
@@ -141,11 +225,32 @@
                             </div>
                         </div>
                     </div>
+                    <div
+                        class="delete-button"
+                        @click="
+                            {
+                                deletePart('gpu', getBuild._id);
+                            }
+                        "
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="w-5 h-5"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                                clip-rule="evenodd"
+                            />
+                        </svg>
+                    </div>
                 </div>
             </div>
 
             <!--Card 6-->
-            <div v-if="getBuild.case">
+            <div class="relative" v-if="getBuild.case">
                 <h1 class="text-xl font-semibold text-center text-ark-green">
                     Case
                 </h1>
@@ -164,11 +269,32 @@
                             {{ getBuild.case.name }}
                         </div>
                     </div>
+                    <div
+                        class="delete-button"
+                        @click="
+                            {
+                                deletePart('case', getBuild._id);
+                            }
+                        "
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="w-5 h-5"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                                clip-rule="evenodd"
+                            />
+                        </svg>
+                    </div>
                 </div>
             </div>
 
             <!--Card 7-->
-            <div v-if="getBuild.powerSupply">
+            <div class="relative" v-if="getBuild.powerSupply">
                 <h1 class="text-xl font-semibold text-center text-ark-green">
                     Power Supply
                 </h1>
@@ -187,11 +313,32 @@
                             {{ getBuild.powerSupply.name }}
                         </div>
                     </div>
+                    <div
+                        class="delete-button"
+                        @click="
+                            {
+                                deletePart('powerSupply', getBuild._id);
+                            }
+                        "
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="w-5 h-5"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                                clip-rule="evenodd"
+                            />
+                        </svg>
+                    </div>
                 </div>
             </div>
 
             <!--Card 8-->
-            <div v-if="getBuild.monitor">
+            <div class="relative" v-if="getBuild.monitor">
                 <h1 class="text-xl font-semibold text-center text-ark-green">
                     Monitor
                 </h1>
@@ -216,11 +363,32 @@
                             </div>
                         </div>
                     </div>
+                    <div
+                        class="delete-button"
+                        @click="
+                            {
+                                deletePart('monitor', getBuild._id);
+                            }
+                        "
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="w-5 h-5"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                                clip-rule="evenodd"
+                            />
+                        </svg>
+                    </div>
                 </div>
             </div>
 
             <!--Card 9-->
-            <div v-if="getBuild.case_fan">
+            <div class="relative" v-if="getBuild.case_fan">
                 <h1 class="text-xl font-semibold text-center text-ark-green">
                     Case Fan
                 </h1>
@@ -245,6 +413,27 @@
                             </div>
                         </div>
                     </div>
+                    <div
+                        class="delete-button"
+                        @click="
+                            {
+                                deletePart('case_fan', getBuild._id);
+                            }
+                        "
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="w-5 h-5"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                                clip-rule="evenodd"
+                            />
+                        </svg>
+                    </div>
                 </div>
             </div>
         </div>
@@ -265,6 +454,10 @@ export default {
                 });
             }
             return totalWattage;
+        },
+        deletePart(partName, id) {
+            console.log(partName, id);
+            this.$store.dispatch("deletePart", { partName, buildId: id });
         },
     },
     computed: {
@@ -316,5 +509,8 @@ export default {
 }
 .card-container {
     @apply overflow-x-hidden overflow-y-auto card-scroll h-72 w-56;
+}
+.delete-button {
+    @apply absolute right-0 text-white transform cursor-pointer  top-2 hover:text-ark-green hover:scale-125 opacity-50 hover:opacity-100;
 }
 </style>
