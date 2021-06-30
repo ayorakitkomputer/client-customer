@@ -1,7 +1,7 @@
 <template>
     <div class="h-screen bg-black">
         <div class="absolute flex items-center justify-center">
-            <!-- <canvas id="threejs"></canvas> -->
+            <canvas id="threejs"></canvas>
         </div>
         <div class="absolute grid grid-cols-8">
             <div
@@ -51,6 +51,9 @@ export default {
         this.init();
         this.animate();
         document.addEventListener("mousemove", this.onDocumentMouseMove);
+    },
+    beforeDestroy() {
+        console.log("masuk before destroy jumbotron");
     },
     methods: {
         init() {

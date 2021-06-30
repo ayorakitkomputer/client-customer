@@ -34,6 +34,8 @@ export default new Vuex.Store({
             caseFan: ["Name", "Size", "Price", "Stock"],
         },
         currentBuild: {},
+        userBuilds: [],
+        userTransactions: [],
     },
     mutations: {
         SET_COMPONENT_DATA(state, payload) {
@@ -44,6 +46,12 @@ export default new Vuex.Store({
         },
         SET_CURRENT_BUILD(state, payload) {
             state.currentBuild = payload;
+        },
+        SET_USER_BUILDS(state, payload) {
+            state.userBuilds = payload;
+        },
+        SET_USER_TRANSACTIONS(state, payload) {
+            state.userTransactions = payload;
         },
     },
     actions: {
@@ -380,6 +388,92 @@ export default new Vuex.Store({
             })
                 .then(({ data }) => {
                     context.commit("SET_CURRENT_BUILD", data);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        },
+        getUserBuilds(context) {
+            axios({
+                url: "/builds",
+                headers: {
+                    access_token: localStorage.access_token,
+                },
+            })
+                .then(({ data }) => {
+                    context.commit("SET_USER_BUILDS", data);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        },
+        checkoutPaymentGateway(context, payload) {
+            // Butuh total harga, dan build ID
+            const xenditAxios = new Promise((resolve, reject) => {
+                axios({
+                    url: "/payment/invoice",
+                    method: "POST",
+                    headers: {
+                        access_token: localStorage.access_token,
+                    },
+                    data: {
+                        amount: 10000000,
+                    },
+                })
+                    .then(({ data }) => {
+                        // ini pop up
+                        // let intViewportWidth = window.innerWidth * 0.8;
+                        // let intViewportHeight = window.innerHeight * 0.75;
+
+                        // window.open(
+                        //     data.invoice_url,
+                        //     "ARK Xendit Payment",
+                        //     `width=${intViewportWidth},height=${intViewportHeight}`
+                        // );
+
+                        window.location.assign(data.invoice_url);
+
+                        resolve();
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                        reject(err);
+                    });
+            });
+            const createHistoryTransaction = new Promise((resolve, reject) => {
+                axios({
+                    url: "/history",
+                    method: "POST",
+                    headers: {
+                        access_token: localStorage.access_token,
+                    },
+                    data: {
+                        buildId: payload.buildId,
+                    },
+                })
+                    .then(({ data }) => {
+                        console.log(data, "INI HISTORY THEN");
+                        resolve();
+                    })
+                    .catch((err) => {
+                        reject(err);
+                    });
+            });
+
+            const test = Promise.all([xenditAxios, createHistoryTransaction]);
+
+            console.log(test);
+        },
+        getUserTransactions(context) {
+            axios({
+                url: `/history`,
+                headers: {
+                    access_token: localStorage.access_token,
+                },
+            })
+                .then(({ data }) => {
+                    // console.log(data, "INI GET USER TRANSACTIONS");
+                    context.commit("SET_USER_TRANSACTIONS", data);
                 })
                 .catch((err) => {
                     console.log(err);

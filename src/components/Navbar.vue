@@ -68,13 +68,28 @@
                                         </h6>
                                     </li>
                                     <li
+                                        class="border-b-2 profile-options"
+                                        @click="goToCreateBuild"
+                                    >
+                                        Create a new build
+                                    </li>
+                                    <li
                                         class="profile-options"
                                         @click="goToMyBuilds"
                                     >
                                         Your builds
                                     </li>
-                                    <li class="profile-options">
+                                    <li
+                                        @click="goToTransactionHistory"
+                                        class="profile-options"
+                                    >
                                         Transaction history
+                                    </li>
+                                    <li
+                                        @click="testXendit"
+                                        class="profile-options"
+                                    >
+                                        DELETE THIS
                                     </li>
                                     <li
                                         @click="logOutUser"
@@ -106,11 +121,24 @@ export default {
         },
         goToMyBuilds() {
             let userId = localStorage.user_id;
-            this.$router.push(`/profiles/${userId}`);
+            this.$router.push(`/profiles/${userId}/builds`);
         },
         logOutUser() {
             localStorage.clear();
             this.$router.push(`/`);
+        },
+        goToCreateBuild() {
+            this.$router.push("/builds");
+        },
+        goToTransactionHistory() {
+            let userId = localStorage.user_id;
+            this.$router.push(`/profiles/${userId}/transactions`);
+        },
+        testXendit() {
+            const payload = {
+                buildId: "60db4bbb1d036c1524f2e469",
+            };
+            this.$store.dispatch("checkoutPaymentGateway", payload);
         },
     },
     computed: {
