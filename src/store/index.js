@@ -417,7 +417,7 @@ export default new Vuex.Store({
                         access_token: localStorage.access_token,
                     },
                     data: {
-                        amount: 10000000,
+                        amount: payload.totalBuildPrice,
                     },
                 })
                     .then(({ data }) => {

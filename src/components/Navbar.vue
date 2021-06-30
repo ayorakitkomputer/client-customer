@@ -14,12 +14,28 @@
                 <ul
                     v-if="!getAccessToken"
                     id="navbarButton"
-                    class="flex items-center justify-center gap-4 mx-auto font-semibold text-black  text-md"
+                    class="
+                        flex
+                        items-center
+                        justify-center
+                        gap-4
+                        mx-auto
+                        font-semibold
+                        text-black text-md
+                    "
                 >
                     <li
-                        class="px-5 py-3 bg-white cursor-pointer  register hover:bg-black rounded-xl"
+                        class="
+                            px-5
+                            py-3
+                            bg-white
+                            cursor-pointer
+                            register
+                            hover:bg-black
+                            rounded-xl
+                        "
                     >
-                        <router-link to="/login"> LOGIN </router-link>
+                        <router-link to="/login"> SIGN IN </router-link>
                     </li>
                 </ul>
                 <div v-else>
@@ -36,6 +52,7 @@
                                     p-0.5
                                     bg-ark-green
                                     rounded-full
+                                    mx-3
                                 "
                                 src="https://images.unsplash.com/photo-1624794448959-4b2b2f424a9e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2134&q=80"
                                 alt=""
@@ -57,45 +74,66 @@
                         </div>
                         <div
                             v-if="showProfileOptions"
-                            class="absolute right-0 z-50 w-48 bg-white rounded-md shadow-xl "
+                            class="
+                                absolute
+                                right-0
+                                z-50
+                                w-48
+                                mt-3
+                                bg-white
+                                rounded-md
+                                shadow-xl
+                            "
                         >
                             <div>
                                 <ul>
-                                    <li class="flex flex-col p-2 border-b-2">
+                                    <li
+                                        class="
+                                            flex flex-col
+                                            p-3
+                                            px-4
+                                            border-b-2
+                                        "
+                                    >
                                         <h5>Signed in as</h5>
                                         <h6 class="font-semibold text-gray-800">
                                             customer@mail.com
                                         </h6>
                                     </li>
                                     <li
-                                        class="border-b-2 profile-options"
+                                        class="
+                                            px-4
+                                            py-2
+                                            profile-options
+                                            border-b-2
+                                        "
                                         @click="goToCreateBuild"
                                     >
-                                        Create a new build
+                                        Create new build
                                     </li>
                                     <li
-                                        class="profile-options"
+                                        class="px-4 py-2 profile-options"
                                         @click="goToMyBuilds"
                                     >
-                                        Your builds
+                                        My builds
                                     </li>
                                     <li
+                                        class="px-4 pb-2 profile-options"
                                         @click="goToTransactionHistory"
-                                        class="profile-options"
                                     >
-                                        Transaction history
-                                    </li>
-                                    <li
-                                        @click="testXendit"
-                                        class="profile-options"
-                                    >
-                                        DELETE THIS
+                                        Transaction History
                                     </li>
                                     <li
                                         @click="logOutUser"
-                                        class="border-t-2 profile-options"
+                                        class="
+                                            px-4
+                                            py-3
+                                            font-medium
+                                            border-t-2
+                                            profile-options
+                                        "
                                     >
-                                        Sign out
+                                        Sign Out
                                     </li>
                                 </ul>
                             </div>
@@ -115,6 +153,7 @@ export default {
             showProfileOptions: false,
         };
     },
+
     methods: {
         openProfileOptions() {
             this.showProfileOptions = !this.showProfileOptions;
@@ -141,6 +180,7 @@ export default {
             this.$store.dispatch("checkoutPaymentGateway", payload);
         },
     },
+
     computed: {
         getAccessToken() {
             if (localStorage.access_token) return true;
@@ -158,7 +198,7 @@ export default {
     color: #cfff0a;
 }
 .profile-options {
-    @apply px-2 py-1 hover:bg-ark-green;
+    @apply py-1 hover:bg-ark-green;
 }
 #navbar {
     background-color: black;
