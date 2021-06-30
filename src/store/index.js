@@ -349,6 +349,25 @@ export default new Vuex.Store({
                     console.log(err.message);
                 });
         },
+        userRegister(context, payload) {
+            axios({
+                method: "POST",
+                url: "/register",
+                data: {
+                    firstname: payload.firstname,
+                    lastname: payload.lastname,
+                    address: payload.address,
+                    email: payload.email,
+                    password: payload.password,
+                },
+            })
+                .then(() => {
+                    router.push("login");
+                })
+                .catch((err) => {
+                    console.log(err.message);
+                });
+        },
         createNewBuild() {
             axios({
                 url: "/builds",
@@ -474,18 +493,7 @@ export default new Vuex.Store({
                     },
                 })
                     .then(({ data }) => {
-                        // ini pop up
-                        // let intViewportWidth = window.innerWidth * 0.8;
-                        // let intViewportHeight = window.innerHeight * 0.75;
-
-                        // window.open(
-                        //     data.invoice_url,
-                        //     "ARK Xendit Payment",
-                        //     `width=${intViewportWidth},height=${intViewportHeight}`
-                        // );
-
                         window.location.assign(data.invoice_url);
-
                         resolve();
                     })
                     .catch((err) => {
@@ -504,8 +512,7 @@ export default new Vuex.Store({
                         buildId: payload.buildId,
                     },
                 })
-                    .then(({ data }) => {
-                        console.log(data, "INI HISTORY THEN");
+                    .then(() => {
                         resolve();
                     })
                     .catch((err) => {
@@ -560,5 +567,4 @@ export default new Vuex.Store({
             });
         },
     },
-    modules: {},
 });

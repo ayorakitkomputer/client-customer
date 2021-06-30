@@ -75,18 +75,17 @@ const routes = [
                     import("../components/PickParts/PickPartsCurrentBuild.vue"),
                 name: "buildCurrentBuild",
             },
-            // {
-            //     path: "",
-            //     // component: () =>
-            //     //     import("../components/PickParts/PickPartsLanding.vue"),
-            //     name: "buildLanding",
-            // },
         ],
     },
     {
         path: "/login",
         name: "Login",
         component: () => import("../views/Login.vue"),
+    },
+    {
+        path: "/register",
+        name: "Register",
+        component: () => import("../views/Register.vue"),
     },
     {
         path: "/profiles/:profileid/builds",
