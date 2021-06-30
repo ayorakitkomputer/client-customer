@@ -1,10 +1,28 @@
 <template>
-    <section class="bg-black h-navbar bg-build-page">
-        <div class="container grid h-full grid-cols-12 mx-auto bg-build">
-            <div class="h-full col-span-2 bg-build">
+    <section class="h-navbar">
+        <div
+            class="
+                container
+                grid
+                h-full
+                grid-cols-12
+                mx-auto
+                bg-build
+                rounded-xl
+            "
+        >
+            <div class="h-full col-span-2 bg-build rounded-xl">
                 <h5
                     id="title-comp"
-                    class="px-4 py-5 text-xl font-semibold text-center bg-black"
+                    class="
+                        px-4
+                        py-5
+                        text-xl
+                        font-semibold
+                        text-center
+                        bg-black
+                        rounded-tl-xl
+                    "
                 >
                     COMPONENTS
                 </h5>
@@ -95,7 +113,7 @@
                             <h5 class="mt-2 text-white">
                                 {{ getCurrentBuildPrice }}
                             </h5>
-                            <h6 class="text-sm ml-auto">/ Rp. 10.000.000,-</h6>
+                            <h6 class="ml-auto text-sm">/ Rp. 10.000.000,-</h6>
                         </div>
                         <div
                             class="
@@ -138,22 +156,35 @@
                         </div>
                     </div>
                 </div>
-                <button
-                    v-if="!checkBuildsRoute"
-                    @click="goBackToBuilds"
-                    class="
-                        w-1/2
-                        py-2
-                        font-semibold
-                        text-black
-                        bg-ark-green
-                        rounded-xl
-                        hover:text-ark-green
-                        hover:bg-black
-                    "
-                >
-                    Back
-                </button>
+                <div class="absolute mt-10">
+                    <center>
+                        <button
+                            v-if="!checkBuildsRoute"
+                            @click="goBackToBuilds"
+                            class="
+                                w-10/12
+                                py-2
+                                font-semibold
+                                hover:text-white
+                                rounded-xl
+                                text-ark-green
+                            "
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="w-1/5 h-1/5"
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
+                            >
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z"
+                                    clip-rule="evenodd"
+                                />
+                            </svg>
+                        </button>
+                    </center>
+                </div>
             </div>
             <router-view />
         </div>
@@ -249,6 +280,14 @@ export default {
                 currency: "IDR",
             }).format(totalPrice);
         },
+    },
+    beforeMount() {
+        // If user refreshes, make sure vuex has latest currentBuild
+        const buildId = this.$route.params.id;
+        const currentBuild = this.$store.state.currentBuild;
+        if (buildId && !currentBuild._id) {
+            this.$store.dispatch("getBuildById", { buildId });
+        }
     },
 };
 </script>

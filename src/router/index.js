@@ -73,13 +73,13 @@ const routes = [
                 path: ":id",
                 component: () =>
                     import("../components/PickParts/PickPartsCurrentBuild.vue"),
-                name: "buildAllParts",
+                name: "buildCurrentBuild",
             },
             {
                 path: "",
                 component: () =>
                     import("../components/PickParts/PickPartsLanding.vue"),
-                name: "buildHome",
+                name: "buildLanding",
             },
         ],
     },
@@ -112,8 +112,18 @@ function isAuthenticated() {
 }
 
 router.beforeEach((to, from, next) => {
-    if (to.fullPath.includes("/build") && !isAuthenticated()) {
+    // console.log(to, from, "INI NAV GUARD");
+    if (
+        (to.fullPath.includes("/builds") ||
+            to.fullPath.includes("/profiles")) &&
+        !isAuthenticated()
+    ) {
         next({ name: "Login" });
+        // } else if (to.fullPath.params.id && to.fullPath.name) {
+
+        //     next();
+        //     // next({ name: "buildCurrentBuild", params: { id: "5" } });
+        // }
     } else {
         // console.log("ga masuk");
         next();
