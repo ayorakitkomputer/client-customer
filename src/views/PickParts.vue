@@ -1,7 +1,7 @@
 <template>
     <section class="h-navbar">
         <div
-            class="container grid h-full grid-cols-12 mx-auto  bg-build rounded-xl"
+            class="container relative grid h-full grid-cols-12 mx-auto  bg-build rounded-xl"
         >
             <div class="h-full col-span-2 bg-build rounded-xl">
                 <h5
@@ -15,46 +15,132 @@
                         class="flex flex-col gap-2 px-5 mt-5 text-lg font-medium text-white uppercase "
                     >
                         <router-link :to="`/builds/${getBuild._id}/cpu`">
-                            <li class="flex justify-between my-3 bg-comp">
+                            <li
+                                class="relative flex justify-between my-3  bg-comp"
+                            >
                                 <div>CPU</div>
                                 <div>+</div>
+                                <div
+                                    v-if="checkIncompatiblePart"
+                                    class="absolute text-sm font-semibold text-red-500 normal-case  -top-5"
+                                >
+                                    You have an incompatible part!
+                                </div>
                             </li>
                         </router-link>
 
                         <router-link
-                            :to="`/builds/${getBuild._id}/motherboard`"
+                            :to="
+                                getBuild.cpu
+                                    ? `/builds/${getBuild._id}/motherboard`
+                                    : ''
+                            "
+                            :class="getBuild.cpu ? '' : 'text-white opacity-50'"
                         >
                             <li class="flex justify-between mb-3 bg-comp">
                                 <div>Motherboard</div>
                                 <div>+</div>
                             </li>
                         </router-link>
-                        <router-link :to="`/builds/${getBuild._id}/memory`">
+                        <router-link
+                            :to="
+                                getBuild.motherboard
+                                    ? `/builds/${getBuild._id}/memory`
+                                    : ''
+                            "
+                            :class="
+                                getBuild.motherboard
+                                    ? ''
+                                    : 'text-white opacity-50'
+                            "
+                        >
                             <li class="flex justify-between mb-3 bg-comp">
                                 <div>Memory</div>
                                 <div>+</div>
                             </li>
                         </router-link>
-                        <router-link :to="`/builds/${getBuild._id}/storage`">
+                        <router-link
+                            :to="
+                                getBuild.memory
+                                    ? `/builds/${getBuild._id}/storage`
+                                    : ''
+                            "
+                            :class="
+                                getBuild.memory ? '' : 'text-white opacity-50'
+                            "
+                        >
                             <li class="flex justify-between mb-3 bg-comp">
-                                <div>Storage</div>
+                                <div>
+                                    Storage
+                                    <span class="normal-case opacity-50"
+                                        >*</span
+                                    >
+                                </div>
                                 <div>+</div>
                             </li>
                         </router-link>
-                        <router-link :to="`/builds/${getBuild._id}/gpu`">
+                        <router-link
+                            :to="
+                                getBuild.storage
+                                    ? `/builds/${getBuild._id}/gpu`
+                                    : ''
+                            "
+                            :class="
+                                getBuild.storage ? '' : 'text-white opacity-50'
+                            "
+                        >
                             <li class="flex justify-between mb-3 bg-comp">
-                                <div>GPU</div>
+                                <div>
+                                    GPU
+                                    <span class="normal-case opacity-50"
+                                        >*</span
+                                    >
+                                </div>
                                 <div>+</div>
                             </li>
                         </router-link>
-                        <router-link :to="`/builds/${getBuild._id}/case`">
+                        <router-link
+                            :to="
+                                getBuild.gpu
+                                    ? `/builds/${getBuild._id}/case`
+                                    : ''
+                            "
+                            :class="getBuild.gpu ? '' : 'text-white opacity-50'"
+                        >
                             <li class="flex justify-between mb-3 bg-comp">
                                 <div>Case</div>
                                 <div>+</div>
                             </li>
                         </router-link>
                         <router-link
-                            :to="`/builds/${getBuild._id}/power_supply`"
+                            :to="
+                                getBuild.gpu
+                                    ? `/builds/${getBuild._id}/fans`
+                                    : ''
+                            "
+                            :class="
+                                getBuild.case ? '' : 'text-white opacity-50'
+                            "
+                        >
+                            <li class="flex justify-between mb-3 bg-comp">
+                                <div>
+                                    Case Fans
+                                    <span class="normal-case opacity-50"
+                                        >*</span
+                                    >
+                                </div>
+                                <div>+</div>
+                            </li>
+                        </router-link>
+                        <router-link
+                            :to="
+                                getBuild.case_fan
+                                    ? `/builds/${getBuild._id}/power_supply`
+                                    : ''
+                            "
+                            :class="
+                                getBuild.case_fan ? '' : 'text-white opacity-50'
+                            "
                         >
                             <li class="flex justify-between mb-3 bg-comp">
                                 <div>Power Supply</div>
@@ -62,17 +148,19 @@
                             </li>
                         </router-link>
                         <router-link :to="`/builds/${getBuild._id}/monitor`">
-                            <li class="flex justify-between mb-3 bg-comp">
-                                <div>Monitor</div>
+                            <li class="flex justify-between bg-comp">
+                                <div>
+                                    Monitor
+                                    <span class="normal-case opacity-50"
+                                        >*</span
+                                    >
+                                </div>
                                 <div>+</div>
                             </li>
                         </router-link>
-                        <router-link :to="`/builds/${getBuild._id}/fans`">
-                            <li class="flex justify-between mb-3 bg-comp">
-                                <div>Case Fans</div>
-                                <div>+</div>
-                            </li>
-                        </router-link>
+                        <div class="text-xs normal-case opacity-50">
+                            *Max. 3 pcs
+                        </div>
                     </ul>
                     <div v-if="checkBuildsRoute" class="mx-5 mt-10">
                         <div
@@ -182,7 +270,24 @@ export default {
                 currentBuild.powerSupply &&
                 currentBuild.storage
             ) {
-                // ini ubah nanti
+                this.$toast.success(
+                    "Success! Redirecting you to Xendit Payment Gateway.",
+                    {
+                        position: "top-right",
+                        timeout: 10000,
+                        closeOnClick: true,
+                        pauseOnFocusLoss: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        draggablePercent: 0.6,
+                        showCloseButtonOnHover: false,
+                        hideProgressBar: true,
+                        closeButton: false,
+                        icon: true,
+                        rtl: false,
+                    }
+                );
+
                 const payload = {
                     buildId: currentBuild._id,
                     totalBuildPrice: 0,
@@ -197,7 +302,23 @@ export default {
                             payload.totalBuildPrice += +currentBuild[key].price;
                     }
                 }
-                this.$store.dispatch("checkoutPaymentGateway", payload);
+                setTimeout(() => {
+                    this.$store.dispatch("checkoutPaymentGateway", payload);
+                }, 3000);
+            } else {
+                this.$toast("You haven't completed your build!", {
+                    position: "top-right",
+                    timeout: 5000,
+                    closeOnClick: true,
+                    pauseOnFocusLoss: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    draggablePercent: 0.6,
+                    showCloseButtonOnHover: true,
+                    closeButton: "button",
+                    icon: true,
+                    rtl: false,
+                });
             }
         },
         goBackToBuilds() {
@@ -215,6 +336,62 @@ export default {
         $route() {
             // Get data from current route.
             this.getData();
+        },
+        getBuild(currentBuild) {
+            if (!currentBuild.name && !currentBuild.budget) {
+                this.$store.commit("SET_UPDATE_USER_DETAILS", true);
+            }
+
+            // Check for incompatible parts!!!
+            let incompatibleFlag = false;
+            if (currentBuild.cpu && currentBuild.motherboard) {
+                // console.log(currentBuild.cpu, currentBuild.motherboard);
+                currentBuild.cpu.socket == currentBuild.motherboard.socket
+                    ? ""
+                    : (incompatibleFlag = true);
+            }
+
+            if (currentBuild.motherboard && currentBuild.case) {
+                if (currentBuild.motherboard === "ATX") {
+                    if (currentBuild.case.form_factor === "ATX") return;
+                    else {
+                        incompatibleFlag = true;
+                    }
+                } else if (
+                    currentBuild.motherboard.form_factor === "Micro ATX"
+                ) {
+                    if (
+                        currentBuild.case.form_factor === "ATX" ||
+                        currentBuild.case.form_factor === "Micro ATX"
+                    )
+                        return;
+                    else {
+                        incompatibleFlag = true;
+                    }
+                } else if (
+                    currentBuild.motherboard.form_factor === "Mini ITX"
+                ) {
+                    if (
+                        currentBuild.case.form_factor === "ATX" ||
+                        currentBuild.case.form_factor === "Micro ATX" ||
+                        currentBuild.case.form_factor === "Mini ITX"
+                    )
+                        return;
+                    else {
+                        incompatibleFlag = true;
+                    }
+                }
+            }
+
+            if (currentBuild.motherboard && currentBuild.memory) {
+                console.log(currentBuild.motherboard, currentBuild.memory);
+                currentBuild.motherboard.memory_type ==
+                currentBuild.memory.memory_type
+                    ? ""
+                    : (incompatibleFlag = true);
+            }
+
+            this.$store.commit("SET_INCOMPATIBLE_PART", incompatibleFlag);
         },
     },
     computed: {
@@ -245,6 +422,9 @@ export default {
                 return "text-red-400";
             } else return "text-white";
         },
+        checkIncompatiblePart() {
+            return this.$store.state.incompatibleWarning;
+        },
     },
     created() {
         // If user refreshes, make sure vuex has latest currentBuild
@@ -255,6 +435,7 @@ export default {
         }
     },
     beforeUpdate() {
+        // Show Modal Handler
         const currentBuild = this.$store.state.currentBuild;
         if (!currentBuild.name && !currentBuild.budget) {
             this.$store.commit("SET_UPDATE_USER_DETAILS", true);

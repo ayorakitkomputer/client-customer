@@ -38,6 +38,7 @@ export default new Vuex.Store({
         userTransactions: [],
         userLoggedIn: {},
         updateUserData: false,
+        incompatibleWarning: false,
     },
     mutations: {
         SET_COMPONENT_DATA(state, payload) {
@@ -60,6 +61,9 @@ export default new Vuex.Store({
         },
         SET_UPDATE_USER_DETAILS(state, payload) {
             state.updateUserData = payload;
+        },
+        SET_INCOMPATIBLE_PART(state, payload) {
+            state.incompatibleWarning = payload;
         },
     },
     actions: {
@@ -628,7 +632,7 @@ export default new Vuex.Store({
                         }
                     }
 
-                    // refactor to reduce.
+                    // refactor and use reduce.
                     context
                         .dispatch("addBuildCategory", parts[0])
                         .then(() =>
@@ -692,15 +696,9 @@ export default new Vuex.Store({
                     },
                 })
                     .then(({ data }) => {
-                        console.log(data, "ini di add build then success");
                         resolve(data);
                     })
                     .catch((err) => {
-                        console.log(
-                            err,
-                            "ini add build category ----->",
-                            payload.type
-                        );
                         reject(err);
                     });
             });
