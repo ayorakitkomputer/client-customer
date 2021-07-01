@@ -4,7 +4,16 @@
         class="col-span-10 overflow-y-scroll h-navbar bg-main"
     >
         <div
-            class="sticky top-0 grid text-xl bg-gray-800  2xl:py-5 text-ark-green rounded-tr-xl"
+            class="
+                sticky
+                top-0
+                grid
+                text-xl
+                bg-gray-800
+                2xl:py-5
+                text-ark-green
+                rounded-tr-xl
+            "
             :class="getGridAmount"
         >
             <div class="col-span-2 justify-self-center">
