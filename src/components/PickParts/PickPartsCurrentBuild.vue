@@ -17,11 +17,13 @@
             </div>
         </div>
 
+        <!-- flex flex-row gap-5 overflow-x-scroll overflow-y-hidden   -->
+        <!-- 2xl:grid 2xl:gap-5 2xl:px-10 2xl:pt-10 2xl:pb-6 xl:grid-cols-5 -->
         <div
-            class="grid grid-cols-1 gap-1 px-2  2xl:gap-5 2xl:px-10 2xl:pt-10 2xl:pb-6 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5"
+            class="flex flex-row flex-wrap gap-2 px-5 overflow-auto  hide-scrollbar 2xl:pb-6 2xl:gap-5 2xl:px-10 2xl:pt-10"
         >
             <!--Card 1-->
-            <div class="relative" v-if="getBuild.cpu">
+            <div class="relative card-container" v-if="getBuild.cpu">
                 <h1 class="card-header">CPU</h1>
                 <div class="card-body">
                     <center>
@@ -62,7 +64,7 @@
             </div>
 
             <!--Card 2-->
-            <div class="relative" v-if="getBuild.motherboard">
+            <div class="relative card-container" v-if="getBuild.motherboard">
                 <h1 class="card-header">Motherboard</h1>
                 <div class="card-body">
                     <center>
@@ -103,7 +105,7 @@
             </div>
 
             <!--Card 3-->
-            <div class="relative" v-if="getBuild.memory">
+            <div class="relative card-container" v-if="getBuild.memory">
                 <h1 class="card-header">Memory</h1>
                 <div class="card-body">
                     <center>
@@ -143,9 +145,9 @@
             </div>
 
             <!--Card 4-->
-            <div class="relative" v-if="getBuild.storage">
+            <div class="relative card-container" v-if="getBuild.storage">
                 <h1 class="card-header">Storage</h1>
-                <div class="overflow-y-auto card-scroll h-80">
+                <div class="overflow-y-auto card-scroll">
                     <div
                         v-for="storage in getBuild.storage"
                         :key="storage._id"
@@ -189,12 +191,12 @@
             </div>
 
             <!--Card 5-->
-            <div class="relative" v-if="getBuild.gpu">
+            <div class="relative card-container" v-if="getBuild.gpu">
                 <h1 class="card-header">GPU</h1>
-                <div class="card-container">
+                <div>
                     <div
-                        v-for="gpu in getBuild.gpu"
-                        :key="gpu._id"
+                        v-for="(gpu, i) in getBuild.gpu"
+                        :key="`${gpu._id} - ${i}`"
                         class="card-body"
                     >
                         <center>
@@ -235,7 +237,7 @@
             </div>
 
             <!--Card 6-->
-            <div class="relative" v-if="getBuild.case">
+            <div class="relative card-container" v-if="getBuild.case">
                 <h1 class="card-header">Case</h1>
                 <div class="card-body">
                     <center>
@@ -275,7 +277,7 @@
             </div>
 
             <!--Card 7-->
-            <div class="relative" v-if="getBuild.powerSupply">
+            <div class="relative card-container" v-if="getBuild.powerSupply">
                 <h1 class="card-header">Power Supply</h1>
                 <div class="card-body">
                     <center>
@@ -315,12 +317,12 @@
             </div>
 
             <!--Card 8-->
-            <div class="relative" v-if="getBuild.monitor">
+            <div class="relative card-container" v-if="getBuild.monitor">
                 <h1 class="card-header">Monitor</h1>
                 <div class="card-container">
                     <div
-                        v-for="monitor in getBuild.monitor"
-                        :key="monitor._id"
+                        v-for="(monitor, i) in getBuild.monitor"
+                        :key="`${monitor._id}-${i}`"
                         class="card-body"
                     >
                         <center>
@@ -361,12 +363,12 @@
             </div>
 
             <!--Card 9-->
-            <div class="relative" v-if="getBuild.case_fan">
+            <div class="relative card-container" v-if="getBuild.case_fan">
                 <h1 class="card-header">Case Fan</h1>
                 <div class="card-container">
                     <div
-                        v-for="case_fan in getBuild.case_fan"
-                        :key="case_fan._id"
+                        v-for="(case_fan, i) in getBuild.case_fan"
+                        :key="`${case_fan._id}-${i}`"
                         class="card-body"
                     >
                         <center>
@@ -475,7 +477,7 @@ export default {
     width: 16px;
 }
 .card-container {
-    @apply overflow-x-hidden overflow-y-auto card-scroll h-72 w-56;
+    @apply overflow-y-scroll overflow-x-hidden h-56 w-56 card-scroll 2xl:h-80 2xl:w-56 flex-shrink-0;
 }
 .delete-button {
     @apply absolute right-0 text-white transform cursor-pointer  top-2 hover:text-ark-green hover:scale-125 opacity-50 hover:opacity-100;
@@ -487,12 +489,12 @@ export default {
     @apply text-sm font-semibold text-center  2xl:text-xl text-ark-green;
 }
 .card-body {
-    @apply mt-2 border-2 shadow-lg  2xl:my-3 h-52 2xl:h-64 rounded-xl bg-card-build;
+    @apply mt-2 border-2 shadow-lg h-44  2xl:my-3 2xl:h-64 rounded-xl bg-card-build;
 }
 .card-title-container {
-    @apply 2xl:px-4 2xl:pt-3;
+    @apply 2xl:px-4 2xl:pt-3 px-0.5;
 }
 .card-title {
-    @apply 2xl:text-lg font-bold text-center text-white;
+    @apply 2xl:text-lg text-xs font-bold text-center text-white truncate;
 }
 </style>

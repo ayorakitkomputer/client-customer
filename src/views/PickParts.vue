@@ -3,7 +3,7 @@
         <div
             class="container relative grid h-full grid-cols-12 mx-auto  bg-build rounded-xl"
         >
-            <div class="h-full col-span-2 bg-build rounded-xl">
+            <div class="col-span-2 h-navbar bg-build rounded-xl">
                 <h5
                     id="title-comp"
                     class="px-2 py-3 font-semibold text-center bg-black  2xl:px-4 2xl:py-5 2xl:text-xl rounded-tl-xl"

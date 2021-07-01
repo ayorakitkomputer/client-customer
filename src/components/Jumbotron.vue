@@ -42,7 +42,7 @@ export default {
             scene: null,
             mouseX: 0,
             mouseY: 0,
-            windowHalfX: window.innerWidth / 2,
+            windowHalfX: document.body.clientWidth / 2,
             windowHalfY: window.innerHeight / 2,
             loadThreeJs: true,
         };
@@ -59,7 +59,7 @@ export default {
             /* ---------- START CAMERA ---------- */
             this.camera = new THREE.PerspectiveCamera(
                 40,
-                window.innerWidth / window.innerHeight,
+                document.body.clientWidth / window.innerHeight,
                 1,
                 15000
             );
@@ -158,13 +158,17 @@ export default {
         },
         onWindowResize() {
             // if (!this.loadThreeJs) return;
-            this.windowHalfX = window.innerWidth / 2;
+            const actualInnerWidth = document.body.clientWidth;
+            this.windowHalfX = actualInnerWidth / 2;
             this.windowHalfY = window.innerHeight / 2;
 
-            this.camera.aspect = window.innerWidth / window.innerHeight;
+            this.camera.aspect = document.body.clientWidth / window.innerHeight;
             this.camera.updateProjectionMatrix();
 
-            this.renderer.setSize(window.innerWidth, window.innerHeight);
+            this.renderer.setSize(
+                document.body.clientWidth,
+                window.innerHeight
+            );
         },
         animate() {
             // if (!this.loadThreeJs) return;
