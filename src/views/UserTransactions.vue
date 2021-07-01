@@ -4,14 +4,13 @@
             <zing-grid
                 pager
                 filter
-                search
                 sort
                 zebra
-                gridlines="both"
                 page-size="10"
                 page-size-card="10"
                 page-size-options="2,4,10,20"
                 layout="row"
+                layout-controls="disabled"
                 role="grid"
                 viewport="tablet-portrait"
                 theme="ios"
@@ -24,14 +23,23 @@
                     <!-- <zg-param name="idKey" value="id"></zg-param> -->
                     <zg-param name="headers" :value="access_token"></zg-param>
                     <zg-column index="_id"></zg-column>
-                    <zg-column index="build.name"></zg-column>
-                    <zg-column index="user.address"></zg-column>
                     <zg-column
-                        header="Shipment"
-                        type="toggle"
-                        type-toggle-options='["Not Shipped", "Shipped"]'
-                        index="shipmentStatus"
+                        header="Build Name"
+                        index="build.name"
                     ></zg-column>
+                    <zg-column
+                        header="User Address"
+                        index="user.address"
+                    ></zg-column>
+                    <zg-column
+                        header="Shipped"
+                        type="boolean"
+                        index="shipmentStatus"
+                    >
+                        <span>{{
+                            [[index.shipmentStatus]] ? "Not Shipped" : "Shipped"
+                        }}</span>
+                    </zg-column>
                 </zg-data>
             </zing-grid>
         </div>
