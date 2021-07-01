@@ -119,7 +119,25 @@ export default {
     props: ["build"],
     methods: {
         createCustomizeBuild() {
-            this.$store.dispatch("createBuildFromCategory", this.build);
+            if (!localStorage.access_token) {
+                this.$router.push({ name: "Login" });
+            } else {
+                this.$toast.success("Creating this build for you...", {
+                    position: "top-right",
+                    timeout: 5000,
+                    closeOnClick: true,
+                    pauseOnFocusLoss: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    draggablePercent: 0.6,
+                    showCloseButtonOnHover: false,
+                    hideProgressBar: false,
+                    closeButton: false,
+                    icon: true,
+                    rtl: false,
+                });
+                this.$store.dispatch("createBuildFromCategory", this.build);
+            }
         },
     },
     computed: {
