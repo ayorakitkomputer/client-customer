@@ -39,8 +39,8 @@ export default {
                         id: "60d5ca9fc6e53a61d8e36f5c",
                     },
                     motherboard: {
-                        name: "Asus PRIME",
-                        id: "60d5cc1ec6e53a61d8e3702a",
+                        name: "ASRock B450M",
+                        id: "60d5cc1ec6e53a61d8e3701a",
                     },
                     memory: {
                         name: "Team T-FORCE VULCAN Z 16 GB",
@@ -63,38 +63,38 @@ export default {
                         id: "60d849ff95818839880a31c5",
                     },
                     caseFan: {
-                        name: "Kingwin CF-012LB",
-                        id: "60d5f75bc6e53a61d8e371a5",
+                        name: "Cooler Master MasterFan MF120R",
+                        id: "60d5f75bc6e53a61d8e37180",
                     },
                     harga: 15000000,
                 },
                 {
-                    header: "Mid Level Intel Gaming PC",
+                    header: "Enthusiast Intel Gaming PC",
                     image: "https://cdn.coolermaster.com/media/assets/1035/mb311l_argb_09_room_for_upgrades-imageleftorright.png",
-                    harga: 20000000,
+                    harga: 30000000,
                     cpu: {
                         name: "Intel Core i7-10700K",
                         id: "60d5ca9fc6e53a61d8e36f52",
                     },
                     motherboard: {
-                        name: "MSI Z490-A",
-                        id: "60d5cc1ec6e53a61d8e37031",
+                        name: "MSI Z390-A PRO",
+                        id: "60d5cc1ec6e53a61d8e3701f",
                     },
                     memory: {
                         name: "Corsair Vengeance RGB Pro 16 GB",
                         id: "60d85ff795818839880a320c",
                     },
                     gpu: {
-                        name: "EVGA GeForce RTX 2060 6GB",
-                        id: "60d5c9e1c6e53a61d8e36ef8",
+                        name: "ASUS GeForce RTX 2070 SUPER",
+                        id: "60d5c9e1c6e53a61d8e36f09",
                     },
                     storage: {
-                        name: "Western Digital Blue 2.5 500GB",
-                        id: "60d5e67fc6e53a61d8e370ce",
+                        name: "Samsung 970 Evo 1TB",
+                        id: "60d5e67fc6e53a61d8e370c8",
                     },
                     powerSupply: {
-                        name: "Corsair CXM 80+ Bronze 550W",
-                        id: "60d5d1cec6e53a61d8e37077",
+                        name: "Cooler Master MWE Gold 80+ Gold 650W",
+                        id: "60d5d1cec6e53a61d8e37079",
                     },
                     case: {
                         name: "Cooler Master MasterBox TD500",
