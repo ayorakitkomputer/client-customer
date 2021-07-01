@@ -3,59 +3,38 @@
         <div class="flex justify-between bg-gray-800 rounded-tr-xl">
             <div></div>
             <h1
-                class="
-                    px-8
-                    py-5
-                    text-xl
-                    font-semibold
-                    text-center text-ark-green
-                    rounded-3xl
-                "
+                class="px-4 py-3 font-semibold text-center  2xl:text-xl 2xl:px-8 2xl:py-5 text-ark-green rounded-3xl"
             >
                 MY CURRENT BUILD PC
             </h1>
-            <h1 class="py-5 text-lg font-semibold text-center text-white px-7">
-                Estimated Wattage:
-                <span :class="getWattageColour"> {{ getWattage }} W </span>
-            </h1>
+            <div
+                class="mr-2 font-semibold text-center text-white  2xl:py-5 2xl:text-lg 2xl:px-7 basic-center"
+            >
+                <h1>
+                    Estimated Wattage:
+                    <span :class="getWattageColour"> {{ getWattage }} W </span>
+                </h1>
+            </div>
         </div>
+
+        <!-- flex flex-row gap-5 overflow-x-scroll overflow-y-hidden   -->
+        <!-- 2xl:grid 2xl:gap-5 2xl:px-10 2xl:pt-10 2xl:pb-6 xl:grid-cols-5 -->
         <div
-            class="
-                grid grid-cols-1
-                gap-5
-                px-10
-                pt-10
-                pb-6
-                sm:grid-cols-1
-                md:grid-cols-3
-                lg:grid-cols-3
-                xl:grid-cols-5
-            "
+            class="flex flex-row flex-wrap gap-2 px-5 overflow-auto  hide-scrollbar 2xl:pb-6 2xl:gap-5 2xl:px-10 2xl:pt-10"
         >
             <!--Card 1-->
-            <div class="relative" v-if="getBuild.cpu">
-                <h1 class="text-xl font-semibold text-center text-ark-green">
-                    CPU
-                </h1>
-                <div
-                    class="
-                        h-64
-                        my-3
-                        border-2
-                        shadow-lg
-                        rounded-xl
-                        bg-card-build
-                    "
-                >
+            <div class="relative card-container" v-if="getBuild.cpu">
+                <h1 class="card-header">CPU</h1>
+                <div class="card-body">
                     <center>
                         <img
-                            class="h-40 p-3 m-2"
+                            class="image-responsive"
                             :src="getBuild.cpu.image"
                             alt=""
                         />
                     </center>
-                    <div class="px-4 pt-3">
-                        <div class="text-lg font-bold text-center text-white">
+                    <div class="card-title-container">
+                        <div class="card-title">
                             {{ getBuild.cpu.manufacturer }}
                             {{ getBuild.cpu.name }}
                         </div>
@@ -85,29 +64,18 @@
             </div>
 
             <!--Card 2-->
-            <div class="relative" v-if="getBuild.motherboard">
-                <h1 class="text-xl font-semibold text-center text-ark-green">
-                    Motherboard
-                </h1>
-                <div
-                    class="
-                        h-64
-                        my-3
-                        border-2
-                        shadow-lg
-                        rounded-xl
-                        bg-card-build
-                    "
-                >
+            <div class="relative card-container" v-if="getBuild.motherboard">
+                <h1 class="card-header">Motherboard</h1>
+                <div class="card-body">
                     <center>
                         <img
-                            class="h-40 p-3 m-2"
+                            class="image-responsive"
                             :src="getBuild.motherboard.image"
                             alt=""
                         />
                     </center>
-                    <div class="px-4 pt-3">
-                        <div class="text-lg font-bold text-center text-white">
+                    <div class="card-title-container">
+                        <div class="card-title">
                             {{ getBuild.motherboard.manufacturer }}
                             {{ getBuild.motherboard.name }}
                         </div>
@@ -137,29 +105,18 @@
             </div>
 
             <!--Card 3-->
-            <div class="relative" v-if="getBuild.memory">
-                <h1 class="text-xl font-semibold text-center text-ark-green">
-                    Memory
-                </h1>
-                <div
-                    class="
-                        h-64
-                        my-3
-                        border-2
-                        shadow-lg
-                        rounded-xl
-                        bg-card-build
-                    "
-                >
+            <div class="relative card-container" v-if="getBuild.memory">
+                <h1 class="card-header">Memory</h1>
+                <div class="card-body">
                     <center>
                         <img
-                            class="h-40 p-3 m-2"
+                            class="image-responsive"
                             :src="getBuild.memory.image"
                             alt=""
                         />
                     </center>
-                    <div class="px-4 pt-3">
-                        <div class="text-lg font-bold text-center text-white">
+                    <div class="card-title-container">
+                        <div class="card-title">
                             {{ getBuild.memory.name }}
                         </div>
                     </div>
@@ -188,34 +145,23 @@
             </div>
 
             <!--Card 4-->
-            <div class="relative" v-if="getBuild.storage">
-                <h1 class="text-xl font-semibold text-center text-ark-green">
-                    Storage
-                </h1>
-                <div class="overflow-y-auto card-scroll h-80">
+            <div class="relative card-container" v-if="getBuild.storage">
+                <h1 class="card-header">Storage</h1>
+                <div class="overflow-y-auto card-scroll">
                     <div
                         v-for="storage in getBuild.storage"
                         :key="storage._id"
-                        class="
-                            h-64
-                            my-3
-                            border-2
-                            shadow-lg
-                            rounded-xl
-                            bg-card-build
-                        "
+                        class="card-body"
                     >
                         <center>
                             <img
-                                class="h-40 p-3 m-2"
+                                class="image-responsive"
                                 :src="storage.image"
                                 alt=""
                             />
                         </center>
-                        <div class="px-4 pt-3">
-                            <div
-                                class="text-lg font-bold text-center text-white"
-                            >
+                        <div class="card-title-container">
+                            <div class="card-title">
                                 {{ storage.name }}
                             </div>
                         </div>
@@ -245,35 +191,23 @@
             </div>
 
             <!--Card 5-->
-            <div class="relative" v-if="getBuild.gpu">
-                <h1 class="text-xl font-semibold text-center text-ark-green">
-                    GPU
-                </h1>
-                <div class="card-container">
+            <div class="relative card-container" v-if="getBuild.gpu">
+                <h1 class="card-header">GPU</h1>
+                <div>
                     <div
-                        v-for="gpu in getBuild.gpu"
-                        :key="gpu._id"
-                        class="
-                            w-full
-                            h-64
-                            my-3
-                            border-2
-                            shadow-lg
-                            rounded-xl
-                            bg-card-build
-                        "
+                        v-for="(gpu, i) in getBuild.gpu"
+                        :key="`${gpu._id} - ${i}`"
+                        class="card-body"
                     >
                         <center>
                             <img
-                                class="object-scale-down w-40 h-40 p-3 m-2"
+                                class="image-responsive"
                                 :src="gpu.image"
                                 alt=""
                             />
                         </center>
-                        <div class="px-4 pt-3">
-                            <div
-                                class="text-lg font-bold text-center text-white"
-                            >
+                        <div class="card-title-container">
+                            <div class="card-title">
                                 {{ gpu.manufacturer }} {{ gpu.name }}
                             </div>
                         </div>
@@ -303,29 +237,18 @@
             </div>
 
             <!--Card 6-->
-            <div class="relative" v-if="getBuild.case">
-                <h1 class="text-xl font-semibold text-center text-ark-green">
-                    Case
-                </h1>
-                <div
-                    class="
-                        h-64
-                        my-3
-                        border-2
-                        shadow-lg
-                        rounded-xl
-                        bg-card-build
-                    "
-                >
+            <div class="relative card-container" v-if="getBuild.case">
+                <h1 class="card-header">Case</h1>
+                <div class="card-body">
                     <center>
                         <img
-                            class="h-40 p-3 m-2"
+                            class="image-responsive"
                             :src="getBuild.case.image"
                             alt=""
                         />
                     </center>
-                    <div class="px-4 pt-3">
-                        <div class="text-lg font-bold text-center text-white">
+                    <div class="card-title-container">
+                        <div class="card-title">
                             {{ getBuild.case.name }}
                         </div>
                     </div>
@@ -354,29 +277,18 @@
             </div>
 
             <!--Card 7-->
-            <div class="relative" v-if="getBuild.powerSupply">
-                <h1 class="text-xl font-semibold text-center text-ark-green">
-                    Power Supply
-                </h1>
-                <div
-                    class="
-                        h-64
-                        my-3
-                        border-2
-                        shadow-lg
-                        rounded-xl
-                        bg-card-build
-                    "
-                >
+            <div class="relative card-container" v-if="getBuild.powerSupply">
+                <h1 class="card-header">Power Supply</h1>
+                <div class="card-body">
                     <center>
                         <img
-                            class="h-40 p-3 m-2"
+                            class="image-responsive"
                             :src="getBuild.powerSupply.image"
                             alt=""
                         />
                     </center>
-                    <div class="px-4 pt-3">
-                        <div class="text-lg font-bold text-center text-white">
+                    <div class="card-title-container">
+                        <div class="card-title">
                             {{ getBuild.powerSupply.name }}
                         </div>
                     </div>
@@ -405,34 +317,23 @@
             </div>
 
             <!--Card 8-->
-            <div class="relative" v-if="getBuild.monitor">
-                <h1 class="text-xl font-semibold text-center text-ark-green">
-                    Monitor
-                </h1>
+            <div class="relative card-container" v-if="getBuild.monitor">
+                <h1 class="card-header">Monitor</h1>
                 <div class="card-container">
                     <div
-                        v-for="monitor in getBuild.monitor"
-                        :key="monitor._id"
-                        class="
-                            h-64
-                            my-3
-                            border-2
-                            shadow-lg
-                            rounded-xl
-                            bg-card-build
-                        "
+                        v-for="(monitor, i) in getBuild.monitor"
+                        :key="`${monitor._id}-${i}`"
+                        class="card-body"
                     >
                         <center>
                             <img
-                                class="h-40 p-3 m-2"
+                                class="image-responsive"
                                 :src="monitor.image"
                                 alt=""
                             />
                         </center>
-                        <div class="px-4 pt-3">
-                            <div
-                                class="text-lg font-bold text-center text-white"
-                            >
+                        <div class="card-title-container">
+                            <div class="card-title">
                                 {{ monitor.manufacturer }} {{ monitor.name }}
                             </div>
                         </div>
@@ -462,34 +363,23 @@
             </div>
 
             <!--Card 9-->
-            <div class="relative" v-if="getBuild.case_fan">
-                <h1 class="text-xl font-semibold text-center text-ark-green">
-                    Case Fan
-                </h1>
+            <div class="relative card-container" v-if="getBuild.case_fan">
+                <h1 class="card-header">Case Fan</h1>
                 <div class="card-container">
                     <div
-                        v-for="case_fan in getBuild.case_fan"
-                        :key="case_fan._id"
-                        class="
-                            h-64
-                            my-3
-                            border-2
-                            shadow-lg
-                            rounded-xl
-                            bg-card-build
-                        "
+                        v-for="(case_fan, i) in getBuild.case_fan"
+                        :key="`${case_fan._id}-${i}`"
+                        class="card-body"
                     >
                         <center>
                             <img
-                                class="h-40 p-3 m-2"
+                                class="image-responsive"
                                 :src="case_fan.image"
                                 alt=""
                             />
                         </center>
-                        <div class="px-4 pt-3">
-                            <div
-                                class="text-lg font-bold text-center text-white"
-                            >
+                        <div class="card-title-container">
+                            <div class="card-title">
                                 {{ case_fan.name }}
                             </div>
                         </div>
@@ -587,9 +477,24 @@ export default {
     width: 16px;
 }
 .card-container {
-    @apply overflow-x-hidden overflow-y-auto card-scroll h-72 w-56;
+    @apply overflow-y-scroll overflow-x-hidden h-56 w-56 card-scroll 2xl:h-80 2xl:w-56 flex-shrink-0;
 }
 .delete-button {
     @apply absolute right-0 text-white transform cursor-pointer  top-2 hover:text-ark-green hover:scale-125 opacity-50 hover:opacity-100;
+}
+.image-responsive {
+    @apply object-scale-down h-32 p-3 m-2 2xl:h-40;
+}
+.card-header {
+    @apply text-sm font-semibold text-center  2xl:text-xl text-ark-green;
+}
+.card-body {
+    @apply mt-2 border-2 shadow-lg h-44  2xl:my-3 2xl:h-64 rounded-xl bg-card-build;
+}
+.card-title-container {
+    @apply 2xl:px-4 2xl:pt-3 px-0.5;
+}
+.card-title {
+    @apply 2xl:text-lg text-xs font-bold text-center text-white truncate;
 }
 </style>

@@ -23,6 +23,12 @@ export default {
             };
             this.$store.dispatch("getData", payload);
         },
+        getData() {
+            let payload = {
+                route: this.$route.name,
+            };
+            this.$store.dispatch("getData", payload);
+        },
     },
     computed: {
         getCurrentPage() {

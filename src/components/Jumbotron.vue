@@ -9,15 +9,15 @@
             >
                 <p
                     id="test-animation"
-                    class="font-semibold text-white  text-jumbotron mb-80 text-7xl"
+                    class="mb-40 text-3xl font-semibold text-white  text-jumbotron 2xl:mb-80 2xl:text-7xl"
                 >
                     BUILD YOUR OWN PC
                 </p>
-                <div class="absolute mb-10 left-60">
+                <div class="absolute 2xl:mb-10 2xl:left-80">
                     <button
                         @click="createNewBuild"
                         id="jumbotronButton"
-                        class="px-5 py-4 text-xl font-bold text-black border-2  text-md rounded-2xl"
+                        class="px-4 py-2 font-bold text-black border-2  2xl:text-xl 2xl:px-5 2xl:py-4 text-md rounded-2xl"
                     >
                         LET'S START BUILD
                     </button>
@@ -42,7 +42,7 @@ export default {
             scene: null,
             mouseX: 0,
             mouseY: 0,
-            windowHalfX: window.innerWidth / 2,
+            windowHalfX: document.body.clientWidth / 2,
             windowHalfY: window.innerHeight / 2,
             loadThreeJs: true,
         };
@@ -59,7 +59,7 @@ export default {
             /* ---------- START CAMERA ---------- */
             this.camera = new THREE.PerspectiveCamera(
                 40,
-                window.innerWidth / window.innerHeight,
+                document.body.clientWidth / window.innerHeight,
                 1,
                 15000
             );
@@ -158,13 +158,17 @@ export default {
         },
         onWindowResize() {
             // if (!this.loadThreeJs) return;
-            this.windowHalfX = window.innerWidth / 2;
+            const actualInnerWidth = document.body.clientWidth;
+            this.windowHalfX = actualInnerWidth / 2;
             this.windowHalfY = window.innerHeight / 2;
 
-            this.camera.aspect = window.innerWidth / window.innerHeight;
+            this.camera.aspect = document.body.clientWidth / window.innerHeight;
             this.camera.updateProjectionMatrix();
 
-            this.renderer.setSize(window.innerWidth, window.innerHeight);
+            this.renderer.setSize(
+                document.body.clientWidth,
+                window.innerHeight
+            );
         },
         animate() {
             // if (!this.loadThreeJs) return;

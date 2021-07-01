@@ -17,16 +17,7 @@
                 theme="ios"
             >
                 <zg-caption
-                    class="
-                        px-10
-                        pt-0
-                        text-3xl
-                        font-semibold
-                        leading-tight
-                        bg-gray-800
-                        pb-7
-                        text-ark-green
-                    "
+                    class="px-10 pt-0 text-3xl font-semibold leading-tight bg-gray-800  pb-7 text-ark-green"
                     >Transaction History</zg-caption
                 >
                 <zg-data :src="transactionData">
