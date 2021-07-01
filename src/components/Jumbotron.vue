@@ -59,7 +59,7 @@ export default {
             /* ---------- START CAMERA ---------- */
             this.camera = new THREE.PerspectiveCamera(
                 40,
-                document.body.clientWidth / window.innerHeight,
+                window.innerWidth / window.innerHeight,
                 1,
                 15000
             );
