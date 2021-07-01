@@ -30,6 +30,7 @@ export default {
             inMove: false,
             activeSection: 0,
             offsets: [],
+            // FIX THIS
             recommendationBuilds: [
                 {
                     header: "Entry AMD Gaming PC",
@@ -39,8 +40,8 @@ export default {
                         id: "60d5ca9fc6e53a61d8e36f5c",
                     },
                     motherboard: {
-                        name: "ASRock B450M",
-                        id: "60d5cc1ec6e53a61d8e3701a",
+                        name: "Asus PRIME",
+                        id: "60d5cc1ec6e53a61d8e3702a",
                     },
                     memory: {
                         name: "Team T-FORCE VULCAN Z 16 GB",
@@ -55,30 +56,30 @@ export default {
                         id: "60d5e67fc6e53a61d8e370d0",
                     },
                     powerSupply: {
-                        name: "EVGA BA 600 W 80+ Bronze",
-                        id: "60d5d1cec6e53a61d8e370ae",
+                        name: "SeaSonic S12III 500 W 80+ Bronze",
+                        id: "60d5d1cec6e53a61d8e3707b",
                     },
                     case: {
-                        name: "Phanteks Eclipse P300",
-                        id: "60d849ff95818839880a31e4",
+                        name: "Phanteks Eclipse P300A Mesh",
+                        id: "60d849ff95818839880a31c5",
                     },
                     caseFan: {
                         name: "Kingwin CF-012LB",
                         id: "60d5f75bc6e53a61d8e371a5",
                     },
-                    harga: "Rp. 10.000.000,00",
+                    harga: 15000000,
                 },
                 {
                     header: "Mid Level Intel Gaming PC",
                     image: "https://cdn.coolermaster.com/media/assets/1035/mb311l_argb_09_room_for_upgrades-imageleftorright.png",
-                    harga: "Rp. 20.000.000,00",
+                    harga: 20000000,
                     cpu: {
                         name: "Intel Core i7-10700K",
                         id: "60d5ca9fc6e53a61d8e36f52",
                     },
                     motherboard: {
-                        name: "MSI Z390-A",
-                        id: "60d5cc1ec6e53a61d8e3701f",
+                        name: "MSI Z490-A",
+                        id: "60d5cc1ec6e53a61d8e37031",
                     },
                     memory: {
                         name: "Corsair Vengeance RGB Pro 16 GB",
@@ -97,8 +98,8 @@ export default {
                         id: "60d5d1cec6e53a61d8e37077",
                     },
                     case: {
-                        name: "Cooler Master MasterBox MB311L ARGB",
-                        id: "60d849ff95818839880a31d5",
+                        name: "Cooler Master MasterBox TD500",
+                        id: "60d849ff95818839880a31e0",
                     },
                     caseFan: {
                         name: "Thermaltake Riing Trio 14 RGB TT Premium Edition 3-Pack",
@@ -108,7 +109,7 @@ export default {
                 {
                     header: "Ultra Gamer Intel Gaming PC",
                     image: "https://cdn.shopify.com/s/files/1/0228/7629/1136/files/gx13-intruder-main-shot.png?v=1569339401",
-                    harga: "Rp. 64.000.000,00",
+                    harga: 80000000,
                     cpu: {
                         name: "AMD Ryzen 9 5950X",
                         id: "60d5ca9fc6e53a61d8e36f57",
@@ -130,7 +131,7 @@ export default {
                         id: "60d5e67fc6e53a61d8e370d4",
                     },
                     powerSupply: {
-                        name: "Corsair AXi 80+ Titanium",
+                        name: "Corsair AXi 1600 W 80+ Titanium",
                         id: "60d5d1cec6e53a61d8e37078",
                     },
                     case: {
