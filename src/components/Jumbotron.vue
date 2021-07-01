@@ -1,43 +1,23 @@
 <template>
     <div class="h-screen bg-black">
         <div class="absolute flex items-center justify-center">
-            <canvas v-if="loadThreeJs" id="threejs"></canvas>
+            <!-- <canvas v-if="loadThreeJs" id="threejs"></canvas> -->
         </div>
         <div class="absolute grid grid-cols-8">
             <div
-                class="
-                    flex
-                    items-center
-                    justify-center
-                    h-screen
-                    col-start-2 col-end-4
-                "
+                class="flex items-center justify-center h-screen col-start-2 col-end-4 "
             >
                 <p
                     id="test-animation"
-                    class="
-                        font-semibold
-                        text-white text-jumbotron
-                        mb-80
-                        text-7xl
-                    "
+                    class="text-4xl font-semibold text-white  text-jumbotron mb-80 2xl:text-7xl"
                 >
                     BUILD YOUR OWN PC
                 </p>
-                <div class="absolute mb-10 left-60">
+                <div class="absolute mb-10 2xl:left-96">
                     <button
                         @click="createNewBuild"
                         id="jumbotronButton"
-                        class="
-                            px-5
-                            py-4
-                            text-xl
-                            font-bold
-                            text-black
-                            border-2
-                            text-md
-                            rounded-2xl
-                        "
+                        class="px-4 py-2 font-bold text-black border-2  2xl:text-xl 2xl:px-5 2xl:py-4 text-md rounded-2xl"
                     >
                         LET'S START BUILD
                     </button>

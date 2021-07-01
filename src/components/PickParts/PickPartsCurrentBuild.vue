@@ -3,53 +3,35 @@
         <div class="flex justify-between bg-gray-800 rounded-tr-xl">
             <div></div>
             <h1
-                class="
-                    px-8
-                    py-5
-                    text-xl
-                    font-semibold
-                    text-center text-ark-green
-                    rounded-3xl
-                "
+                class="px-4 py-3 font-semibold text-center  2xl:text-xl 2xl:px-8 2xl:py-5 text-ark-green rounded-3xl"
             >
                 MY CURRENT BUILD PC
             </h1>
-            <h1 class="py-5 text-lg font-semibold text-center text-white px-7">
-                Estimated Wattage:
-                <span :class="getWattageColour"> {{ getWattage }} W </span>
-            </h1>
+            <div
+                class="mr-2 font-semibold text-center text-white  2xl:py-5 2xl:text-lg 2xl:px-7 basic-center"
+            >
+                <h1>
+                    Estimated Wattage:
+                    <span :class="getWattageColour"> {{ getWattage }} W </span>
+                </h1>
+            </div>
         </div>
         <div
-            class="
-                grid grid-cols-1
-                gap-5
-                px-10
-                pt-10
-                pb-6
-                sm:grid-cols-1
-                md:grid-cols-3
-                lg:grid-cols-3
-                xl:grid-cols-5
-            "
+            class="grid grid-cols-1 gap-1  2xl:gap-5 2xl:px-10 2xl:pt-10 2xl:pb-6 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5"
         >
             <!--Card 1-->
             <div class="relative" v-if="getBuild.cpu">
-                <h1 class="text-xl font-semibold text-center text-ark-green">
+                <h1
+                    class="text-sm font-semibold text-center  2xl:text-xl text-ark-green"
+                >
                     CPU
                 </h1>
                 <div
-                    class="
-                        h-64
-                        my-3
-                        border-2
-                        shadow-lg
-                        rounded-xl
-                        bg-card-build
-                    "
+                    class="my-3 border-2 shadow-lg  2xl:h-64 rounded-xl bg-card-build"
                 >
                     <center>
                         <img
-                            class="h-40 p-3 m-2"
+                            class="h-32 p-3 m-2 2xl:h-40"
                             :src="getBuild.cpu.image"
                             alt=""
                         />
@@ -90,14 +72,7 @@
                     Motherboard
                 </h1>
                 <div
-                    class="
-                        h-64
-                        my-3
-                        border-2
-                        shadow-lg
-                        rounded-xl
-                        bg-card-build
-                    "
+                    class="h-64 my-3 border-2 shadow-lg  rounded-xl bg-card-build"
                 >
                     <center>
                         <img
@@ -142,14 +117,7 @@
                     Memory
                 </h1>
                 <div
-                    class="
-                        h-64
-                        my-3
-                        border-2
-                        shadow-lg
-                        rounded-xl
-                        bg-card-build
-                    "
+                    class="h-64 my-3 border-2 shadow-lg  rounded-xl bg-card-build"
                 >
                     <center>
                         <img
@@ -196,14 +164,7 @@
                     <div
                         v-for="storage in getBuild.storage"
                         :key="storage._id"
-                        class="
-                            h-64
-                            my-3
-                            border-2
-                            shadow-lg
-                            rounded-xl
-                            bg-card-build
-                        "
+                        class="h-64 my-3 border-2 shadow-lg  rounded-xl bg-card-build"
                     >
                         <center>
                             <img
@@ -253,15 +214,7 @@
                     <div
                         v-for="gpu in getBuild.gpu"
                         :key="gpu._id"
-                        class="
-                            w-full
-                            h-64
-                            my-3
-                            border-2
-                            shadow-lg
-                            rounded-xl
-                            bg-card-build
-                        "
+                        class="w-full h-64 my-3 border-2 shadow-lg  rounded-xl bg-card-build"
                     >
                         <center>
                             <img
@@ -308,14 +261,7 @@
                     Case
                 </h1>
                 <div
-                    class="
-                        h-64
-                        my-3
-                        border-2
-                        shadow-lg
-                        rounded-xl
-                        bg-card-build
-                    "
+                    class="h-64 my-3 border-2 shadow-lg  rounded-xl bg-card-build"
                 >
                     <center>
                         <img
@@ -359,14 +305,7 @@
                     Power Supply
                 </h1>
                 <div
-                    class="
-                        h-64
-                        my-3
-                        border-2
-                        shadow-lg
-                        rounded-xl
-                        bg-card-build
-                    "
+                    class="h-64 my-3 border-2 shadow-lg  rounded-xl bg-card-build"
                 >
                     <center>
                         <img
@@ -413,14 +352,7 @@
                     <div
                         v-for="monitor in getBuild.monitor"
                         :key="monitor._id"
-                        class="
-                            h-64
-                            my-3
-                            border-2
-                            shadow-lg
-                            rounded-xl
-                            bg-card-build
-                        "
+                        class="h-64 my-3 border-2 shadow-lg  rounded-xl bg-card-build"
                     >
                         <center>
                             <img
@@ -470,14 +402,7 @@
                     <div
                         v-for="case_fan in getBuild.case_fan"
                         :key="case_fan._id"
-                        class="
-                            h-64
-                            my-3
-                            border-2
-                            shadow-lg
-                            rounded-xl
-                            bg-card-build
-                        "
+                        class="h-64 my-3 border-2 shadow-lg  rounded-xl bg-card-build"
                     >
                         <center>
                             <img
