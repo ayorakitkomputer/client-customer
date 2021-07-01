@@ -27,21 +27,7 @@
                     />
                 </div>
                 <button
-                    class="
-                        self-center
-                        px-3
-                        py-2
-                        mt-2
-                        text-lg
-                        font-semibold
-                        text-black
-                        uppercase
-                        w-28
-                        bg-ark-green
-                        rounded-xl
-                        hover:bg-black
-                        hover:text-ark-green
-                    "
+                    class="self-center px-3 py-2 mt-2 text-lg font-semibold text-black uppercase  w-28 bg-ark-green rounded-xl hover:bg-black hover:text-ark-green"
                 >
                     CREATE
                 </button>
@@ -94,6 +80,7 @@ export default {
     },
     watch: {
         checkUserData(status) {
+            console.log(status, "ini status modal");
             if (status) this.show();
         },
     },

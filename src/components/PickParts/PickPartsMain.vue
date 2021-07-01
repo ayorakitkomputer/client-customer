@@ -39,6 +39,14 @@ export default {
     components: {
         PickPartsComponent,
     },
+    methods: {
+        getData() {
+            let payload = {
+                route: this.$route.name,
+            };
+            this.$store.dispatch("getData", payload);
+        },
+    },
     computed: {
         getGridAmount() {
             if (Object.keys(this.componentData).length) {
@@ -54,7 +62,7 @@ export default {
         },
     },
     created() {
-        this.$store.dispatch("getData", this.$route.name);
+        this.getData();
     },
 };
 </script>
