@@ -9,11 +9,11 @@
             >
                 <p
                     id="test-animation"
-                    class="text-4xl font-semibold text-white  text-jumbotron mb-80 2xl:text-7xl"
+                    class="mb-40 text-3xl font-semibold text-white  text-jumbotron 2xl:mb-80 2xl:text-7xl"
                 >
                     BUILD YOUR OWN PC
                 </p>
-                <div class="absolute mb-10 2xl:left-96">
+                <div class="absolute 2xl:mb-10 2xl:left-80">
                     <button
                         @click="createNewBuild"
                         id="jumbotronButton"
@@ -132,7 +132,9 @@ export default {
                 },
                 function (xhr) {
                     console.log(
-                        "Three.js "(xhr.loaded / xhr.total) * 100 + "% loaded"
+                        "Three.js " +
+                            (xhr.loaded / xhr.total) * 100 +
+                            "% loaded"
                     );
                 },
                 function (e) {

@@ -28,7 +28,7 @@
                 <div
                     data-aos="zoom-in-left"
                     data-aos-duration="3000"
-                    class="flex flex-col items-center justify-between w-5/6 px-5 shadow-2xl  2xl:px-10 2xl:py-8 box-spec rounded-xl h-2/3"
+                    class="flex flex-col items-center justify-between w-5/6 shadow-2xl  2xl:px-10 2xl:py-8 box-spec rounded-xl h-2/3"
                 >
                     <h1
                         class="text-lg font-semibold tracking-wide text-center  2xl:text-4xl type-category"
@@ -37,58 +37,55 @@
                     </h1>
                     <div class="w-full">
                         <ul
-                            class="flex flex-col gap-2 text-sm  2xl:gap-4 2xl:text-lg"
+                            class="flex flex-col gap-2 text-sm text-white  2xl:gap-4 2xl:text-lg"
                         >
-                            <li class="grid items-end grid-cols-6">
-                                <h2 class="font-semibold type-category">CPU</h2>
-                                <h2 class="text-white type-data">
-                                    : {{ build.cpu.name }}
+                            <li class="flex justify-between px-3">
+                                <h2 class="type-category">CPU:</h2>
+
+                                <h2 class="type-data">
+                                    {{ build.cpu.name }}
                                 </h2>
                             </li>
-                            <li class="grid items-end grid-cols-6">
-                                <h2 class="font-semibold type-category">
-                                    Motherboard
-                                </h2>
-                                <h2 class="text-white type-data">
-                                    : {{ build.motherboard.name }}
-                                </h2>
-                            </li>
-                            <li class="grid items-end grid-cols-6">
-                                <h2 class="font-semibold type-category">GPU</h2>
-                                <h2 class="text-white type-data">
-                                    : {{ build.gpu.name }}
+                            <li class="flex justify-between px-3">
+                                <h2 class="type-category">Motherboard:</h2>
+
+                                <h2 class="type-data">
+                                    {{ build.motherboard.name }}
                                 </h2>
                             </li>
-                            <li class="grid items-end grid-cols-6">
-                                <h2 class="font-semibold type-category">
-                                    Memory
-                                </h2>
-                                <h2 class="text-white type-data">
-                                    : {{ build.memory.name }}
-                                </h2>
-                            </li>
-                            <li class="grid items-baseline grid-cols-6">
-                                <h2 class="font-semibold type-category">
-                                    Storage
-                                </h2>
-                                <h2 class="text-white type-data">
-                                    : {{ build.storage.name }}
+                            <li class="flex justify-between px-3">
+                                <h2 class="type-category">GPU:</h2>
+
+                                <h2 class="type-data">
+                                    {{ build.gpu.name }}
                                 </h2>
                             </li>
-                            <li class="grid items-end grid-cols-6">
-                                <h2 class="font-semibold type-category">
-                                    Power Supply
-                                </h2>
-                                <h2 class="text-white type-data">
-                                    : {{ build.powerSupply.name }}
+                            <li class="flex justify-between px-3">
+                                <h2 class="type-category">Memory:</h2>
+
+                                <h2 class="type-data">
+                                    {{ build.memory.name }}
                                 </h2>
                             </li>
-                            <li class="grid items-end grid-cols-6">
-                                <h2 class="font-semibold type-category">
-                                    Case
+                            <li class="flex justify-between px-3">
+                                <h2 class="type-category">Storage:</h2>
+
+                                <h2 class="type-data">
+                                    {{ build.storage.name }}
                                 </h2>
-                                <h2 class="text-white type-data">
-                                    : {{ build.case.name }}
+                            </li>
+                            <li class="flex justify-between px-3">
+                                <h2 class="type-category">Power Supply:</h2>
+
+                                <h2 class="type-data">
+                                    {{ build.powerSupply.name }}
+                                </h2>
+                            </li>
+                            <li class="flex justify-between px-3">
+                                <h2 class="type-category">Case:</h2>
+
+                                <h2 class="type-data">
+                                    {{ build.case.name }}
                                 </h2>
                             </li>
                         </ul>
@@ -154,19 +151,11 @@ export default {
 
 <style>
 .type-category {
-    @apply text-sm;
+    @apply text-sm 2xl:text-lg font-semibold truncate;
     color: #cfff0a;
 }
 .type-data {
-    @apply col-span-4 col-start-3  2xl:text-lg;
-}
-
-[data-aos="fade-out"] {
-    opacity: 1;
-    transition-property: opacity;
-    &.aos-animate {
-        opacity: 0;
-    }
+    @apply 2xl:text-lg truncate;
 }
 #specButton {
     /* color: black;
@@ -184,6 +173,13 @@ export default {
         rgba(56, 56, 56, 1) 100%
     );
 }
+/* .box-right {
+    background: linear-gradient(
+        90deg,
+        rgb(0, 0, 0) 2%,
+        rgba(56, 56, 56, 1) 100%
+    );
+} */
 .box-spec {
     background-color: #050505a8;
 }

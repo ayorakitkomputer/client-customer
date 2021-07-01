@@ -206,7 +206,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="absolute mt-10">
+                <div class="absolute mt-5 2xl:mt-10">
                     <center>
                         <button
                             v-if="!checkBuildsRoute"
@@ -396,7 +396,6 @@ export default {
             }
 
             if (currentBuild.motherboard && currentBuild.memory) {
-                console.log(currentBuild.motherboard, currentBuild.memory);
                 currentBuild.motherboard.memory_type ==
                 currentBuild.memory.memory_type
                     ? ""

@@ -61,7 +61,6 @@ export default {
                 partId: part._id,
                 type: "cpu",
             };
-            console.log(this.getCurrentBuild, "INI CPU");
 
             this.$store.dispatch("addBuild", payload);
         },
