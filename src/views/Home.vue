@@ -106,7 +106,7 @@ export default {
                     },
                 },
                 {
-                    header: "Ultra Gamer Intel Gaming PC",
+                    header: "Ultra Gamer AMD Gaming PC",
                     image: "https://cdn.shopify.com/s/files/1/0228/7629/1136/files/gx13-intruder-main-shot.png?v=1569339401",
                     harga: 80000000,
                     cpu: {
