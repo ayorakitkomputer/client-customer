@@ -60,7 +60,8 @@ export default {
         let token = localStorage.access_token;
         this.access_token = `{"access_token": "${token}"}`;
         if (this.$route.path) {
-            this.transactionData = `http://localhost:3000/history`;
+            // this.transactionData = `http://localhost:3000/history`;
+            this.transactionData = `https://ayorakitkomputer.herokuapp.com/history`;
         }
     },
     beforeMount() {
