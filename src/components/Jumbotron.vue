@@ -1,7 +1,7 @@
 <template>
     <div class="h-screen bg-black">
         <div class="absolute flex items-center justify-center">
-            <!-- <canvas v-if="loadThreeJs" id="threejs"></canvas> -->
+            <canvas v-if="loadThreeJs" id="threejs"></canvas>
         </div>
         <div class="absolute grid grid-cols-8">
             <div
@@ -21,14 +21,6 @@
                     >
                         LET'S START BUILD
                     </button>
-                    <!-- <router-link to="/builds">
-                        <button
-                            id="jumbotronButton"
-                            class="px-5 py-4 text-xl font-bold text-black shadow-2xl text-md rounded-2xl"
-                        >
-                            LET'S START BUILD
-                        </button>
-                    </router-link> -->
                 </div>
             </div>
         </div>

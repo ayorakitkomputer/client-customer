@@ -96,10 +96,11 @@
                         </ul>
                     </div>
                     <div class="text-4xl font-semibold text-white">
-                        <h5>{{ build.harga }}</h5>
+                        <h5>{{ getRupiahHarga }}</h5>
                     </div>
                     <div>
                         <button
+                            @click="createCustomizeBuild"
                             id="specButton"
                             class="px-4 py-2 text-xl font-semibold rounded-2xl"
                         >
@@ -116,6 +117,19 @@
 export default {
     name: "Recommendation",
     props: ["build"],
+    methods: {
+        createCustomizeBuild() {
+            this.$store.dispatch("createBuildFromCategory", this.build);
+        },
+    },
+    computed: {
+        getRupiahHarga() {
+            return new Intl.NumberFormat("id-ID", {
+                style: "currency",
+                currency: "IDR",
+            }).format(this.build.harga);
+        },
+    },
 };
 </script>
 

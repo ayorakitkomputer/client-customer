@@ -408,46 +408,46 @@ export default new Vuex.Store({
             })
                 .then(() => {
                     if (payload.type === "cpu") {
-                        this._vm.$toast("Cpu added!", {
+                        this._vm.$toast("CPU Added!", {
                             toastClassName: "my-custom-toast-class",
                         });
                     } else if (payload.type === "motherboard") {
-                        this._vm.$toast("Motherboard added!", {
+                        this._vm.$toast("Motherboard Added!", {
                             toastClassName: "my-custom-toast-class",
                         });
                     } else if (payload.type === "memory") {
-                        this._vm.$toast("Memory added!", {
+                        this._vm.$toast("Memory Added!", {
                             toastClassName: "my-custom-toast-class",
                         });
                     } else if (payload.type === "storage") {
-                        this._vm.$toast("Storage added!", {
+                        this._vm.$toast("Storage Added!", {
                             toastClassName: "my-custom-toast-class",
                         });
                     } else if (payload.type === "gpu") {
-                        this._vm.$toast("Gpu added!", {
+                        this._vm.$toast("GPU Added!", {
                             toastClassName: "my-custom-toast-class",
                         });
                     } else if (payload.type === "case") {
-                        this._vm.$toast("case added!", {
+                        this._vm.$toast("Case Added!", {
                             toastClassName: "my-custom-toast-class",
                         });
                     } else if (payload.type === "powerSupply") {
-                        this._vm.$toast("Power Supply added!", {
+                        this._vm.$toast("Power Supply Added!", {
                             toastClassName: "my-custom-toast-class",
                         });
                     } else if (payload.type === "monitor") {
-                        this._vm.$toast("Monitor added!", {
+                        this._vm.$toast("Monitor Added!", {
                             toastClassName: "my-custom-toast-class",
                         });
                     } else if (payload.type === "caseFan") {
-                        this._vm.$toast("Case Fan added!", {
+                        this._vm.$toast("Case Fan Added!", {
                             toastClassName: "my-custom-toast-class",
                         });
                     }
                     router.push(`/builds/${payload.buildId}`);
                 })
                 .catch((err) => {
-                    this._vm.$toast.error("Cannot add anymore");
+                    this._vm.$toast.error("Cannot Add Anymore");
                     console.log(err);
                 });
         },
@@ -587,6 +587,123 @@ export default new Vuex.Store({
                 .catch((err) => {
                     console.log(err);
                 });
+        },
+        createBuildFromCategory(context, payload) {
+            axios({
+                url: "/builds",
+                method: "POST",
+                headers: {
+                    access_token: localStorage.access_token,
+                },
+            })
+                .then(({ data }) => {
+                    const buildId = data.id;
+                    const parts = [];
+                    for (const key in payload) {
+                        if (
+                            key === "header" ||
+                            key === "image" ||
+                            key === "harga"
+                        )
+                            continue;
+
+                        if (
+                            key === "gpu" ||
+                            key === "storage" ||
+                            key === "caseFan"
+                        ) {
+                            const data = {
+                                type: key,
+                                buildId,
+                                partId: [payload[key].id],
+                            };
+                            parts.push(data);
+                        } else {
+                            const data = {
+                                type: key,
+                                buildId,
+                                partId: payload[key].id,
+                            };
+                            parts.push(data);
+                        }
+                    }
+
+                    // refactor to reduce.
+                    context
+                        .dispatch("addBuildCategory", parts[0])
+                        .then(() =>
+                            context.dispatch("addBuildCategory", parts[1])
+                        )
+                        .then(() =>
+                            context.dispatch("addBuildCategory", parts[2])
+                        )
+                        .then(() =>
+                            context.dispatch("addBuildCategory", parts[3])
+                        )
+                        .then(() =>
+                            context.dispatch("addBuildCategory", parts[4])
+                        )
+                        .then(() =>
+                            context.dispatch("addBuildCategory", parts[5])
+                        )
+                        .then(() =>
+                            context.dispatch("addBuildCategory", parts[6])
+                        )
+                        .then(() =>
+                            context.dispatch("addBuildCategory", parts[7])
+                        )
+                        .then(() =>
+                            context.dispatch("patchBuildDetails", {
+                                buildId,
+                                buildName: payload.header,
+                                buildBudget: +payload.harga,
+                            })
+                        )
+                        .then(() => {
+                            router.push(`/builds/${buildId}`);
+                        });
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        },
+        addBuildCategory(context, payload) {
+            return new Promise((resolve, reject) => {
+                let dataKey = {
+                    key: `${payload.type}Id`,
+                    url: `/builds/${payload.buildId}/${payload.type}`,
+                };
+                if (Array.isArray(payload.partId)) {
+                    dataKey.key = `${payload.type}Ids`;
+                }
+                if (payload.type === "powerSupply")
+                    dataKey.url = `/builds/${payload.buildId}/power_supply`;
+                if (payload.type === "caseFan")
+                    dataKey.url = `/builds/${payload.buildId}/case_fan`;
+                // console.log(dataKey, "ini datakey di addbuild category");
+                axios({
+                    url: dataKey.url,
+                    method: "PATCH",
+                    headers: {
+                        access_token: localStorage.access_token,
+                    },
+                    data: {
+                        [dataKey.key]: payload.partId,
+                    },
+                })
+                    .then(({ data }) => {
+                        console.log(data, "ini di add build then success");
+                        resolve(data);
+                    })
+                    .catch((err) => {
+                        console.log(
+                            err,
+                            "ini add build category ----->",
+                            payload.type
+                        );
+                        reject(err);
+                    });
+            });
         },
     },
 });
