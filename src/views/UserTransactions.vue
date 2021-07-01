@@ -36,9 +36,6 @@
                         type="boolean"
                         index="shipmentStatus"
                     >
-                        <span>{{
-                            [[index.shipmentStatus]] ? "Not Shipped" : "Shipped"
-                        }}</span>
                     </zg-column>
                 </zg-data>
             </zing-grid>
