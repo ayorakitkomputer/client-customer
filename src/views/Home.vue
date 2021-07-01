@@ -71,7 +71,7 @@ export default {
                 {
                     header: "Enthusiast Intel Gaming PC",
                     image: "https://cdn.coolermaster.com/media/assets/1035/mb311l_argb_09_room_for_upgrades-imageleftorright.png",
-                    harga: 30000000,
+                    harga: 35000000,
                     cpu: {
                         name: "Intel Core i7-10700K",
                         id: "60d5ca9fc6e53a61d8e36f52",
