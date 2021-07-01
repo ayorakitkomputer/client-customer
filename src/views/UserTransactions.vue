@@ -17,7 +17,7 @@
                 theme="ios"
             >
                 <zg-caption
-                    class="text-3xl font-semibold leading-tight bg-black  text-ark-green"
+                    class="px-10 pt-0 text-3xl font-semibold leading-tight bg-gray-800  pb-7 text-ark-green"
                     >Transaction History</zg-caption
                 >
                 <zg-data :src="transactionData">
@@ -55,7 +55,6 @@ export default {
         }
     },
     beforeMount() {
-        // console.log("masuk beforemount");
         this.$store.dispatch("getUserTransactions");
     },
 };

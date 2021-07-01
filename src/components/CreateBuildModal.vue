@@ -27,7 +27,21 @@
                     />
                 </div>
                 <button
-                    class="self-center px-3 py-2 mt-2 text-lg font-semibold text-black uppercase  w-28 bg-ark-green rounded-xl hover:bg-black hover:text-ark-green"
+                    class="
+                        self-center
+                        px-3
+                        py-2
+                        mt-2
+                        text-lg
+                        font-semibold
+                        text-black
+                        uppercase
+                        w-28
+                        bg-ark-green
+                        rounded-xl
+                        hover:bg-black
+                        hover:text-ark-green
+                    "
                 >
                     CREATE
                 </button>
@@ -65,7 +79,6 @@ export default {
                 this.$store
                     .dispatch("patchBuildDetails", payload)
                     .then(() => {
-                        console.log("masuk hide");
                         this.hide();
                     })
                     .catch((err) => {
@@ -80,8 +93,7 @@ export default {
         },
     },
     watch: {
-        checkUserData(status, old) {
-            console.log(status, old);
+        checkUserData(status) {
             if (status) this.show();
         },
     },

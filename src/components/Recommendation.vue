@@ -122,20 +122,23 @@ export default {
             if (!localStorage.access_token) {
                 this.$router.push({ name: "Login" });
             } else {
-                this.$toast.success("Creating this build for you...", {
-                    position: "top-right",
-                    timeout: 5000,
-                    closeOnClick: true,
-                    pauseOnFocusLoss: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    draggablePercent: 0.6,
-                    showCloseButtonOnHover: false,
-                    hideProgressBar: false,
-                    closeButton: false,
-                    icon: true,
-                    rtl: false,
-                });
+                this.$toast.success(
+                    "Please wait! Creating this build for you.",
+                    {
+                        position: "top-right",
+                        timeout: 10000,
+                        closeOnClick: true,
+                        pauseOnFocusLoss: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        draggablePercent: 0.6,
+                        showCloseButtonOnHover: false,
+                        hideProgressBar: false,
+                        closeButton: false,
+                        icon: true,
+                        rtl: false,
+                    }
+                );
                 this.$store.dispatch("createBuildFromCategory", this.build);
             }
         },
@@ -168,13 +171,14 @@ export default {
     }
 }
 #specButton {
-    color: black;
-    background-color: #cfff0a;
+    /* color: black;
+    background-color: #cfff0a; */
+    @apply text-black bg-ark-green hover:text-ark-green hover:bg-black border-2 border-opacity-0 hover:border-opacity-100;
 }
-#specButton:hover {
+/* #specButton:hover {
     color: #cfff0a;
     background-color: black;
-}
+} */
 .box-right {
     background: linear-gradient(
         90deg,
@@ -187,7 +191,6 @@ export default {
 }
 #spec-title {
     color: #fcfff0;
-    /* text-shadow: 2px 2px 1px #cfff0a; */
 }
 .img-shadow {
     -webkit-filter: drop-shadow(5px 5px 5px #cfff0a);

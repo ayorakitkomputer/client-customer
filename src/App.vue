@@ -18,7 +18,6 @@ export default {
     },
     watch: {
         $route(to) {
-            console.log(to, "ini di route");
             if (to.name === "Register" || to.name === "Login") {
                 this.isNotLogin = false;
             } else this.isNotLogin = true;

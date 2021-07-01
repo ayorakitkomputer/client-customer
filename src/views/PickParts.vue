@@ -1,28 +1,67 @@
 <template>
     <section class="h-navbar">
         <div
-            class="container relative grid h-full grid-cols-12 mx-auto  bg-build rounded-xl"
+            class="
+                container
+                relative
+                grid
+                h-full
+                grid-cols-12
+                mx-auto
+                bg-build
+                rounded-xl
+            "
         >
             <div class="h-full col-span-2 bg-build rounded-xl">
                 <h5
                     id="title-comp"
-                    class="px-4 py-5 text-xl font-semibold text-center bg-black  rounded-tl-xl"
+                    class="
+                        px-4
+                        py-5
+                        text-xl
+                        font-semibold
+                        text-center
+                        bg-black
+                        rounded-tl-xl
+                    "
                 >
                     COMPONENTS
                 </h5>
                 <div class="flex flex-col justify-between">
                     <ul
-                        class="flex flex-col gap-2 px-5 mt-5 text-lg font-medium text-white uppercase "
+                        class="
+                            flex flex-col
+                            gap-2
+                            px-5
+                            mt-5
+                            text-lg
+                            font-medium
+                            text-white
+                            uppercase
+                        "
                     >
                         <router-link :to="`/builds/${getBuild._id}/cpu`">
                             <li
-                                class="relative flex justify-between my-3  bg-comp"
+                                class="
+                                    relative
+                                    flex
+                                    justify-between
+                                    my-3
+                                    bg-comp
+                                "
                             >
                                 <div>CPU</div>
                                 <div>+</div>
                                 <div
                                     v-if="checkIncompatiblePart"
-                                    class="absolute text-sm font-semibold text-red-500 normal-case  -top-5"
+                                    class="
+                                        absolute
+                                        text-sm
+                                        font-semibold
+                                        text-red-500
+                                        normal-case
+                                        -top-5
+                                    "
                                 >
                                     You have an incompatible part!
                                 </div>
@@ -162,9 +201,15 @@
                             *Max. 3 pcs
                         </div>
                     </ul>
-                    <div v-if="checkBuildsRoute" class="mx-5 mt-10">
+                    <div v-if="checkBuildsRoute" class="mx-5 mt-14">
                         <div
-                            class="flex flex-col items-start text-lg font-medium  text-ark-green"
+                            class="
+                                flex flex-col
+                                items-start
+                                text-lg
+                                font-medium
+                                text-ark-green
+                            "
                         >
                             <h1>Estimated Budget :</h1>
                             <h5 class="mt-2" :class="getBudgetColour">
@@ -175,19 +220,36 @@
                             </h6>
                         </div>
                         <div
-                            class="flex flex-col items-center mt-8 text-lg text-center "
+                            class="
+                                flex flex-col
+                                items-center
+                                mt-8
+                                text-lg text-center
+                            "
                         >
                             <button
                                 @click="checkOutBuild"
-                                class="w-full py-2 mb-5 font-semibold text-black  bg-ark-green rounded-xl hover:text-ark-green hover:bg-black"
+                                class="
+                                    w-full
+                                    py-2
+                                    mb-5
+                                    font-semibold
+                                    text-black
+                                    border-2 border-opacity-0
+                                    bg-ark-green
+                                    rounded-xl
+                                    hover:text-ark-green
+                                    hover:bg-black
+                                    hover:border-opacity-100
+                                "
                             >
                                 Checkout
                             </button>
-                            <button
-                                class="w-full py-2 font-semibold text-black  bg-ark-green rounded-xl hover:text-ark-green hover:bg-black"
+                            <!-- <button
+                                class="w-full py-2 font-semibold text-black bg-ark-green rounded-xl hover:text-ark-green hover:bg-black"
                             >
                                 Print PDF
-                            </button>
+                            </button> -->
                         </div>
                     </div>
                 </div>
@@ -196,7 +258,14 @@
                         <button
                             v-if="!checkBuildsRoute"
                             @click="goBackToBuilds"
-                            class="w-10/12 py-2 font-semibold  hover:text-white rounded-xl text-ark-green"
+                            class="
+                                w-10/12
+                                py-2
+                                font-semibold
+                                hover:text-white
+                                rounded-xl
+                                text-ark-green
+                            "
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -324,8 +393,6 @@ export default {
         goBackToBuilds() {
             const currentBuild = this.$store.state.currentBuild;
             const currentRoute = this.$route;
-            // console.log(this.$route);
-            // console.log(currentBuild);
             if (currentBuild._id)
                 this.$router.push(`/builds/${currentBuild._id}`);
             else if (currentRoute.params.id !== "undefined")
@@ -345,7 +412,6 @@ export default {
             // Check for incompatible parts!!!
             let incompatibleFlag = false;
             if (currentBuild.cpu && currentBuild.motherboard) {
-                // console.log(currentBuild.cpu, currentBuild.motherboard);
                 currentBuild.cpu.socket == currentBuild.motherboard.socket
                     ? ""
                     : (incompatibleFlag = true);

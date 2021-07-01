@@ -1,5 +1,5 @@
 <template>
-  <section class="bg-register">
+  <section>
     <div class="container flex items-center justify-center h-screen mx-auto">
       <div class="relative flex flex-col w-10/12">
         <div class="p-5 bg-black shadow-xl h-80 rounded-3xl">

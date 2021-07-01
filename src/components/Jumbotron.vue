@@ -5,11 +5,22 @@
         </div>
         <div class="absolute grid grid-cols-8">
             <div
-                class="flex items-center justify-center h-screen col-start-2 col-end-4 "
+                class="
+                    flex
+                    items-center
+                    justify-center
+                    h-screen
+                    col-start-2 col-end-4
+                "
             >
                 <p
                     id="test-animation"
-                    class="font-semibold text-white mb-80 text-7xl"
+                    class="
+                        font-semibold
+                        text-white text-jumbotron
+                        mb-80
+                        text-7xl
+                    "
                 >
                     BUILD YOUR OWN PC
                 </p>
@@ -17,7 +28,16 @@
                     <button
                         @click="createNewBuild"
                         id="jumbotronButton"
-                        class="px-5 py-4 text-xl font-bold text-black shadow-2xl  text-md rounded-2xl"
+                        class="
+                            px-5
+                            py-4
+                            text-xl
+                            font-bold
+                            text-black
+                            border-2
+                            text-md
+                            rounded-2xl
+                        "
                     >
                         LET'S START BUILD
                     </button>
@@ -131,7 +151,9 @@ export default {
                     sceneTemp.add(gltf.scene);
                 },
                 function (xhr) {
-                    console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
+                    console.log(
+                        "Three.js "(xhr.loaded / xhr.total) * 100 + "% loaded"
+                    );
                 },
                 function (e) {
                     console.log(e);
@@ -204,5 +226,8 @@ export default {
 #jumbotronButton:hover {
     color: #cfff0a;
     background-color: black;
+}
+.text-jumbotron {
+    text-shadow: 3px 2px 2px #cfff0a;
 }
 </style>

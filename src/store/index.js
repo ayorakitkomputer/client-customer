@@ -92,7 +92,6 @@ export default new Vuex.Store({
                 });
         },
         getMotherboard(context, page = 1) {
-            // console.log(context.state.currentBuild, "ini di mobo");
             axios({
                 url: `/builds/${context.state.currentBuild._id}/motherboard?page=${page}`,
                 headers: {
@@ -100,7 +99,6 @@ export default new Vuex.Store({
                 },
             })
                 .then(({ data }) => {
-                    // console.log(data[0].pages, "INI MOBO");
                     let motherboardData = {
                         category: context.state.componentsCategory.motherboard,
                         data: data[0].data,
@@ -221,7 +219,6 @@ export default new Vuex.Store({
                 },
             })
                 .then(({ data }) => {
-                    console.log(data, "INI CASE");
                     let caseData = {
                         category: context.state.componentsCategory.case,
                         data: data[0].data,
@@ -388,7 +385,6 @@ export default new Vuex.Store({
                 });
         },
         addBuild(context, payload) {
-            // console.log(payload, "INI ADDBUILD");
             let dataKey = {
                 key: `${payload.type}Id`,
                 url: `/builds/${payload.buildId}/${payload.type}`,
@@ -545,7 +541,6 @@ export default new Vuex.Store({
                 });
         },
         patchBuildDetails(context, payload) {
-            // console.log(context, payload);
             return new Promise((resolve, reject) => {
                 axios({
                     url: `/builds/${payload.buildId}/detail`,
@@ -559,7 +554,6 @@ export default new Vuex.Store({
                     },
                 })
                     .then(() => {
-                        // console.log(data, "INI DI PATCH BUILD DETAILS");
                         context.commit("SET_UPDATE_USER_DETAILS", false);
                         context.dispatch("getBuildById", {
                             buildId: payload.buildId,
@@ -684,7 +678,6 @@ export default new Vuex.Store({
                     dataKey.url = `/builds/${payload.buildId}/power_supply`;
                 if (payload.type === "caseFan")
                     dataKey.url = `/builds/${payload.buildId}/case_fan`;
-                // console.log(dataKey, "ini datakey di addbuild category");
                 axios({
                     url: dataKey.url,
                     method: "PATCH",
