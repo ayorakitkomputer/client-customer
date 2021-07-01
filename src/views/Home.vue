@@ -77,8 +77,8 @@ export default {
                         id: "60d5ca9fc6e53a61d8e36f52",
                     },
                     motherboard: {
-                        name: "MSI Z390-A PRO",
-                        id: "60d5cc1ec6e53a61d8e3701f",
+                        name: "MPG Z490 GAMING EDGE",
+                        id: "60d5cc1ec6e53a61d8e37028",
                     },
                     memory: {
                         name: "Corsair Vengeance RGB Pro 16 GB",
@@ -101,8 +101,8 @@ export default {
                         id: "60d849ff95818839880a31e0",
                     },
                     caseFan: {
-                        name: "Thermaltake Riing Trio 14 RGB TT Premium Edition 3-Pack",
-                        id: "60d5f75bc6e53a61d8e37196",
+                        name: "Corsair iCUE QL120 3-Pack",
+                        id: "60d5f75bc6e53a61d8e37169",
                     },
                 },
                 {
