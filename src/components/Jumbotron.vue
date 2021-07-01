@@ -1,7 +1,7 @@
 <template>
     <div class="h-screen bg-black">
         <div class="absolute flex items-center justify-center">
-            <!-- <canvas v-if="loadThreeJs" id="threejs"></canvas> -->
+            <canvas v-if="loadThreeJs" id="threejs"></canvas>
         </div>
         <div class="absolute grid grid-cols-8">
             <div
