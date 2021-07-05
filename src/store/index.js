@@ -521,11 +521,7 @@ export default new Vuex.Store({
                     });
             });
 
-            const paymentDone = Promise.all([
-                xenditAxios,
-                createHistoryTransaction,
-            ]);
-            console.log(paymentDone);
+            Promise.all([xenditAxios, createHistoryTransaction]);
         },
         getUserTransactions(context) {
             axios({
@@ -627,40 +623,59 @@ export default new Vuex.Store({
                         }
                     }
 
-                    // refactor and use reduce.
-                    context
-                        .dispatch("addBuildCategory", parts[0])
-                        .then(() =>
-                            context.dispatch("addBuildCategory", parts[1])
-                        )
-                        .then(() =>
-                            context.dispatch("addBuildCategory", parts[2])
-                        )
-                        .then(() =>
-                            context.dispatch("addBuildCategory", parts[3])
-                        )
-                        .then(() =>
-                            context.dispatch("addBuildCategory", parts[4])
-                        )
-                        .then(() =>
-                            context.dispatch("addBuildCategory", parts[5])
-                        )
-                        .then(() =>
-                            context.dispatch("addBuildCategory", parts[6])
-                        )
-                        .then(() =>
-                            context.dispatch("addBuildCategory", parts[7])
-                        )
-                        .then(() =>
-                            context.dispatch("patchBuildDetails", {
-                                buildId,
-                                buildName: payload.header,
-                                buildBudget: +payload.harga,
-                            })
-                        )
-                        .then(() => {
-                            router.push(`/builds/${buildId}`);
-                        });
+                    // Need to rework backend logic to make this process faster.
+                    const dependentComponents = new Promise(
+                        (resolve, reject) => {
+                            context
+                                .dispatch("addBuildCategory", parts[0])
+                                .then(() =>
+                                    context.dispatch(
+                                        "addBuildCategory",
+                                        parts[1]
+                                    )
+                                )
+                                .then(() =>
+                                    context.dispatch(
+                                        "addBuildCategory",
+                                        parts[2]
+                                    )
+                                )
+                                .then(() =>
+                                    context.dispatch(
+                                        "addBuildCategory",
+                                        parts[5]
+                                    )
+                                )
+                                .then(() =>
+                                    context.dispatch(
+                                        "addBuildCategory",
+                                        parts[6]
+                                    )
+                                )
+                                .then(() => {
+                                    resolve();
+                                })
+                                .catch((err) => reject(err));
+                        }
+                    );
+
+                    const independentComponents = [
+                        context.dispatch("addBuildCategory", parts[3]),
+                        context.dispatch("addBuildCategory", parts[4]),
+                        context.dispatch("addBuildCategory", parts[7]),
+                        context.dispatch("patchBuildDetails", {
+                            buildId,
+                            buildName: payload.header,
+                            buildBudget: +payload.harga,
+                        }),
+                    ];
+
+                    Promise.all([
+                        dependentComponents,
+                        ...independentComponents,
+                    ]).then(() => {
+                        router.push(`/builds/${buildId}`);
+                    });
                 })
                 .catch((err) => {
                     console.log(err);
