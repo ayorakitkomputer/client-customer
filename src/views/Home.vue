@@ -29,7 +29,6 @@ export default {
             inMove: false,
             activeSection: 0,
             offsets: [],
-            // FIX THIS
             recommendationBuilds: [
                 {
                     header: "Entry AMD Gaming PC",
@@ -163,18 +162,32 @@ export default {
             document.getElementsByClassName("section")[id].scrollIntoView({
                 behavior: "smooth",
             });
+
             setTimeout(() => {
                 this.inMove = false;
-            }, 400);
+            }, 2500);
         },
         handleMouseWheel(e) {
-            if (e.wheelDelta < 30 && !this.inMove) {
+            // This doesn't handle touchpad with acceleration
+            if (e.deltaY > 0 && !this.inMove) {
                 this.moveUp();
-            } else if (e.wheelDelta > 30 && !this.inMove) {
+            } else if (e.deltaY < 0 && !this.inMove) {
                 this.moveDown();
             }
             e.preventDefault();
             return false;
+        },
+        handleKeyboard(e) {
+            // Only intervent arrowup or down presses.
+            if (e.key === "ArrowUp" && !this.inMove) {
+                this.moveDown();
+                e.preventDefault();
+                return false;
+            } else if (e.key === "ArrowDown" && !this.inMove) {
+                this.moveUp();
+                e.preventDefault();
+                return false;
+            }
         },
         moveDown() {
             this.inMove = true;
@@ -198,17 +211,17 @@ export default {
     mounted() {
         this.calculateSectionOffsets();
         this.loadJumbotron = true;
-
-        window.addEventListener("DOMMouseScroll", this.handleMouseWheelDOM); // Mozilla Firefox
-        window.addEventListener("mousewheel", this.handleMouseWheel, {
+        window.addEventListener("wheel", this.handleMouseWheel, {
             passive: false,
-        }); // Other browsers
+        });
+        window.addEventListener("keydown", this.handleKeyboard, {
+            passive: false,
+        });
     },
     destroyed() {
-        window.removeEventListener("mousewheel", this.handleMouseWheel, {
+        window.removeEventListener("wheel", this.handleMouseWheel, {
             passive: false,
-        }); // Other browsers
-        window.removeEventListener("DOMMouseScroll", this.handleMouseWheelDOM); // Mozilla Firefox
+        });
     },
 };
 </script>
