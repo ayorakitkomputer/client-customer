@@ -351,9 +351,9 @@ export default {
             this.getData();
         },
         getBuild(currentBuild) {
-            if (!currentBuild.name && !currentBuild.budget) {
-                this.$store.commit("SET_UPDATE_USER_DETAILS", true);
-            }
+            // if (!currentBuild.name && !currentBuild.budget) {
+            //     this.$store.commit("SET_UPDATE_USER_DETAILS", true);
+            // }
 
             // Check for incompatible parts!!!
             let incompatibleFlag = false;
@@ -448,7 +448,7 @@ export default {
     beforeUpdate() {
         // Show Modal Handler
         const currentBuild = this.$store.state.currentBuild;
-        if (!currentBuild.name && !currentBuild.budget) {
+        if (!currentBuild.name || !currentBuild.budget) {
             this.$store.commit("SET_UPDATE_USER_DETAILS", true);
         }
     },

@@ -67,6 +67,7 @@ export default new Vuex.Store({
         },
     },
     actions: {
+        // refactor to make it more DRY.
         getCpu(context, page = 1) {
             axios({
                 url: `/cpu?page=${page}`,

@@ -80,7 +80,6 @@ export default {
     },
     watch: {
         checkUserData(status) {
-            console.log(status, "ini status modal");
             if (status) this.show();
         },
     },

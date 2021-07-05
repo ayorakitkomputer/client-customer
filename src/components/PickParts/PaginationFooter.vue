@@ -4,6 +4,11 @@
             <li
                 @click="goToPage(i)"
                 v-for="i in getCurrentPage.totalPage"
+                :class="
+                    i === getCurrentPage.page
+                        ? 'bg-black text-white'
+                        : 'bg-white'
+                "
                 :key="i"
             >
                 {{ i }}
@@ -34,7 +39,7 @@ export default {
 
 <style scoped>
 li {
-    @apply mx-1 h-10 w-10 flex items-center justify-center bg-white cursor-pointer rounded-xl font-semibold;
+    @apply mx-1 h-10 w-10 flex items-center justify-center cursor-pointer rounded-xl font-semibold;
 }
 
 li:hover {
